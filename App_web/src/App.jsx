@@ -16,6 +16,7 @@ import {
   ResetPassword,
   Review,
 } from "./pages";
+import ItemDetail from "./components/ItemDetail/ItemDetail";
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/checkout-details" element={<CheckoutDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
+        <Route path="/item/:id" element={<ItemDetail />} />
         {/* ADMIN ROUTES */}
         <Route
           path="/admin/*"
