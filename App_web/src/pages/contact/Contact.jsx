@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Header } from "../../components";
-import { CiPhone } from "react-icons/ci";
-import { AiOutlineMail, AiOutlineTwitter } from "react-icons/ai";
+import { AiOutlineFacebook, AiOutlineInstagram, AiOutlineMail } from "react-icons/ai";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 
@@ -35,44 +34,50 @@ const Contact = () => {
 
    return (
       <>
-         <Header text="Contact Us" />
+         <Header text="Contáctanos" />
          <main className="w-full mx-auto px-2 lg:w-9/12 md:px-6 mt-4 lg:mt-6 flex flex-col md:flex-row justify-between gap-10">
-            <section className="w-full md:w-[30rem] bg-primary-content rounded-md p-6 h-72">
+            <section className="w-full md:w-[30rem] bg-primary rounded-md p-6 h-72">
                {/* Card */}
                <div className="mb-10">
-                  <h1 className="text-xl md:text-3xl mb-2">
-                     Contact Information
+                  <h1 className="text-white md:text-3xl mb-2">
+                     Información de contacto
                   </h1>
-                  <p className="md:text-lg">
-                     Fill the form or contact us via other channels
+                  <p className="md:text-white">
+                     Rellena el formulario o contacta con nosotros por otros medios.
                   </p>
                </div>
                <div>
-                  <div className="flex items-center gap-2 my-2 md:text-xl">
+                  <div className="flex items-center gap-2 my-2 md:text-white">
                      <AiOutlineMail />
-                     <a href="mailto: Support@eshop.com?subject=Feedback&body=message">
-                        Support@eshop.com
+                     <a href="mailto: coctelis@gmail.com?subject=Feedback&body=message">
+                        coctelis@gmail.com
                      </a>
                   </div>
-                  <div className="flex items-center gap-2  my-2 md:text-xl">
-                     <CiPhone />
-                     <a href="tel:+91-123-12345">91-123-12345</a>
-                  </div>
-                  <div className="flex items-center gap-2 md:text-xl  my-2">
-                     <AiOutlineTwitter />
+                  <div className="flex items-center gap-2 md:text-white  my-2">
+                     <AiOutlineFacebook />
                      <a
-                        href="https://twitter.com/kartik_im"
+                        href="https://facebook.com"
                         rel="noreferrer"
                         target="_blank"
                      >
-                        @kartik_im
+                        @Coctelis
+                     </a>
+                  </div>
+                  <div className="flex items-center gap-2 md:text-white my-2">
+                     <AiOutlineInstagram />
+                     <a
+                        href="https://Instagram.com/Coctelis"
+                        rel="noreferrer"
+                        target="_blank"
+                     >
+                        @Coctelis
                      </a>
                   </div>
                </div>
             </section>
             <section className="w-full md:w-2/3 rounded-md shadow-lg border-2 p-6">
                {/* Form */}
-               <h1 className="text-xl md:text-3xl">Contact Us</h1>
+               <h1 className="text-xl md:text-3xl">Contáctanos</h1>
                <form
                   className="form-control"
                   onSubmit={sendEmail}
@@ -80,12 +85,12 @@ const Contact = () => {
                >
                   <div className="py-2">
                      <label className="label-text md:font-semibold mb-2 block text-lg">
-                        Name :
+                        Nombre y apellido :
                      </label>
                      <input
                         className="input input-bordered max-w-lg w-full border-2"
                         type="text"
-                        placeholder="Full Name"
+                        placeholder="Nombre y apellido"
                         required
                         name="username"
                      />
@@ -97,26 +102,26 @@ const Contact = () => {
                      <input
                         className="input input-bordered max-w-lg w-full border-2"
                         type="email"
-                        placeholder="Active Email"
+                        placeholder="Email"
                         required
                         name="email"
                      />
                   </div>
                   <div className="py-2">
                      <label className="label-text md:font-semibold mb-2 block text-lg">
-                        Subject :
+                        Asunto :
                      </label>
                      <input
                         className="input input-bordered max-w-lg w-full border-2"
                         type="text"
-                        placeholder="Subject"
+                        placeholder="Asunto"
                         required
                         name="subject"
                      />
                   </div>
                   <div className="py-2">
                      <label className="label-text md:font-semibold mb-2 block text-lg">
-                        Message :
+                        Mensaje :
                      </label>
                      <textarea
                         className="textarea textarea-bordered max-w-[100%] w-full"
@@ -126,7 +131,7 @@ const Contact = () => {
                      ></textarea>
                   </div>
                   <button className="btn max-w-xs w-full" type="submit">
-                     Send Message
+                     Enviar mensaje
                   </button>
                </form>
             </section>

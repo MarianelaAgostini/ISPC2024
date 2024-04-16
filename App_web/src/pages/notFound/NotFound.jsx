@@ -9,15 +9,14 @@ const NotFound = () => {
 						<div className="absolute">
 							<div className="">
 								<h1 className="my-2 text-gray-800 font-bold text-2xl">
-									Looks like you've found the doorway to the great nothing
+									¡Lo lamento! la página que buscas no existe.
 								</h1>
 								<p className="my-2 text-gray-800">
-									Sorry about that! Please visit our hompage to get where you need
-									to go.
+								Por favor visite nuestra página de inicio para llegar a donde necesita ir.
 								</p>
 
 								<Link to="/">
-									<button className="btn btn-primary">Take me there</button>
+									<button className="btn btn-primary">Volver a inicio</button>
 								</Link>
 							</div>
 						</div>

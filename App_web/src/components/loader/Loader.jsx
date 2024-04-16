@@ -4,7 +4,7 @@ const Loader = () => {
   return ReactDOM.createPortal(
     <div className="overlay">
       <div>
-        <h1 className="text-xl font-semibold"> Please wait , This might take a while</h1>
+        <h1 className="text-xl font-semibold"> Espera, esto puede tardar un poco.</h1>
         <div className="loader"></div>
       </div>
     </div>,

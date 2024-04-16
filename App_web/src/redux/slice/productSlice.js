@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-   products: localStorage.getItem("product") ? JSON.parse(localStorage.getItem("product")) : [],
+   products: localStorage.getItem("recipe") ? JSON.parse(localStorage.getItem("recipe")) : [],
    minPrice: 0,
    maxPrice: 0,
 };
 
 const productSlice = createSlice({
-   name: "product",
+   name: "recipe",
    initialState,
    reducers: {
       storeProducts(state, action) {
          state.products = action.payload.products;
-         localStorage.setItem("product", JSON.stringify(action.payload.products));
+         localStorage.setItem("recipe", JSON.stringify(action.payload.products));
       },
       getPriceRange(state, action) {
          const { products } = action.payload;

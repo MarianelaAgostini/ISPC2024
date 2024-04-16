@@ -6,6 +6,17 @@ module.exports = {
    },
    plugins: [require("daisyui")],
    daisyui: {
-      themes: ["lemonade"],
+      themes: [
+         {
+           mytheme: {
+             "primary": "#4b6584",
+             "secondary": "#f6d860",
+             "accent": "#37cdbe",
+             "neutral": "#131f30",
+             "base-100": "#ffffff",
+           },
+         },
+         
+       ],
    },
 };

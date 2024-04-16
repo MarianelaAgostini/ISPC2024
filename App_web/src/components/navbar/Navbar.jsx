@@ -4,6 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AdminOnlyLink } from "../adminRoute/AdminRoute";
+import encabezado from "../../assets/encabezado.png";
 // firebase
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
@@ -44,7 +45,7 @@ const Navbar = () => {
   function logOutUser() {
     signOut(auth)
       .then(() => {
-        toast.success("User Signed Out ");
+        toast.success("Usuario desconectado ");
         navigate("/");
       })
       .catch((error) => {
@@ -66,24 +67,29 @@ const Navbar = () => {
         <div className="navbar w-full md:w-9/12 mx-auto flex items-center justify-between">
           <section className="md:gap-4">
             <Link to="/" className="btn btn-ghost ">
-              <h1 className="logo text-white text-lg md:text-3xl ">E-Shop.com</h1>
+              <img src={encabezado} alt="encabezado" style={{ maxWidth: '60px' }} />
             </Link>
           </section>
           <div>
             <ul className="flex items-center gap-x-6">
               <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/" style={({ isActive }) => (isActive ? activeStyle : null)} end>
-                  Home
+                  Inicio
                 </NavLink>
               </li>
               <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/all" style={({ isActive }) => (isActive ? activeStyle : null)}>
-                  All Products
+                  Tienda
+                </NavLink>
+              </li>
+              <li className="hidden lg:block text-white text-xs md:text-xl">
+                <NavLink to="/SobreNosotros" style={({ isActive }) => (isActive ? activeStyle : null)}>
+                  Sobre nosotros
                 </NavLink>
               </li>
               <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/contact" style={({ isActive }) => (isActive ? activeStyle : null)}>
-                  Contact Us
+                  Contacto
                 </NavLink>
               </li>
             </ul>
@@ -105,7 +111,7 @@ const Navbar = () => {
                   <span>Subtotal: {formatPrice(totalAmount)}</span>
                   <div className="card-actions">
                     <Link to="/cart" className="btn btn-primary btn-block">
-                      View cart
+                      Ver carrito
                     </Link>
                   </div>
                 </div>
@@ -128,7 +134,7 @@ const Navbar = () => {
                 {userName && (
                   <li className="bg-primary text-gray-200">
                     <p className="block">
-                      Welcome, <span className="font-bold">{userName}</span>
+                      Bienvenido, <span className="font-bold">{userName}</span>
                     </p>
                   </li>
                 )}
@@ -141,6 +147,11 @@ const Navbar = () => {
                   <li>
                     <Link to="/all" className="text-lg ">
                       All Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/SobreNosotros" className="text-lg ">
+                      Sobre nosotros
                     </Link>
                   </li>
                   <li>
