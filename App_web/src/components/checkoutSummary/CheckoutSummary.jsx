@@ -8,10 +8,10 @@ const CheckoutSummary = () => {
    );
    return (
       <>
-         <h1 className="text-3xl font-light">Checkout Summary</h1>
+         <h1 className="text-3xl font-light">Resumen del pago</h1>
          <div className="mt-2">
             <p className="text-sm font-light text-gray-500">
-               Cart Item(s): {totalQuantity}{" "}
+               Obeto(s) del carro: {totalQuantity}{" "}
             </p>
             <div className="flex items-center justify-between">
                <h1 className="text-xl font-light">Subtotal: </h1>
@@ -29,9 +29,9 @@ const CheckoutSummary = () => {
                      <h1 className="text-lg md:text-2xl text-primary">
                         {name}
                      </h1>
-                     <p>Quantity: {qty}</p>
-                     <p>Unit Price : {formatPrice(price)}</p>
-                     <p>Total Price: {formatPrice(price * qty)}</p>
+                     <p>Cantidad: {qty}</p>
+                     <p>Precio unitario : {formatPrice(price)}</p>
+                     <p>Precio total: {formatPrice(price * qty)}</p>
                   </section>
                );
             })}

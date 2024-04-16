@@ -63,7 +63,7 @@ const CheckoutForm = () => {
       .confirmPayment({
         elements,
         confirmParams: {
-          // Make sure to change this to your payment completion page
+          // Cambiar esto para poner nuestra pasarela de pago
           return_url: "http://localhost:5173/checkout-success",
         },
         redirect: "if_required",
@@ -77,7 +77,7 @@ const CheckoutForm = () => {
         if (res.paymentIntent) {
           if (res.paymentIntent.status === "succeeded") {
             setIsLoading(false);
-            toast.success("Payment Successful");
+            toast.success("Pago exitoso");
             saveOrder();
             navigate("/checkout-success", { replace: true });
           }
@@ -100,14 +100,14 @@ const CheckoutForm = () => {
 
   return (
     <>
-      <Header text="Stripe Payment Gateway" />
+      <Header text="Pago con Stripe" />
       <section className="w-full mx-auto p-4 md:p-10 md:w-9/12 md:px-6 flex flex-col h-full">
         <div className="flex flex-col-reverse md:flex-row gap-4 justify-evenly">
           <div className="w-full md:w-2/5 h-max p-4 bg-base-100 rounded-md shadow-xl">
             <CheckoutSummary />
           </div>
           <div className="rounded-md shadow-xl pt-4 pb-8 px-10">
-            <h1 className="text-3xl font-light mb-2">Stripe Checkout</h1>
+            <h1 className="text-3xl font-light mb-2">Pagar con Stripe</h1>
             <form className="md:w-[30rem]" onSubmit={handleSubmit}>
               <PaymentElement id="payment-element" />
               <button
@@ -124,7 +124,7 @@ const CheckoutForm = () => {
                   )}
                 </span>
               </button>
-              {/* Show any error or success messages */}
+              {/* Mensajes de estado (errores o exitos) */}
               {message && <div id="payment-message">{message}</div>}
             </form>
           </div>

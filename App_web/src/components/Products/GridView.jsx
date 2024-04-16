@@ -12,7 +12,7 @@ import { addToCart } from "../../redux/slice/cartSlice";
 const GridView = ({ products }) => {
 	const dispatch = useDispatch();
 	if (!products.length) {
-		return <h1 className="text-3xl font-bold">No Products Found</h1>;
+		return <h1 className="text-3xl font-bold">No se encontraron productos</h1>;
 	}
 
 	function add2CartFunction(product) {
@@ -35,7 +35,7 @@ const GridView = ({ products }) => {
 									effect="blur"
 								/>
 								<div className=" absolute top-0 right-0">
-									<span className="badge badge-primary">Free Delivery</span>
+									<span className="badge badge-primary">Envío gratis</span>
 								</div>
 								<div className="my-4 items-center text-center">
 									<h1 className="font-semibold py-2">{name}</h1>
@@ -51,7 +51,7 @@ const GridView = ({ products }) => {
 									className="absolute bottom-1/3 left-[30%] btn btn-sm btn-primary hidden group-hover:block transition-all ease-in duration-300"
 									onClick={() => add2CartFunction(product)}
 								>
-									Add to Cart
+									Añadir al carro
 								</button>
 							</div>
 						</div>

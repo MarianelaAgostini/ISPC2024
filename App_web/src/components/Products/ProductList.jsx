@@ -11,24 +11,24 @@ const ProductList = ({ products }) => {
 	const [grid, setGrid] = useState(true);
 	const [search, setSearch] = useState("");
 	const [sort, setSort] = useState("latest");
-	// Pagination
+	// Paginación
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productPerPage, setProductPerPage] = useState(9);
-	// Scroll To Top
+	// Ir arriba
 	const [bacToTop, setBackToTop] = useState(false);
 	const dispatch = useDispatch();
 
-	//! Search
+	//! Buscar
 	useEffect(() => {
 		dispatch(filterBySearch({ products, search }));
 	}, [dispatch, products, search]);
-	//! Sort
+	//! ORdenar
 	useEffect(() => {
 		dispatch(sortProducts({ products, sort }));
 	}, [dispatch, products, sort]);
 
 	useEffect(() => {
-		// Scroll back to top
+		// Ir abajo
 		const event = window.addEventListener("scroll", () => {
 			if (pageYOffset > 400) {
 				setBackToTop(true);
@@ -46,7 +46,7 @@ const ProductList = ({ products }) => {
 		});
 	}
 
-	//get current product
+	//Obtener el producto
 	const indexOfLastProduct = currentPage * productPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productPerPage;
 	const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -54,7 +54,7 @@ const ProductList = ({ products }) => {
 	return (
 		<main className="relative">
 			<header className="flex flex-col gap-y-4 xl:flex-row xl:items-center justify-between border-b pb-2">
-				{/* Grid or List layout */}
+				{/* Plantilla grid */}
 				<div className="flex gap-2 items-center">
 					<div className="flex gap-4">
 						<BsFillGridFill
@@ -69,32 +69,31 @@ const ProductList = ({ products }) => {
 						/>
 					</div>
 					<h1>
-						<span className="font-bold">{filteredProducts.length} </span>- Products
-						Found
+						<span className="font-bold">{filteredProducts.length} </span>- Productos encontrados
 					</h1>
 				</div>
 				{/* Search Bar */}
 				<Search value={search} onChange={(e) => setSearch(e.target.value)} />
 				{/* Sorting List */}
 				<div className="flex gap-2 items-center">
-					<label>Sort by:</label>
+					<label>Ordenar por:</label>
 					<select
 						value={sort}
 						className="select select-sm select-bordered"
 						onChange={(e) => setSort(e.target.value)}
 					>
-						<option value="latest">Latest</option>
-						<option value="lowest-price">Lowest Price</option>
-						<option value="highest-price">Highest Price</option>
-						<option value="a2z">Name(a - z)</option>
-						<option value="z2a">Name(z - a)</option>
+						<option value="latest">Últimos</option>
+						<option value="lowest-price">Menor precio</option>
+						<option value="highest-price">Mayor precio</option>
+						<option value="a2z">Nombre(a - z)</option>
+						<option value="z2a">Nombre(z - a)</option>
 					</select>
 				</div>
 				{/* Collapse for Filter  */}
 				<div className="collapse sm:hidden">
 					<input type="checkbox" className="peer" />
 					<div className="collapse-title rounded-sm bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content w-80 flex items-center justify-between">
-						<p>Show Filters</p>
+						<p>Mostrar filtros</p>
 						<BsFilter size={28} />
 					</div>
 					<div className="collapse-content bg-primary text-primary-content peer-checked:bg-white peer-checked:text-black w-80 border-2 ">
@@ -116,7 +115,7 @@ const ProductList = ({ products }) => {
 						className="btn btn-primary sm:btn-lg rounded-full"
 						onClick={scrollToTop}
 					>
-						&uarr; Back to Top
+						&uarr; Volver arriba
 					</button>
 				</div>
 			)}

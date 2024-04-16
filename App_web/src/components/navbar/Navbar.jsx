@@ -21,7 +21,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  //* Monitor currently signed USER
+  //* Usuario logeado actualmente
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -174,14 +174,14 @@ const Navbar = () => {
                         className="flex justify-between hover:bg-red-100  text-red-500 text-lg"
                         onClick={logOutUser}
                       >
-                        LOGOUT
+                        Cerrar sesión
                       </Link>
                     </li>
                   </div>
                 ) : (
                   <li>
                     <label htmlFor="my-modal-4" className="modal-button text-lg text-primary">
-                      Login
+                      Iniciar sesión
                     </label>
                   </li>
                 )}

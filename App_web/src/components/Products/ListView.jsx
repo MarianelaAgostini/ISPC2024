@@ -12,7 +12,7 @@ const ListView = ({ products }) => {
 	const dispatch = useDispatch();
 
 	if (!products.length) {
-		return <h1 className="text-3xl font-bold">No Products Found</h1>;
+		return <h1 className="text-3xl font-bold">No se encontraron productos</h1>;
 	}
 
 	function add2CartFunction(product) {
@@ -33,7 +33,7 @@ const ListView = ({ products }) => {
 								effect="blur"
 							/>
 							<div className=" absolute top-0 right-0">
-								<span className="badge ">Free Delivery</span>
+								<span className="badge ">Envío gratis</span>
 							</div>
 							<div className="flex-1">
 								<h1 className="font-semibold">{product.brand}</h1>
@@ -47,11 +47,11 @@ const ListView = ({ products }) => {
 									onClick={() => add2CartFunction(product)}
 									className="btn btn-sm btn-outline mr-4"
 								>
-									Add to cart
+									Añadir al carro
 								</button>
 								<Link to={`/product-details/${product.id}`}>
 									<button className="btn btn-sm btn-primary mt-2">
-										View Details
+										Ver detalles
 									</button>
 								</Link>
 							</div>

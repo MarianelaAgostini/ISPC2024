@@ -25,13 +25,13 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
 				<button className="btn" onClick={prevPage}>
 					«
 				</button>
-				<button className="btn">Page {currentPage}</button>
+				<button className="btn">Pag {currentPage}</button>
 				<button className="btn" onClick={nextPage}>
 					»
 				</button>
 			</div>
 			<p className="font-semibold">
-				<span className="text-primary">Page {currentPage} </span> of
+				<span className="text-primary">Pag {currentPage} </span> de
 				<span> {Math.ceil(totalProducts / productPerPage)} </span>
 			</p>
 		</div>

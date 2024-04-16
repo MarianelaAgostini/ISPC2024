@@ -11,7 +11,7 @@ const Breadcrumbs = ({ type, checkout, stripe }) => {
 					Home /
 				</Link>
 				<NavLink to="/all" className={activeLink}>
-					<span className="text-xl md:text-3xl font-bold"> Products </span>
+					<span className="text-xl md:text-3xl font-bold"> Productos </span>
 				</NavLink>
 
 				{type && (

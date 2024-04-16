@@ -9,7 +9,7 @@ import { collection, addDoc, Timestamp, setDoc, doc } from "firebase/firestore";
 import { storage, db } from "../../firebase/config";
 import { useSelector } from "react-redux";
 
-//! Handle Input Changes
+//Esperar cambios en el input (handle event)
 const AddProducts = () => {
   const navigate = useNavigate();
   const { id: paramsId } = useParams();
@@ -21,7 +21,7 @@ const AddProducts = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  //! Check for Add or Edit
+  //Buscar para añadir o modificar
   function detectForm(paramsId, func1, func2) {
     if (paramsId === "ADD") return func1;
     return func2;
@@ -31,7 +31,7 @@ const AddProducts = () => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   }
-  //! File Upload to FireStorage
+  // Subir archivo (imagen) a Firestore
   function handleImageChange(e) {
     const file = e.target.files[0];
     const storageRef = ref(storage, `images/${Date.now()}${file.name}`);
@@ -46,15 +46,15 @@ const AddProducts = () => {
         toast.error(error.code, error.message);
       },
       () => {
-        // Handle successful uploads on complete
+        // Esperar y avisar cuando se completa la carga de archivo
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setProduct({ ...product, imageURL: downloadURL });
-          toast.success("File Uploaded Successfully");
+          toast.success("Archivo subido con éxito");
         });
       }
     );
   }
-  //! Add Product to Firebase
+  // Añadir producto a Firebase
   async function addProduct(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -71,21 +71,21 @@ const AddProducts = () => {
       setUploadProgress(0);
       setProduct(defaultValues);
       setIsLoading(false);
-      toast.success("Product added to Database Successfully");
+      toast.success("Producto añadido a la base de datos");
       navigate("/admin/all-products");
     } catch (error) {
       console.log(error.message);
-      toast.error("Something Went Wrong , Check Console");
+      toast.error("Algo salió mal");
       setIsLoading(false);
     }
   }
-  //! Edit Product
+  //Editar producto
   async function editProduct(e) {
     e.preventDefault();
     setIsLoading(true);
-    // Check if the image is updated
+    // Verificar si la imagen fue actualizada
     if (product.imageURL !== productEdit.imageURL) {
-      // deleting image from database storage
+      // Borrar imagen de la bd
       const storageRef = ref(storage, productEdit.imageURL);
       await deleteObject(storageRef);
     }
@@ -97,23 +97,23 @@ const AddProducts = () => {
         category: product.category,
         brand: product.brand,
         description: product.description,
-        // Preserving created at
+        // Datos de guardado
         createdAt: productEdit.createdAt,
         editedAt: Timestamp.now().toDate(),
       });
       setUploadProgress(0);
       setProduct(defaultValues);
       setIsLoading(false);
-      toast.success("Product Updated Successfully");
+      toast.success("Producto actualizado correctamente");
       navigate("/admin/all-products");
     } catch (error) {
       console.log(error.message);
-      toast.error("Something Went Wrong , Check Console");
+      toast.error("Algo salió mal");
       setIsLoading(false);
     }
   }
 
-  //! Disable button until everything added to input fields
+  // Deshabilitar botón hasta que se carguen los campos
   const AllFieldsRequired =
     Boolean(product.brand) &&
     Boolean(product.category) &&
@@ -132,7 +132,7 @@ const AddProducts = () => {
         </h1>
         <form className="form-control" onSubmit={detectForm(paramsId, addProduct, editProduct)}>
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Product Name:</label>
+            <label className="label-text font-bold mb-2 block text-lg">Nombre del producto:</label>
             <input
               className="input input-bordered max-w-lg w-full border-2"
               type="text"
@@ -145,7 +145,7 @@ const AddProducts = () => {
           </div>
 
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Product Price: </label>
+            <label className="label-text font-bold mb-2 block text-lg">Precio del producto: </label>
             <input
               className="input input-bordered max-w-lg w-full border-2"
               type="number"
@@ -157,7 +157,7 @@ const AddProducts = () => {
             />
           </div>
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Product Category:</label>
+            <label className="label-text font-bold mb-2 block text-lg">Categoría del producto:</label>
             <select
               className="select select-bordered w-full max-w-lg"
               required
@@ -166,7 +166,7 @@ const AddProducts = () => {
               onChange={handleInputChange}
             >
               <option disabled value="">
-                -- Choose a Product Category --
+                -- Elegir categoría --
               </option>
               {categories.map((c) => {
                 return (
@@ -178,7 +178,7 @@ const AddProducts = () => {
             </select>
           </div>
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Product Brand: </label>
+            <label className="label-text font-bold mb-2 block text-lg">Marca del producto: </label>
             <input
               className="input input-bordered max-w-lg w-full border-2"
               type="text"
@@ -190,7 +190,7 @@ const AddProducts = () => {
             />
           </div>
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Product Description: </label>
+            <label className="label-text font-bold mb-2 block text-lg">Descripcion del producto: </label>
             <textarea
               className="textarea textarea-bordered h-32 max-w-lg w-full"
               type="text"
@@ -202,7 +202,7 @@ const AddProducts = () => {
             ></textarea>
           </div>
           <div>
-            <label className="label-text font-bold mb-2 block text-lg">Product Image: </label>
+            <label className="label-text font-bold mb-2 block text-lg">Imagen del producto: </label>
             <div className="border-2 rounded-sm  max-w-xl w-full px-4 pb-2">
               <div>
                 <progress

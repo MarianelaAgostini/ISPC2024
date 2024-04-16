@@ -19,7 +19,7 @@ const ViewProducts = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
-  //! Fetching Products from collection using Custom Hook
+  //Fetch a los productos utilizando hooks
   const { data, isLoading } = useFetchCollection("products");
   const { filteredProducts } = useSelector((store) => store.filter);
   const { products } = useSelector((store) => store.product);
@@ -28,17 +28,17 @@ const ViewProducts = () => {
     dispatch(storeProducts({ products: data }));
   }, [dispatch, data]);
 
-  //! Search
+  //Buscar
   useEffect(() => {
     dispatch(filterBySearch({ products: data, search }));
   }, [dispatch, data, search]);
 
-  //! Delete single product
+  //Borrar un solo producto
   const deleteSingleProduct = async (id, imageURL) => {
     try {
-      // deleting a document from product collection
+      //Borrar un doc de una colección
       await deleteDoc(doc(db, "products", id));
-      // deleting image from database storage
+      // Borrar imagen de la bd
       const storageRef = ref(storage, imageURL);
       await deleteObject(storageRef);
       toast.info("Product deleted successfully");
@@ -50,18 +50,18 @@ const ViewProducts = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <h1 className="text-xl md:text-3xl font-semibold ">All Products</h1>
+      <h1 className="text-xl md:text-3xl font-semibold ">Todos los productos</h1>
       {products.length && (
         <div>
           <div className="underline">
-            <span className="text-lg font-bold ">{filteredProducts.length} </span> products found
+            <span className="text-lg font-bold ">{filteredProducts.length} </span> productos encontrados
           </div>
         </div>
       )}
       <Search value={search} onChange={(e) => setSearch(e.target.value)} />
       <main className="md:max-w-[100vw] max-h-[70vh] py-4 overflow-y-scroll ">
         {filteredProducts.length === 0 ? (
-          <h1 className="text-4xl font-bold text-red-500">NO PRODUCTS FOUND</h1>
+          <h1 className="text-4xl font-bold text-red-500">PRODUCTO NO ENCONTRADO</h1>
         ) : (
           <div className="overflow-x-auto mt-2 w-full">
             <table className="table table-compact w-full">

@@ -16,12 +16,9 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  //! Test / Guest Account Login
-  //* Currently this feature is disabled due to spam messages reported by the ADMIN
+//Función para testear el login.
   const testLogin = (e) => {
     e.preventDefault();
-    // document.getElementById("my-modal-69").checked = true;
-    // setInfoModalOpen(true);
     document.getElementById("my-modal-4").checked = false;
 
     let testEmail = import.meta.env.VITE_TEST_EMAIL;
@@ -32,7 +29,6 @@ const Login = () => {
         const user = userCredential.user;
         toast.success("Login Successful");
         setIsLoading(false);
-        // document.getElementById("my-modal-4").checked = false;
         navigate("/");
       })
       .catch((error) => {
@@ -43,10 +39,10 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Close dialog box when Login Btn is clicked immediately
+    // Cerrar ventana de diálogo cuando se presiona el botón
     document.getElementById("my-modal-4").checked = false;
 
-    //* Custom User login
+    // Login de usuario personalizado (no de testeo)
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -64,7 +60,7 @@ const Login = () => {
     setPassword("");
   };
 
-  //* Login with Google
+  // Login con Google
   const provider = new GoogleAuthProvider();
   const googleSignIn = () => {
     setIsLoading(true);
@@ -90,15 +86,15 @@ const Login = () => {
       <div className="py-6 ">
         <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-4xl">
           <div className="w-full px-8 pt-4 pb-6">
-            <p className="text-xl text-gray-600 text-center">Welcome back</p>
+            <p className="text-xl text-gray-600 text-center">Bienvenido de nuevo</p>
             <div className="btn w-full mt-4 gap-2" onClick={googleSignIn}>
               <FcGoogle size={22} />
-              Sign in with google
+              Iniciar sesión con Google
             </div>
-            <div className="divider text-xs text-gray-400 uppercase">or login with email</div>
+            <div className="divider text-xs text-gray-400 uppercase">O ingresa con email</div>
             <form className="form-control" onSubmit={handleSubmit}>
               <div>
-                <label className="label-text font-bold mb-2 block">Email Address</label>
+                <label className="label-text font-bold mb-2 block">Email</label>
                 <input
                   className="input input-bordered w-full border-2"
                   type="email"
@@ -109,13 +105,13 @@ const Login = () => {
               </div>
               <div className="mt-4 relative">
                 <div className="flex justify-between">
-                  <label className="label-text font-bold mb-2">Password</label>
+                  <label className="label-text font-bold mb-2">Contraseña</label>
                   <Link
                     to="/reset"
                     className="text-xs text-gray-500"
                     onClick={() => (document.getElementById("my-modal-4").checked = false)}
                   >
-                    Forget Password?
+                    ¿Olvidaste la contraseña?
                   </Link>
                 </div>
                 <input
@@ -142,7 +138,7 @@ const Login = () => {
                   Login
                 </button>
 
-                {/* The button to open modal */}
+                {/* Botón para testear el modal */}
                 {/* <label
                   onClick={testLogin}
                   htmlFor="my-modal-69"
@@ -151,24 +147,8 @@ const Login = () => {
                   Test User
                 </label> */}
 
-                {/* Put this part before </body> tag */}
+                {/* poner esto antes del </body> si se quiere probar */}
                 <input type="checkbox" id="my-modal-69" className="modal-toggle" />
-                <label htmlFor="my-modal-69" className="modal cursor-pointer">
-                  <label className="modal-box relative" htmlFor="">
-                    <h3 className="text-lg font-bold">
-                      SORRY, this feature is currently Disabled due to Spamming
-                    </h3>
-                    <p className="py-4">
-                      Still wanna test the app ? contact <br />
-                      <a
-                        href="mailto: kartikpavan2@gmail.com"
-                        className="text-red-500 font-semibold"
-                      >
-                        kartikpavan2@gmail.com
-                      </a>
-                    </p>
-                  </label>
-                </label>
               </div>
             </form>
           </div>

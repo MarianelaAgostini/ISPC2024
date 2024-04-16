@@ -27,7 +27,7 @@ const AdminSidebar = () => {
 					to="/admin/all-products"
 					style={({ isActive }) => (isActive ? activeStyle : null)}
 				>
-					All Products
+					Todos los productos
 				</NavLink>
 			</div>
 			<div className="text-md md:text-xl py-4  pl-2">
@@ -35,7 +35,7 @@ const AdminSidebar = () => {
 					to="/admin/add-product/ADD"
 					style={({ isActive }) => (isActive ? activeStyle : null)}
 				>
-					Add Products
+					Agregar productos
 				</NavLink>
 			</div>
 			<div className="text-md md:text-xl py-4  pl-2">
@@ -43,7 +43,7 @@ const AdminSidebar = () => {
 					to="/admin/orders"
 					style={({ isActive }) => (isActive ? activeStyle : null)}
 				>
-					Orders
+					Ordenes
 				</NavLink>
 			</div>
 		</div>

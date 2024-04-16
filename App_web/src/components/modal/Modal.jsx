@@ -13,13 +13,13 @@ const Modal = () => {
                   className={`tab tab-lg w-[50%] ${isLogin ? "tab-active" : null}`}
                   onClick={() => setIsLogin((prev) => !prev)}
                >
-                  Login
+                  Iniciar sesión
                </button>
                <button
                   className={`tab tab-lg w-[50%] ${isLogin ? null : "tab-active"}`}
                   onClick={() => setIsLogin((prev) => !prev)}
                >
-                  Register
+                  Registrarse
                </button>
             </div>
             <label className=" md:w-96 ">{isLogin ? <Login /> : <Register />}</label>

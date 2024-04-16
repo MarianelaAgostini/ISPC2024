@@ -17,20 +17,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decreaseCart, calculateTotalQuantity } from "../../redux/slice/cartSlice";
 
 const ProductDetails = () => {
-	// get cart items from redux store
+	// Ver los objetos del carrito usando redux store
 	const { cartItems } = useSelector((store) => store.cart);
 	const [product, setProduct] = useState({});
 	const [isLoading, setIsLoading] = useState(false);
 	const { id } = useParams();
 	const dispatch = useDispatch();
 
-	//! fetch Review Collection
+	//Fetch a la colección reviews
 	const { data } = useFetchCollection("reviews");
 
-	// find the review which matches the current product
+	// Encuentra la reseña (review) del objeto
 	const filteredReview = data.filter((item) => item.productId === id);
 
-	//! fetch single product Document from products collection
+	//Busca el objeto entre la colección
 	async function getSingleDocument() {
 		setIsLoading(true);
 		const docRef = doc(db, "products", id);
@@ -39,26 +39,26 @@ const ProductDetails = () => {
 			setProduct(docSnap.data());
 			setIsLoading(false);
 		} else {
-			console.log("No such document!");
+			console.log("No existe el documento");
 			setIsLoading(false);
 		}
 	}
-	// Fetching single document from firestore on initial component mount
+	// Obtener un único documento de Firestore 
 	useEffect(() => {
 		getSingleDocument();
 	}, []);
 
-	// Add to cart
+	// Añadir al carro
 	function add2CartFunction(product) {
 		dispatch(addToCart({ ...product, id }));
 		dispatch(calculateTotalQuantity());
 	}
-	// Decrease Qty
+	// Reducir cantidad
 	function decreaseQty(product) {
 		dispatch(decreaseCart({ ...product, id }));
 		dispatch(calculateTotalQuantity());
 	}
-	// Check if the item is already present in the cart or not
+	// Verificar si el objeto está en el carro
 	let currentItem = cartItems.find((item) => item.id === id);
 
 	return (
@@ -66,9 +66,9 @@ const ProductDetails = () => {
 			{isLoading && <Loader />}
 			<Breadcrumbs type={product.name} />
 			<section className="w-full mx-auto p-4 md:p-10 lg:w-9/12 md:px-6 ">
-				<h1 className="text-2xl font-semibold">Product Details </h1>
+				<h1 className="text-2xl font-semibold">Detalles del producto </h1>
 				<Link to="/all" className="link ">
-					&larr; Back to All Products
+					&larr; Volver a los productos
 				</Link>
 				<article className="flex flex-col md:flex-row items-start justify-between py-4 gap-x-4">
 					<div className=" w-full md:w-1/3 flex items-center justify-center border-2">
@@ -90,7 +90,7 @@ const ProductDetails = () => {
 							SKU : <span className="font-light">{id}</span>
 						</p>
 						<p className="font-semibold mb-2">
-							Brand : <span className="font-light">{product.brand}</span>
+							Marca : <span className="font-light">{product.brand}</span>
 						</p>
 						{/* Button Group */}
 						{cartItems.includes(currentItem) && (
@@ -119,19 +119,19 @@ const ProductDetails = () => {
 								className="btn btn-primary btn-active"
 								onClick={() => add2CartFunction(product)}
 							>
-								Add to Cart
+								Añadir al carro
 							</button>
 						</div>
 					</div>
 				</article>
 				<section className="rounded-md shadow-lg">
 					<div className=" w-full ">
-						<h1 className="text-lg md:text-2xl font-semibold mt-2 p-2">Reviews</h1>
+						<h1 className="text-lg md:text-2xl font-semibold mt-2 p-2">Reseñas</h1>
 					</div>
 					{!filteredReview.length ? (
 						<p className="p-4">
 							<Link to={`/review-product/${id}`} className="link link-primary ">
-								Be the first one to review this product
+								Sé el primero en escribir una reseña.
 							</Link>
 						</p>
 					) : (
