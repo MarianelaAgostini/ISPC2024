@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,6 +8,10 @@ import Loader from "../loader/Loader";
 //Firebase
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/config";
+import { getDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase/config";
+import { useDispatch } from "react-redux";
+import { setRole } from "../../redux/slice/authSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,50 +19,36 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
-//Función para testear el login.
-  const testLogin = (e) => {
-    e.preventDefault();
-    document.getElementById("my-modal-4").checked = false;
-
-    let testEmail = import.meta.env.VITE_TEST_EMAIL;
-    let testPass = import.meta.env.VITE_TEST_PASSWORD;
-    setIsLoading(true);
-    signInWithEmailAndPassword(auth, testEmail, testPass)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        toast.success("Login Successful");
-        setIsLoading(false);
-        navigate("/");
-      })
-      .catch((error) => {
-        toast.error(error.code, error.message);
-        setIsLoading(false);
-      });
-  };
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Cerrar ventana de diálogo cuando se presiona el botón
     document.getElementById("my-modal-4").checked = false;
-
-    // Login de usuario personalizado (no de testeo)
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        const role = userDoc.data().rol;
+        dispatch(setRole(role)); // Despacha la acción setRole con el rol del usuario
         toast.success("Login Successful");
         setIsLoading(false);
-        navigate("/");
+        if (role === "admin") {
+          navigate("/admin/home");
+        } else {
+          navigate("/");
+        }
       })
       .catch((error) => {
         toast.error(error.code, error.message);
         setIsLoading(false);
       });
-
+  
     setEmail("");
     setPassword("");
   };
+  
+
 
   // Login con Google
   const provider = new GoogleAuthProvider();
@@ -137,17 +127,6 @@ const Login = () => {
                 <button type="submit" className="btn w-full" disabled={!AllFieldsRequired}>
                   Login
                 </button>
-
-                {/* Botón para testear el modal */}
-                {/* <label
-                  onClick={testLogin}
-                  htmlFor="my-modal-69"
-                  className="btn btn-info btn-sm mt-2"
-                >
-                  Test User
-                </label> */}
-
-                {/* poner esto antes del </body> si se quiere probar */}
                 <input type="checkbox" id="my-modal-69" className="modal-toggle" />
               </div>
             </form>
