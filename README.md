@@ -6,6 +6,15 @@
 
   ¡Bienvenido/a al repositorio de Coctelis! Aquí encontrarás todo lo relacionado con el desarrollo de nuestra aplicación móvil y página web que te permite explorar, guardar y conocer recetas de tragos y cócteles.
 
+## Integrantes
+- Agostini, Marianela
+- Azaranka, Viktoryia
+- Chapela, Francisco
+- Corral, Martín
+- Gambone, Joaquín
+- Luna, Fabio
+- Villalba, Germán
+
 ## Descripción
   Coctelis es una aplicación móvil y página web diseñada para entusiastas de los tragos y cócteles, donde podrás descubrir una amplia variedad de recetas categorizadas para satisfacer tu sed de creatividad. Además, los usuarios registrados tienen la ventaja de beneficiarse con recetas que se comparte dentro de la aplicación, dar a conocer sus propias creaciones y una tienda web para conseguir todos los elementos necesarios para crear sus propios tragos.
 
@@ -20,6 +29,10 @@
 - Tienda web para compras de objetos para elaborar sus propios tragos.
 - Interfaz de usuario amigable y atractiva.
 
+## Repositorio anterior: 
+
+https://github.com/CelesteJohanna92/Movil_ISPC2023.git
+
 ## Capturas de Plantillas - muesta de algunas plantillas de la aplicación.
 
   <img src= https://github.com/CelesteJohanna92/Movil_ISPC2023/blob/Develop/Dise%C3%B1o%20de%20pantallas/plantillas%20(home%2C%20registro%20y%20inicio%20sesi%C3%B3n).png/>
@@ -31,7 +44,7 @@
 - Desarrollada en **Android Studio**.
 - Lenguaje de programación **Java**.
 - Base de datos **SQLite** para almacenar y gestionar las recetas de cócteles.
-- 
+
 ## Página web:
 - Desarrollada en **React**.
 - Lenguaje de programación **JavaScript**.
