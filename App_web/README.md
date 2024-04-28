@@ -4,7 +4,7 @@
 
 Coctelis es un sitio web de comercio electrónico que permite a los usuarios comprar una variedad de productos (articulos de cocteleria), agregar productos a su carrito y proceder al pago. Un usuario puede registrarse con su propio nombre de usuario y contraseña, o iniciar sesión con Google, o simplemente utilizar el botón de "Inicio de sesión como invitado" para navegar por el sitio web sin registrarse.
 
-![download](https://user-images.githubusercontent.com/81632171/199007839-77a2f0cd-9b25-4dec-a141-30155fbc4a20.png)
+![download](/App_web/src/assets/screenshot-web.png)
 
 ## Indice
 
@@ -15,7 +15,7 @@ Coctelis es un sitio web de comercio electrónico que permite a los usuarios com
 - :star: [Built With](#built-with)
 - :star: [Software Developer](#software-developer)
 
-## Enlace-Sitio-Web
+## Enlace del sitio web
 
 [Coctelis.com](https://github.com/MarianelaAgostini/ISPC2024/tree/main/App_web)
 
@@ -35,7 +35,7 @@ Necesitas la última versión de Chrome, y un editor de texto.
 Para comenzar, sigue esta guía:
 
 #### PARA PROPÓSITOS DE DESARROLLO
-En tu terminal, clona el repositorio en tu máquina local usando git clone:
+En tu terminal, clona el repositorio en tu computadora usando git clone:
 
 ```
 git clone https://github.com/MarianelaAgostini/ISPC2024.git
