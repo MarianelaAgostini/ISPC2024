@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Breadcrumbs, CheckoutSummary } from "../../components";
+import { Breadcrumbs } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 //Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveShippingAddress, saveBillingAddress } from "../../redux/slice/checkoutSlice";
 
 const defaultValues = {
@@ -143,9 +143,6 @@ const CheckoutDetails = () => {
 								Proceed To Checkout
 							</button>
 						</form>
-					</div>
-					<div className="w-full md:w-2/5 h-max p-4 bg-base-100 rounded-md shadow-xl">
-						<CheckoutSummary />
 					</div>
 				</article>
 			</section>

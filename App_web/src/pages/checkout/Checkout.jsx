@@ -4,8 +4,7 @@ import { CheckoutForm } from "../../components";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import "./stripe.css";
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
+
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 //Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -28,7 +27,7 @@ const Checkout = () => {
 
 	const description = `Payment of ${formatPrice(totalAmount)} from ${email}`;
 	useEffect(() => {
-		// Create PaymentIntent as soon as the page loads
+		
 		fetch("https://ecom-stripe-server.onrender.com/create-payment-intent", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },

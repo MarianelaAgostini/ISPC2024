@@ -6,7 +6,8 @@ import Loader from "../loader/Loader";
 //Firebase
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase/config";
+import { auth, db } from "../../firebase/config";
+import { doc, setDoc } from "firebase/firestore";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -20,15 +21,30 @@ const Register = () => {
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Las contraseñas no coinciden");
+      return;
     }
-    //* USER REGISTER
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
+      .then((userCredential) => {
+        const user = userCredential.user;
         toast.success("Registro exitoso");
-        setIsLoading(false);
-        document.getElementById("my-modal-4").checked = false;
-        navigate("/");
+
+        // Guardar datos del usuario en Firestore
+        const userRef = doc(db, "users", user.uid);
+        setDoc(userRef, {
+          email: user.email,
+          password: password,
+          rol: "user", // Agrega el campo 'rol'
+        })
+          .then(() => {
+            setIsLoading(false);
+            document.getElementById("my-modal-4").checked = false;
+            navigate("/");
+          })
+          .catch((error) => {
+            console.error("Error al guardar datos del usuario en Firestore: ", error);
+            setIsLoading(false);
+          });
       })
       .catch((error) => {
         toast.error(error.code, error.message);
@@ -67,7 +83,7 @@ const Register = () => {
                 </div>
                 <input
                   className="input input-bordered w-full border-2"
-                  type={`${showPassword ? "test" : "password"}`}
+                  type={`${showPassword ? "text" : "password"}`}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

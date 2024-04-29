@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  PaymentElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import { PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CheckoutSummary from "../checkoutSummary/CheckoutSummary";
 import Breadcrumbs from "../breadcrumbs/Breadcrumbs";
 import Header from "../header/Header";
@@ -16,6 +12,8 @@ import { db } from "../../firebase/config";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../redux/slice/cartSlice";
 import Loader from "../loader/Loader";
+
+import verifiedIcon from "../../assets/verificado1.gif"; // Importar la imagen
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -63,7 +61,7 @@ const CheckoutForm = () => {
       .confirmPayment({
         elements,
         confirmParams: {
-          // Cambiar esto para poner nuestra pasarela de pago
+          
           return_url: "http://localhost:5173/checkout-success",
         },
         redirect: "if_required",
@@ -100,35 +98,20 @@ const CheckoutForm = () => {
 
   return (
     <>
-      <Header text="Pago con Stripe" />
+     
       <section className="w-full mx-auto p-4 md:p-10 md:w-9/12 md:px-6 flex flex-col h-full">
         <div className="flex flex-col-reverse md:flex-row gap-4 justify-evenly">
           <div className="w-full md:w-2/5 h-max p-4 bg-base-100 rounded-md shadow-xl">
             <CheckoutSummary />
           </div>
-          <div className="rounded-md shadow-xl pt-4 pb-8 px-10">
-            <h1 className="text-3xl font-light mb-2">Pagar con Stripe</h1>
-            <form className="md:w-[30rem]" onSubmit={handleSubmit}>
-              <PaymentElement id="payment-element" />
-              <button
-                disabled={isLoading || !stripe || !elements}
-                id="submit"
-                className="btn bg-blue-600"
-              >
-                <span id="button-text">
-                  {isLoading ? (
-                    // <div className="spinner" id="spinner"></div>
-                    <Loader />
-                  ) : (
-                    "Pay now"
-                  )}
-                </span>
-              </button>
-              {/* Mensajes de estado (errores o exitos) */}
-              {message && <div id="payment-message">{message}</div>}
-            </form>
+          <div className="text-center mt-8">
+          <div>
+            <img src={verifiedIcon} alt="Verified" />
           </div>
         </div>
+        </div>
+        {/* Contenedor para centrar el icono animado */}
+        
       </section>
     </>
   );

@@ -1,12 +1,12 @@
 # Fullstack-Ecommerce
 
-## :moneybag: Eshop.com  :moneybag:
+## :moneybag: COCTELIS  :moneybag:
 
-eShop.com is an e-Commerce website that enables users to shop through variety of products(electronic / household / fashion) , add a product to their cart, and checkout. A user can either register their own username and password or Sign in With Google, or they can simply use the "Guest Login" button to navigate the website without registering.
+Coctelis es un sitio web de comercio electrónico que permite a los usuarios comprar una variedad de productos (articulos de cocteleria), agregar productos a su carrito y proceder al pago. Un usuario puede registrarse con su propio nombre de usuario y contraseña, o iniciar sesión con Google, o simplemente utilizar el botón de "Inicio de sesión como invitado" para navegar por el sitio web sin registrarse.
 
-![download](https://user-images.githubusercontent.com/81632171/199007839-77a2f0cd-9b25-4dec-a141-30155fbc4a20.png)
+![download](/App_web/src/assets/screenshot-web.png)
 
-## Summary
+## Indice
 
 - :star: [Website Link](#website-link)
 - :star: [Getting Started](#getting-started)
@@ -15,35 +15,33 @@ eShop.com is an e-Commerce website that enables users to shop through variety of
 - :star: [Built With](#built-with)
 - :star: [Software Developer](#software-developer)
 
-## LIVE-Website-Link
+## Enlace del sitio web
 
-[EShop.com](https://eshop-firebase.vercel.app/)
+[Coctelis.com](https://github.com/MarianelaAgostini/ISPC2024/tree/main/App_web)
 
-## Getting-Started
+## Comencemos
 
-Feel free to fork the project and change it to your likings. Try it out by cloning the repo to your local machine or download the zip
+Siéntete libre de forkear el proyecto y modificarlo según tus preferencias. Pruébalo clonando el repositorio   o descargando el archivo ZIP.
 
-## Prerequisites
+## Requisitos previos
 
-You need preferably the latest version of Chrome, and text editor.
+Necesitas la última versión de Chrome, y un editor de texto.
 
-#### Go here for Chrome: https://www.google.com/chrome/
+#### Aqui descarga Chrome: https://www.google.com/chrome/
 
-#### VSCode is my go to: https://code.visualstudio.com/
+#### VSCode, el programa que remcomiendo: https://code.visualstudio.com/
 
-## Installing
+## Instalación
+Para comenzar, sigue esta guía:
 
-To get started follow this guide:
-
-#### FOR DEVELOPMENT PURPOSES
-
-In your terminal clone repo to your local machine using git clone:
+#### PARA PROPÓSITOS DE DESARROLLO
+En tu terminal, clona el repositorio en tu computadora usando git clone:
 
 ```
-git clone https://github.com/kartikpavan/Fullstack-Ecommerce.git
+git clone https://github.com/MarianelaAgostini/ISPC2024.git
 ```
 
-Move to your newly cloned repo by entering the following in your terminal:
+Dirígete al repositorio recién clonado ingresando lo siguiente en tu terminal:
 
 ```
 $ cd Fullstack-Ecommerce && yarn or npm install
@@ -55,13 +53,13 @@ To Run Project:-
 $ yarn dev or npm run dev 
 ```
 
-To open all project files from terminal using VSCode just tpye and enter:
+Para abrir todos los archivos del proyecto desde la terminal usando VSCode, simplemente escribe y presiona enter:
 
 ```
 $ code .
 ```
 
-## Built With
+## Desarrollado con;
 
 - React Js
 - Redux Toolkit 
@@ -76,4 +74,10 @@ $ code .
 
 ## Software Developer
 
-- **Kartik Pavan**
+- **Agostini, Marianela Belén**
+- **Chapela, Francisco Javier**
+- **Luna Fabio Mario**
+- **Azaranka Viktoryia**
+- **Corral Martin**
+- **Villalba, Carlos Germán**
+- **Gambone, Joaquín**

@@ -1,0 +1,140 @@
+{
+  "__collections__": {
+    "products": {
+      "Alcohol Germany": {
+        "createdAt": "",
+        "price": "33566",
+        "imageURL": "https://images.ctfassets.net/f6vi7rcobfjz/2jbGJfY4De0scOIYaiY0Q6/9b8764a981e994c276bd64445e446a89/bottle_optim.png",
+        "name": "Alcohol Germany",
+        "description": "El alcohol fuerte de los alemanes para tragos.",
+        "category": "ALCOHOL",
+        "brand": "Jagermeifter",
+        "__collections__": {}
+      },
+      "Alcohol inglés": {
+        "createdAt": "",
+        "price": "5662",
+        "imageURL": "https://www.debarricas.com.ar/wp-content/uploads/01302076.webp",
+        "name": "Alcohol inglés",
+        "description": "El mejor alcohol de Inglaterra",
+        "category": "ALCOHOL",
+        "brand": "Bridge Alcohol",
+        "__collections__": {}
+      },
+      "Jugo de Durazno": {
+        "createdAt": "",
+        "price": 1666,
+        "imageURL": "https://www.conaprole.uy/wp-content/uploads/2018/03/durazno-250ml.png",
+        "name": "Jugo de Durazno",
+        "description": "El jugo de los mejores tragos",
+        "category": "JUGOS",
+        "brand": "Conaprole",
+        "__collections__": {}
+      },
+      "Copa de Champagne": {
+        "name": "Copa de Champagne",
+        "price": 5655,
+        "category": "COPAS",
+        "brand": "Copilandia",
+        "description": "La copa de mejor cristal",
+        "createdAt": "",
+        "imageURL": "https://acdn.mitiendanube.com/stores/001/173/051/products/12661-81f96102e6edea21d915899219456552-640-0.jpg",
+        "__collections__": {}
+      },
+      "Copa de Tragos": {
+        "createdAt": "",
+        "price": 6547,
+        "imageURL": "https://http2.mlstatic.com/D_NQ_NP_747316-MLA54956528642_042023-O.webp",
+        "name": "Copa de Tragos",
+        "description": "La copa de los tragos",
+        "category": "COPAS",
+        "brand": "MilCopas",
+        "__collections__": {}
+      },
+      "Copa de vino": {
+        "createdAt": "",
+        "price": 1223,
+        "description": "cristal fino",
+        "brand": "cristal luna",
+        "imageURL": "https://th.bing.com/th/id/OIP.YZAv-CuHq6esqqiPeNMitgHaHa?pid=ImgDet&w=180&h=180&c=7",
+        "category": "COPAS",
+        "name": "Copa de vino",
+        "__collections__": {}
+      },
+      "Jugo de Naranja": {
+        "createdAt": "",
+        "price": "852",
+        "imageURL": "https://acdn.mitiendanube.com/stores/001/434/490/products/15l1-0d408f92b664af37ce16138620181367-640-0.jpeg",
+        "name": "Jugo de Naranja",
+        "description": "El mejor jugo de naranja",
+        "brand": "Citric",
+        "category": "JUGOS",
+        "__collections__": {}
+      },
+      "Gin": {
+        "createdAt": "",
+        "price": "25000",
+        "imageURL": "https://www.supermercadosmas.com/media/catalog/product/cache/d91bc430dbe2e3d899436802c7aa5233/a/e/aecoc_05000281015248_05000281015248_c1n1.jpg",
+        "name": "Gin",
+        "description": "El gin del mundo",
+        "category": "ALCOHOL",
+        "brand": "Tanqueray",
+        "__collections__": {}
+      },
+      "Jugo de Frutilla": {
+        "createdAt": "",
+        "price": 5622,
+        "imageURL": "https://funnyveggie.com.ar/wp-content/uploads/2022/09/Picsart_22-11-28_13-37-26-111.jpg",
+        "name": "Jugo de Frutillaaaaa",
+        "editedAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1714141206, "_nanoseconds": 414000000 }
+        },
+        "description": "Un jugo de frutas naturales",
+        "category": "JUGOS",
+        "brand": "Las Brisas",
+        "__collections__": {}
+      }
+    },
+    "recipes": {
+      "Cóctel de naranja": {
+        "imageURL": "https://okdiario.com/img/2020/03/06/coctel-naranja-vodka.jpg",
+        "name": "Cóctel de naranja",
+        "description": "Se agregan todos los ingredientes y se los mezcla.",
+        "ingredients": "Zumo de piña, 1 vaso de zumo de naranja, zumo de arándanos, vaso de zumo de fresa, hielo picado, menta, 3 naranjas",
+        "category": "Con alcohol",
+        "__collections__": {}
+      },
+      "Daiquiri": {
+        "name": "Daiquiri",
+        "ingredients": "1 puñado de frutillas frescas (6 o 7 u) una cucharada panzona de azúcar, 2 cdas de jugo de lima o limón, 1/2 taza de ron blanco o dorado, hielo",
+        "imageURL": "https://mandolina.co/wp-content/uploads/2023/07/daiquiri-frambuesa-1200x900.jpg",
+        "description": "El daiquiri es un cóctel a base de ron y frutas. Queda mucho más rico cuando se utiliza fruta fresca.",
+        "category": "Sin alcohol",
+        "__collections__": {}
+      },
+      "Aperol": {
+        "imageURL": "https://www.piloncilloyvainilla.com/wp-content/uploads/2023/03/aperol-spritz-4.jpg",
+        "ingredients": "Cava Brut, Aperol, Agua y gas, naranja y hielos",
+        "name": "Aperol",
+        "description": "Primero se agrega el hielo. Luego los demás ingredientes y se mezclan.",
+        "category": "Con alcohol",
+        "__collections__": {}
+      }
+    },
+    "users": {
+      "admin": {
+        "password": "admin123",
+        "email": "admin@admin.com",
+        "rol": "admin",
+        "__collections__": {}
+      },
+      "user": {
+        "password": "fabioweb2024",
+        "email": "fabiomarioluna@gmail.com",
+        "rol": "user",
+        "__collections__": {}
+      }
+    }
+  }
+}
