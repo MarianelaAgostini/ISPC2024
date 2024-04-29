@@ -74,4 +74,10 @@ $ code .
 
 ## Software Developer
 
-- **Marianela Agostini**
+- **Agostini, Marianela Belén**
+- **Chapela, Francisco Javier**
+- **Luna Fabio Mario**
+- **Azaranka Viktoryia**
+- **Corral Martin**
+- **Villalba, Carlos Germán**
+- **Gambone, Joaquín**
