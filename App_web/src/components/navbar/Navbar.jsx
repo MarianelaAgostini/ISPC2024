@@ -169,6 +169,11 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
+                      <Link to="/EditarPerfil" className="text-lg text-primary">
+                        Editar Perfil
+                      </Link>
+                    </li>
+                    <li>
                       <Link
                         to="/"
                         className="flex justify-between hover:bg-red-100  text-red-500 text-lg"
