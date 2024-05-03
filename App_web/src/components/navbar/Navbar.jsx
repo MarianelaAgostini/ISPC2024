@@ -92,6 +92,12 @@ const Navbar = () => {
                   Contacto
                 </NavLink>
               </li>
+              {/* Botón para la app móvil */}
+              <li>
+                <a href="https://github.com/MarianelaAgostini/ISPC2024" className="text-yellow-500 text-xs md:text-xl font-bold">
+                  APP MÓVIL
+                </a>
+              </li>
             </ul>
           </div>
           <div className="md:gap-2">
