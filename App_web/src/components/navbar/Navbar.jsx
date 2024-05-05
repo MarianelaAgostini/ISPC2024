@@ -171,7 +171,7 @@ const Navbar = () => {
                   <div>
                     <li>
                       <Link to="/my-orders" className="text-lg text-primary">
-                        My Orders
+                        Mis Ordenes
                       </Link>
                     </li>
                     <li>
@@ -203,9 +203,9 @@ const Navbar = () => {
       </nav>
       <AdminOnlyLink>
         <div className="min-w-screen h-10  py-1 bg-red-200 text-red-700 font-bold text-center cursor-pointer">
-          <span>ADMIN</span>
+          <span>ADMINISTRADOR</span>
           <Link to="/admin/home" className="btn btn-primary btn-sm mx-4">
-            VIEW DASHBOARD
+            VER DASHBOARD
           </Link>
         </div>
       </AdminOnlyLink>
