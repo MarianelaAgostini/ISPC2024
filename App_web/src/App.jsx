@@ -12,6 +12,7 @@ import {
   CheckoutSuccess,
   Contact,
   EditarPerfil,
+  AddRecipeForm,
   Home,
   NotFound,
   OrderDetails,
@@ -48,6 +49,7 @@ const App = () => {
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/EditarPerfil" element={<EditarPerfil />} />
+        <Route path="/AddRecipeForm" element={<AddRecipeForm />} />
         <Route path="/SobreNosotros" element={<SobreNosotros />} />
         <Route path="/all" element={<AllProducts />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />

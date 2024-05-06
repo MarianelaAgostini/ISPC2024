@@ -7,6 +7,7 @@ export { default as NotFound } from "./notFound/NotFound";
 export { default as AllProducts } from "./allProducts/Allproducts";
 export { default as Contact } from "./contact/Contact";
 export { default as EditarPerfil } from "./EditarPerfil/EditarPerfil";
+export { default as AddRecipeForm } from "./AddRecipeForm/AddRecipeForm";
 export { default as CheckoutDetails } from "./checkout/CheckoutDetails";
 export { default as Checkout } from "./checkout/Checkout";
 export { default as CheckoutSuccess } from "./checkout/CheckoutSuccess";

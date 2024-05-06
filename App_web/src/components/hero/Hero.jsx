@@ -1,10 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const Hero = ({ recipesData }) => {
   return (
-    <div>
-      <h1 className="text-5xl font-bold text-center mt-4 mb-8">Coctelis</h1>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center mb-4">
+        <h1 className="text-5xl font-bold mt-4 mb-4">Coctelis</h1>
+        <Link to="/AddRecipeForm" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Agregar Receta
+        </Link>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {recipesData.map((recipe) => {
           return (
