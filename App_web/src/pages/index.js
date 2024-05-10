@@ -1,4 +1,6 @@
 export { default as Home } from "./home/Home";
+export { default as Home2 } from "./home/Home2";
+export { default as Home3 } from "./home/Home3";
 export { default as Admin } from "./admin/Admin";
 export { default as Cart } from "./cart/Cart";
 export { default as OrderHistory } from "./orderHistory/OrderHistory";

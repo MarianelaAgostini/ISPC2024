@@ -14,6 +14,8 @@ import {
   EditarPerfil,
   AddRecipeForm,
   Home,
+  Home2,
+  Home3,
   NotFound,
   OrderDetails,
   OrderHistory,
@@ -21,6 +23,8 @@ import {
   Review,
 } from "./pages";
 import ItemDetail from "./components/ItemDetail/ItemDetail";
+import ItemEdit from "./components/ItemDetail/ItemEdit";
+
 
 const App = () => {
   return (
@@ -58,7 +62,9 @@ const App = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path="/item/:id" element={<ItemDetail />} />
-        {/* ADMIN ROUTES */}
+        <Route path="/itemedit/:id" element={<ItemEdit />} />
+        <Route path="/category" element={<Home2 />} />
+        <Route path="/category/:categoryName" element={<Home3 />} />
         <Route
           path="/admin/*"
           element={

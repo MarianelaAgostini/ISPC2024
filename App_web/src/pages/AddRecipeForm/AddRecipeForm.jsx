@@ -57,9 +57,13 @@ const AddRecipeForm = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="category" className="block text-gray-700 font-bold mb-2">Categoría</label>
-          <input type="text" id="category" name="category" value={formData.category} onChange={handleInputChange} className="border border-gray-400 rounded-md px-4 py-2 w-full" />
+          <select type="text" id="category" name="category" value={formData.category} onChange={handleInputChange} className="border border-gray-400 rounded-md px-4 py-2 w-full" >
+          <option value="">Selecciona una categoría</option>
+              <option value="opción1">Con alcohol</option>
+              <option value="opción2">Sin alcohol</option>
+          </select>
         </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button type="submit" className="modal-button btn btn-primary w-full">
           Agregar Receta
         </button>
       </form>

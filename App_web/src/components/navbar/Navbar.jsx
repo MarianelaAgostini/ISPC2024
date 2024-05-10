@@ -78,6 +78,11 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="hidden lg:block text-white text-xs md:text-xl">
+                <NavLink to="/category" style={({ isActive }) => (isActive ? activeStyle : null)} end>
+                  Categorías
+                </NavLink>
+              </li>
+              <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/all" style={({ isActive }) => (isActive ? activeStyle : null)}>
                   Tienda
                 </NavLink>

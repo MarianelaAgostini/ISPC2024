@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase/config";
 import { collection, getDocs } from 'firebase/firestore';
 import { useDispatch } from "react-redux";
-import { storeProducts, getPriceRange } from "../../redux/slice/productSlice";
-import Hero from "../../components/hero/Hero";
+import Category from "../../components/category/Category";
 
 
 async function fetchDataFromFirestore(collectionName) {
@@ -16,28 +15,23 @@ async function fetchDataFromFirestore(collectionName) {
 	return data;
 }
 
-const Home = () => {
+const Home2 = () => {
 	const dispatch = useDispatch();
-	const [productsData, setProductsData] = useState([]);
 	const [recipesData, setRecipesData] = useState([]);
 
 	useEffect(() => {
 		async function fetchData(){
-			const products = await fetchDataFromFirestore("products");
-			setProductsData(products);
 			const recipes = await fetchDataFromFirestore("recipes");
 			setRecipesData(recipes);
 		}
 		fetchData();
-		dispatch(storeProducts({ products: productsData }));
-		dispatch(getPriceRange({ products: productsData }));
 	}, [dispatch]);
 
 	return (
 		<div>
-			<Hero recipesData={recipesData}/>
+			<Category recipesData={recipesData}/>
 		</div>
 	);
 };
 
-export default Home;
+export default Home2;
