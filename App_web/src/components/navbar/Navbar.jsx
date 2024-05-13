@@ -3,6 +3,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../../general.css";
+import useDarkMode from "../../hooks/useDarkMode";
 import { AdminOnlyLink } from "../adminRoute/AdminRoute";
 import encabezado from "../../assets/encabezado.png";
 // firebase
@@ -13,6 +15,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeActiveUser, setActiveUser } from "../../redux/slice/authSlice";
 import { calculateSubtotal, calculateTotalQuantity } from "../../redux/slice/cartSlice";
 import { formatPrice } from "../../utils/formatPrice";
+import { BsMoonStarsFill } from "react-icons/bs"; 
+
+
 
 const Navbar = () => {
   const { isUserLoggedIn, userName } = useSelector((store) => store.auth);
@@ -20,6 +25,9 @@ const Navbar = () => {
   const [displayName, setDisplayName] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [, setDarkMode] = useDarkMode()
+
+
 
   //* Usuario logeado actualmente
   useEffect(() => {
@@ -41,6 +49,8 @@ const Navbar = () => {
       }
     });
   }, []);
+
+  
 
   function logOutUser() {
     signOut(auth)
@@ -78,6 +88,11 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="hidden lg:block text-white text-xs md:text-xl">
+                <NavLink to="/category" style={({ isActive }) => (isActive ? activeStyle : null)} end>
+                  Categorías
+                </NavLink>
+              </li>
+              <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/all" style={({ isActive }) => (isActive ? activeStyle : null)}>
                   Tienda
                 </NavLink>
@@ -101,6 +116,13 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="md:gap-2">
+            <label for="button" id="label_button">
+              </label>
+              <button className="boton" onClick = {() => setDarkMode(prevDarkMode => !prevDarkMode)}>
+              <BsMoonStarsFill/>
+              </button>
+              <div class="contenedor">
+              </div>
             <div className="dropdown dropdown-end ">
               <label tabIndex={0} className="btn btn-ghost btn-circle">
                 <div className="indicator">

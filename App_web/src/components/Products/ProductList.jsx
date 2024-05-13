@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ListView, GridView, Search, ProductFilter, Pagination } from "../../components";
 import { BsFillGridFill, BsFilter } from "react-icons/bs";
+import useDarkMode from "../../hooks/useDarkMode";
 import { MdOutlineSubject } from "react-icons/md";
 // Redux
 import { filterBySearch, sortProducts } from "../../redux/slice/filterSlice";
@@ -17,6 +18,7 @@ const ProductList = ({ products }) => {
 	// Ir arriba
 	const [bacToTop, setBackToTop] = useState(false);
 	const dispatch = useDispatch();
+	const [darkMode,] = useDarkMode();
 
 	//! Buscar
 	useEffect(() => {

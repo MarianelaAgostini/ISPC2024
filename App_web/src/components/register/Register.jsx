@@ -13,6 +13,9 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -33,8 +36,10 @@ const Register = () => {
         const userRef = doc(db, "users", user.uid);
         setDoc(userRef, {
           email: user.email,
-          password: password,
-          rol: "user", // Agrega el campo 'rol'
+          firstName: firstName,
+          lastName: lastName,
+          phone: phone,
+          rol: "user",
         })
           .then(() => {
             setIsLoading(false);
@@ -54,9 +59,12 @@ const Register = () => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
+    setFirstName("");
+    setLastName("");
+    setPhone("");
   };
 
-  const AllFieldsRequired = Boolean(email) && Boolean(password) && Boolean(confirmPassword);
+  const AllFieldsRequired = Boolean(email) && Boolean(password) && Boolean(confirmPassword) && Boolean(firstName) && Boolean(lastName) && Boolean(phone);
 
   return (
     <>
@@ -75,6 +83,36 @@ const Register = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="mt-4">
+                <label className="label-text font-bold mb-2 block">Nombre</label>
+                <input
+                  className="input input-bordered w-full border-2"
+                  type="text"
+                  required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
+              <div className="mt-4">
+                <label className="label-text font-bold mb-2 block">Apellido</label>
+                <input
+                  className="input input-bordered w-full border-2"
+                  type="text"
+                  required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
+              <div className="mt-4">
+                <label className="label-text font-bold mb-2 block">Teléfono</label>
+                <input
+                  className="input input-bordered w-full border-2"
+                  type="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
               <div className="mt-4 relative">

@@ -4,6 +4,7 @@
   <img src="https://github.com/viktoryia40/programador2022/blob/desarrolladViktoryia/20230830_200809_0000.png?raw=true" width="200" height="200" />
 </center>
 
+
   ¡Bienvenido/a al repositorio de Coctelis! Aquí encontrarás todo lo relacionado con el desarrollo de nuestra aplicación móvil y página web que te permite explorar, guardar y conocer recetas de tragos y cócteles.
 
 ## Integrantes
@@ -33,6 +34,13 @@
 
 https://github.com/CelesteJohanna92/Movil_ISPC2023.git
 
+## Video de demostración
+
+[![Video de demostración](https://img.youtube.com/vi/iw8R5nSZ8b0/0.jpg)](https://www.youtube.com/watch?v=iw8R5nSZ8b0&t=5s)
+
+Haz clic en la imagen para ver el video de demostración.
+
+
 ## Capturas de Plantillas - muesta de algunas plantillas de la aplicación.
 
   <img src= https://github.com/CelesteJohanna92/Movil_ISPC2023/blob/Develop/Dise%C3%B1o%20de%20pantallas/plantillas%20(home%2C%20registro%20y%20inicio%20sesi%C3%B3n).png/>
@@ -45,15 +53,52 @@ https://github.com/CelesteJohanna92/Movil_ISPC2023.git
 - Lenguaje de programación **Java**.
 - Base de datos **SQLite** para almacenar y gestionar las recetas de cócteles.
 
-## Página web:
-- Desarrollada en **React**.
+
+
+
+## PÁGINA WEB
+
+## Descripción
+
+"Coctelis" es una aplicación web diseñada para los amantes de los cócteles. Nuestro objetivo fue crear una plataforma que ofreciera recetas de cócteles de manera accesible y atractiva, brindando una experiencia única a los usuarios. También, cabe señalar que la aplicación brinda una tienda virtual en donde los usuarios registrados podrán realizar compras de artículos para armar el mejor cóctel, insumos como jugos, alcohol, copas, etc.
+ La aplicación "Coctelis" se destaca por su interfaz intuitiva y atractiva, que brinda una experiencia de usuario excepcional. El diseño responsive nos permitió garantizar que la aplicación se adapte perfectamente a diferentes dispositivos, desde computadoras de escritorio hasta dispositivos móviles. Esto asegura que los usuarios puedan acceder y disfrutar de la aplicación desde cualquier lugar y en cualquier momento.
+
+- Desarrollada en **React**, **Html** **Css**.
 - Lenguaje de programación **JavaScript**.
+- Entorno de desarrollo **VSC**
 - Base de datos **Firebase** para almacenar y gestionar las recetas de cócteles.
+
+## Video de demostración
+
+[![Video de demostración](https://img.youtube.com/vi/FARpIWs5YMk/0.jpg)](https://www.youtube.com/watch?v=FARpIWs5YMk)
+
+Haz clic en la imagen para ver el video de demostración.
+
+## Instalación del Proyecto
+
+Clonar el repositorio: Abre una terminal o línea de comandos en tu computadora y ejecuta el siguiente comando para clonar el repositorio desde GitHub:
+
+$ git clone https://github.com/MarianelaAgostini/ISPC2024.git
+
+Esto descargará todos los archivos y directorios del repositorio en tu máquina local.
+
+Acceder al directorio del proyecto: Una vez que se haya completado la descarga, accede al directorio del proyecto utilizando el comando cd:
+
+$ cd ISPC2024
+$ cd App_web
+
+Instalar dependencias (si es necesario)
+
+$ npm install
+
+Ejecutar la aplicación.
+
+$ npm start dev
+
 
 ### Requisitos del Sistema
 
-- Dispositivo Android con sistema operativo Android 5.0 (Lollipop) o superior.
-- PC con navegador web.
+- PC con navegador web, compatibilidad con (Chrome, Firefox, Safari y Edge).
 
 ## Contribución
 
