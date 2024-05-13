@@ -6,6 +6,7 @@ import Loader from "../loader/Loader";
 import ReviewComponent from "../review/ReviewComponent";
 // Custom Hook
 import useFetchCollection from "../../hooks/useFetchCollection";
+import useDarkMode from "../../hooks/useDarkMode";
 //Lazy Load
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -23,6 +24,7 @@ const ProductDetails = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	const [darkMode,] = useDarkMode()
 
 	//Fetch a la colección reviews
 	const { data } = useFetchCollection("reviews");

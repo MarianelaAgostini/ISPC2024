@@ -4,6 +4,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { useDispatch } from "react-redux";
 import { storeProducts, getPriceRange } from "../../redux/slice/productSlice";
 import Hero from "../../components/hero/Hero";
+import "../../general.css"
 
 
 async function fetchDataFromFirestore(collectionName) {

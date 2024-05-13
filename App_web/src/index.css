@@ -9,6 +9,45 @@ body {
 	font-family: "Rubik", sans-serif;
 }
 
+body.dark-mode {
+
+	background-color: black;
+
+}
+
+body.dark-mode h1 {
+
+	color: gray;
+
+}
+
+
+body.dark-mode h2 {
+
+	color: green;
+
+}
+
+
+body.dark-mode h3 {
+
+	color: rgb(77, 29, 77);
+
+}
+
+
+body.dark-mode h4 {
+
+	color: yellow;
+
+}
+
+
+body.dark-mode p {
+
+	color: rgb(61, 61, 61);
+
+}
 .page {
 	height: calc(100vh - 10rem);
 }
