@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom'; // Importa Link
 import { db } from "../../firebase/config";
 import { doc, getDoc } from 'firebase/firestore';
+import { useTranslation } from 'react-i18next';
 
 const ItemDetail = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchItem() {
@@ -23,7 +25,7 @@ const ItemDetail = () => {
   }, [id]);
 
   if (!item) {
-    return <div>Cargando...</div>;
+    return <div>{t('Cargando...')}</div>;
   }
 
   return (
@@ -31,13 +33,13 @@ const ItemDetail = () => {
       <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
         <h1 className="text-2xl font-bold mb-4">{item.name}</h1>
         <img src={item.imageURL} alt={item.name} className="w-80 h-80 object-cover mb-4 rounded-lg"></img>
-        <p className="text-xl font-semibold mb-2">Ingredientes:</p>
+        <p className="text-xl font-semibold mb-2">{t('Ingredientes')}</p>
         <h2 className="text-gray-700 mb-2">{item.ingredients}</h2>
-        <p className="text-xl font-semibold mb-2">Descripción:</p>
+        <p className="text-xl font-semibold mb-2">{t('Descripción')}</p>
         <p className="text-gray-700 mb-2">{item.description}</p>
-        <p className="text-xl font-semibold mb-2">Categoría:</p>
-        <p className="text-gray-500">{item.category}</p>
-        <Link to={`/itemedit/${id}`} className="modal-button btn btn-primary w-full">Editar</Link>
+        <p className="text-xl font-semibold mb-2">{t('Categoría')}</p>
+        <p className="text-gray-500">{t(item.category)}</p>
+        <Link to={`/itemedit/${id}`} className="modal-button btn btn-primary w-full">{t('Editar')}</Link>
       </div>
     </div>
   );

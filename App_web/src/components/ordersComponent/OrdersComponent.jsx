@@ -1,9 +1,11 @@
 import React from "react";
 import { formatPrice } from "../../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const OrdersComponent = ({ orders, user, admin }) => {
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	function handleUserClick(orderId) {
 		navigate(`/order-details/${orderId}`);
@@ -15,15 +17,15 @@ const OrdersComponent = ({ orders, user, admin }) => {
 	return (
 		<main>
 			{!orders.length ? (
-				<h1 className="text-2xl font-bold"> No Orders found </h1>
+				<h1 className="text-2xl font-bold"> {t('No se encontraron órdenes')} </h1>
 			) : (
 				<div>
 					<p className="text-lg font-light">
-						Open order to (
+						{t('Abra la orden para')} (
 						{admin ? (
-							<span className="font-semibold text-primary">Change Order Status</span>
+							<span className="font-semibold text-primary">{t('Modificar Estado del Pedido')}</span>
 						) : (
-							<span className="font-semibold text-primary">Track Order Status</span>
+							<span className="font-semibold text-primary">{t('Seguir Estado del Pedido')}</span>
 						)}
 						)
 					</p>
@@ -42,11 +44,11 @@ const OrdersComponent = ({ orders, user, admin }) => {
 									<div className="flex items-center justify-between gap-6">
 										<div className="flex flex-col md:flex-row gap-x-10">
 											<p className="text-gray-500 text-sm md:text-lg ">
-												ORDER PLACED : <br />{" "}
+												{t('Orden realizada')} : <br />{" "}
 												<span className="text-primary">{orderDate}</span>
 											</p>
 											<p className="text-gray-500 text-sm md:text-lg ">
-												SHIP TO : <br />{" "}
+												{t('Enviado a')} : <br />{" "}
 												<span className="text-primary">
 													{email.split("@")[0]}
 												</span>
@@ -54,7 +56,7 @@ const OrdersComponent = ({ orders, user, admin }) => {
 										</div>
 
 										<p className="text-gray-500 text-sm md:text-lg">
-											TOTAL :
+											{t('Total')} :
 											<span className="text-primary">
 												{formatPrice(orderAmount)}
 											</span>
@@ -66,10 +68,10 @@ const OrdersComponent = ({ orders, user, admin }) => {
 										ID: <span className="font-semibold "> {id}</span>
 									</p>
 									<p className="text-sm md:text-lg ">
-										Status: <br />{" "}
+										{t('Estado')}: <br />{" "}
 										<span
 											className={`font-semibold ${
-												orderStatus !== "Item(s) Delivered"
+												orderStatus !== t('Objeto(s) Entregados')
 													? "text-neutral"
 													: "text-green-600"
 											}`}

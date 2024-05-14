@@ -8,6 +8,7 @@ import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebas
 import { collection, addDoc, Timestamp, setDoc, doc } from "firebase/firestore";
 import { storage, db } from "../../firebase/config";
 import { useSelector } from "react-redux";
+import { useTranslation } from 'react-i18next';
 
 //Esperar cambios en el input (handle event)
 const AddProducts = () => {
@@ -20,6 +21,7 @@ const AddProducts = () => {
   });
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   //Buscar para añadir o modificar
   function detectForm(paramsId, func1, func2) {
@@ -49,7 +51,7 @@ const AddProducts = () => {
         // Esperar y avisar cuando se completa la carga de archivo
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setProduct({ ...product, imageURL: downloadURL });
-          toast.success("Archivo subido con éxito");
+          toast.success(t('Archivo subido con éxito'));
         });
       }
     );
@@ -71,11 +73,11 @@ const AddProducts = () => {
       setUploadProgress(0);
       setProduct(defaultValues);
       setIsLoading(false);
-      toast.success("Producto añadido a la base de datos");
+      toast.success(t('Producto añadido a la base de datos'));
       navigate("/admin/all-products");
     } catch (error) {
       console.log(error.message);
-      toast.error("Algo salió mal");
+      toast.error(t('Algo salió mal'));
       setIsLoading(false);
     }
   }
@@ -104,11 +106,11 @@ const AddProducts = () => {
       setUploadProgress(0);
       setProduct(defaultValues);
       setIsLoading(false);
-      toast.success("Producto actualizado correctamente");
+      toast.success(t('Producto actualizado correctamente'));
       navigate("/admin/all-products");
     } catch (error) {
       console.log(error.message);
-      toast.error("Algo salió mal");
+      toast.error(t('Algo salió mal'));
       setIsLoading(false);
     }
   }
@@ -132,11 +134,11 @@ const AddProducts = () => {
         </h1>
         <form className="form-control" onSubmit={detectForm(paramsId, addProduct, editProduct)}>
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Nombre del producto:</label>
+            <label className="label-text font-bold mb-2 block text-lg">{t('Nombre del producto')}:</label>
             <input
               className="input input-bordered max-w-lg w-full border-2"
               type="text"
-              placeholder="Product Name"
+              placeholder={t('Nombre del producto')}
               required
               name="name"
               value={product.name}
@@ -145,7 +147,7 @@ const AddProducts = () => {
           </div>
 
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Precio del producto: </label>
+            <label className="label-text font-bold mb-2 block text-lg">{t('Precio del producto')}: </label>
             <input
               className="input input-bordered max-w-lg w-full border-2"
               type="number"
@@ -157,7 +159,7 @@ const AddProducts = () => {
             />
           </div>
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Categoría del producto:</label>
+            <label className="label-text font-bold mb-2 block text-lg">{t('Categoría del producto')}:</label>
             <select
               className="select select-bordered w-full max-w-lg"
               required
@@ -166,7 +168,7 @@ const AddProducts = () => {
               onChange={handleInputChange}
             >
               <option disabled value="">
-                -- Elegir categoría --
+                -- {t('Elegir categoría')} --
               </option>
               {categories.map((c) => {
                 return (
@@ -178,11 +180,11 @@ const AddProducts = () => {
             </select>
           </div>
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Marca del producto: </label>
+            <label className="label-text font-bold mb-2 block text-lg">{t('Marca del producto')}: </label>
             <input
               className="input input-bordered max-w-lg w-full border-2"
               type="text"
-              placeholder="Product Brand"
+              placeholder={t('Marca del producto')}
               required
               name="brand"
               value={product.brand}
@@ -190,11 +192,11 @@ const AddProducts = () => {
             />
           </div>
           <div className="py-2">
-            <label className="label-text font-bold mb-2 block text-lg">Descripcion del producto: </label>
+            <label className="label-text font-bold mb-2 block text-lg">{t('Descripcion del producto')}: </label>
             <textarea
               className="textarea textarea-bordered h-32 max-w-lg w-full"
               type="text"
-              placeholder="Product Description"
+              placeholder={t('Descripcion del producto')}
               required
               name="description"
               value={product.description}
@@ -202,7 +204,7 @@ const AddProducts = () => {
             ></textarea>
           </div>
           <div>
-            <label className="label-text font-bold mb-2 block text-lg">Imagen del producto: </label>
+            <label className="label-text font-bold mb-2 block text-lg">{t('Imagen del producto')}: </label>
             <div className="border-2 rounded-sm  max-w-xl w-full px-4 pb-2">
               <div>
                 <progress

@@ -4,8 +4,10 @@ import { formatPrice } from "../../utils/formatPrice";
 import ChangeOrderStatus from "../changeOrderStatus/ChangeOrderStatus";
 // import Steps from "../steps/Steps";
 import { OrderTable, Steps } from "../../components";
+import { useTranslation } from 'react-i18next';
 
 const OrderDetailsComponent = ({ order, admin, user, orderId }) => {
+   const { t } = useTranslation();
    return (
       <>
          <section className="p-4 w-full bg-primary-content flex items-center">
@@ -14,22 +16,22 @@ const OrderDetailsComponent = ({ order, admin, user, orderId }) => {
                <div className="w-full mx-auto md:px-6 ">
                   <section>
                      <h1 className="text-xl md:text-3xl font-bold text-secondary-content">
-                        Order Details
+                        {t('Order Details')}
                      </h1>
                      <p className="font-semibold text-lg my-2">
-                        Order ID :<span className="font-light text-gray-500"> {order.id}</span>
+                        {t('Order ID')} :<span className="font-light text-gray-500"> {order.id}</span>
                      </p>
                      <p className="font-semibold text-lg my-2">
-                        Order Amount :
+                        {t('Importe del pedido')} :
                         <span className="font-light text-gray-500">
                            {formatPrice(order.orderAmount)}
                         </span>
                      </p>
                      <p className="font-semibold text-lg my-2">
-                        Order Status :
+                        {t('Estado del pedido')} :
                         <span
                            className={`font-bold ${
-                              order.orderStatus === "Item(s) Delivered"
+                              order.orderStatus === t('Objeto(s) Entregados')
                                  ? "text-green-600"
                                  : "text-primary"
                            }`}
@@ -44,16 +46,16 @@ const OrderDetailsComponent = ({ order, admin, user, orderId }) => {
                      <div>
                         {/* Recipient Name */}
                         <p className="font-semibold text-lg">
-                           Recipient Name :
+                           {t('Nombre del destinatario')} :
                            <span className="font-light">{order.shippingAddress.name}</span>
                         </p>
                         {/* Phone Number */}
                         <p className="font-semibold text-lg">
-                           Phone :<span className="font-light">{order.shippingAddress.phone}</span>
+                           {t('Teléfono')} :<span className="font-light">{order.shippingAddress.phone}</span>
                         </p>
                         {/* Address */}
                         <p className="font-semibold text-lg">
-                           Shipping Address :
+                           {t('Dirección de envío')} :
                            <span className="font-light">
                               {order.shippingAddress.line1}, {order.shippingAddress.line2},
                               {order.shippingAddress.city},{order.shippingAddress.country}
@@ -70,11 +72,11 @@ const OrderDetailsComponent = ({ order, admin, user, orderId }) => {
             <div className="pb-5">
                {admin ? (
                   <Link to="/admin/orders" className="link active my-2">
-                     &larr; Back to All Orders
+                     &larr; {t('Volver a Todos los Pedidos')}
                   </Link>
                ) : (
                   <Link to="/my-orders" className="link active my-2">
-                     &larr; Back to All Orders
+                     &larr; {t('Volver a Todos los Pedidos')}
                   </Link>
                )}
             </div>

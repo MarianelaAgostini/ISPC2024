@@ -1,5 +1,7 @@
 import React from "react";
 import useFetchCollection from "../../hooks/useFetchCollection";
+import { useTranslation } from 'react-i18next';
+
 
 import {
 	Chart as ChartJS,
@@ -30,24 +32,23 @@ const options = {
 
 const chart = () => {
 	const { orderHistory } = useSelector((store) => store.order);
-	// Create new Array of  order status
 	const filteredOrders = orderHistory.map((item) => item.orderStatus);
+	const { t } = useTranslation();
 
-	// Count the occurances of order status(s)
 	const getOrderCount = (arr, value) => {
 		return arr.filter((item) => item === value).length;
 	};
 
-	const placed = getOrderCount(filteredOrders, "Order Placed");
-	const processing = getOrderCount(filteredOrders, "Processing...");
-	const shipped = getOrderCount(filteredOrders, "Item(s) Shipped");
-	const delivered = getOrderCount(filteredOrders, "Item(s) Delivered");
+	const placed = getOrderCount(filteredOrders, t('Orden realizada'));
+	const processing = getOrderCount(filteredOrders, t('Procesando'));
+	const shipped = getOrderCount(filteredOrders, t('Objeto(s) Enviados'));
+	const delivered = getOrderCount(filteredOrders, t('Objeto(s) Entregados'));
 
 	const data = {
-		labels: ["Order Places", "Processing", "Shipped", "Delivered"],
+		labels: [t('Orden realizada'), t('Procesando'), t('Enviados'), t('Entregados')],
 		datasets: [
 			{
-				label: "Order Count",
+				label: t('Conteo de órdenes'),
 				data: [placed, shipped, processing, delivered],
 				backgroundColor: "#191a3ed6",
 			},

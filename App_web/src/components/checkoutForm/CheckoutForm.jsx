@@ -14,6 +14,7 @@ import { clearCart } from "../../redux/slice/cartSlice";
 import Loader from "../loader/Loader";
 
 import verifiedIcon from "../../assets/verificado1.gif"; // Importar la imagen
+import { useTranslation } from 'react-i18next';
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -27,6 +28,7 @@ const CheckoutForm = () => {
   const { email, userId } = useSelector((store) => store.auth);
   const { cartItems, totalAmount } = useSelector((store) => store.cart);
   const { shippingAddress } = useSelector((store) => store.checkout);
+  const { t } = useTranslation();
 
   const saveOrder = () => {
     const date = new Date().toDateString();
@@ -37,7 +39,7 @@ const CheckoutForm = () => {
       orderDate: date,
       orderTime: time,
       orderAmount: totalAmount,
-      orderStatus: "Order Placed",
+      orderStatus: t('Orden realizada'),
       cartItems,
       shippingAddress,
       createdAt: Timestamp.now().toDate(),
@@ -73,9 +75,9 @@ const CheckoutForm = () => {
           return;
         }
         if (res.paymentIntent) {
-          if (res.paymentIntent.status === "succeeded") {
+          if (res.paymentIntent.status === t('Completado')) {
             setIsLoading(false);
-            toast.success("Pago exitoso");
+            toast.success(t('Pago exitoso'));
             saveOrder();
             navigate("/checkout-success", { replace: true });
           }
@@ -110,7 +112,6 @@ const CheckoutForm = () => {
           </div>
         </div>
         </div>
-        {/* Contenedor para centrar el icono animado */}
         
       </section>
     </>

@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 // firebase
 import { doc, setDoc, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import { useTranslation } from 'react-i18next';
 
 const ChangeOrderStatus = ({ order, orderId }) => {
 	const [status, setStatus] = useState("");
 	const [isLoading, setIsloading] = useState(false);
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	const changeStatus = (e, orderId) => {
 		e.preventDefault();
@@ -42,21 +44,21 @@ const ChangeOrderStatus = ({ order, orderId }) => {
 		<>
 			{isLoading && <Loader />}
 			<div className="w-full md:w-96  p-2 rounded-sm shadow-lg">
-				<h1 className="text-2xl">Actualizar estado de orden</h1>
+				<h1 className="text-2xl">{t('Actualizar estado de orden')}</h1>
 				<form onSubmit={(e) => changeStatus(e, orderId)} className="form-control">
 					<select
 						value={status}
 						onChange={(e) => setStatus(e.target.value)}
 						className="select select-secondary w-full max-w-xs"
 					>
-						<option disabled>--Estado---</option>
-						<option value="orderPlaced">Orden establecida</option>
-						<option value="Processing...">Procesando...</option>
-						<option value="Item(s) Shipped">Objeto(s) Enviados</option>
-						<option value="Item(s) Delivered">Objeto(s) Entragados</option>
+						<option disabled>--{t('Estado')}---</option>
+						<option value="orderPlaced">{t('Orden establecida')}</option>
+						<option value="Processing...">{t('Procesando')}...</option>
+						<option value="Item(s) Shipped">{t('Objeto(s) Enviados')}</option>
+						<option value="Item(s) Delivered">{t('Objeto(s) Entregados')}</option>
 					</select>
 					<button type="submit" className="btn btn-primary-content btn-sm mt-2">
-						Actualizar estado
+						{t('Actualizar estado')}
 					</button>
 				</form>
 			</div>

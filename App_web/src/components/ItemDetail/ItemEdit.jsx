@@ -4,12 +4,14 @@ import { db } from "../../firebase/config";
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
 
 const ItemEdit = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [editedItem, setEditedItem] = useState(null);
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchItem() {
@@ -72,12 +74,12 @@ const ItemEdit = () => {
   return (
     <div className="h-screen w-200 bg-accent flex items-center justify-center">
       <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
-        <h1 className="text-2xl font-bold mb-4">Información de la Receta</h1>
+        <h1 className="text-2xl font-bold mb-4">{t('Información de la Receta')}</h1>
         <form className="w-full max-w-lg">
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">
-                Nombre de la Receta
+                {t('Nombre de la Receta')}
               </label>
               <input
                 id="name"
@@ -92,7 +94,7 @@ const ItemEdit = () => {
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="image">
-                URL de la Imagen
+                {t('URL de la Imagen')}
               </label>
               <input
                 id="image"
@@ -107,7 +109,7 @@ const ItemEdit = () => {
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="ingredients">
-                Ingredientes
+                {t('Ingredientes')}
               </label>
               <textarea
                 id="ingredients"
@@ -121,7 +123,7 @@ const ItemEdit = () => {
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="description">
-                Descripción
+                {t('Descripción')}
               </label>
               <textarea
                 id="description"
@@ -135,7 +137,7 @@ const ItemEdit = () => {
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="category">
-                Categoría
+                {t('Categoría')}
               </label>
               <select
                 id="category"
@@ -144,9 +146,9 @@ const ItemEdit = () => {
                 onChange={handleInputChange}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               >
-              <option value="">Selecciona una categoría</option>
-              <option value="Con alcohol">Con alcohol</option>
-              <option value="Sin alcohol">Sin alcohol</option>
+              <option value="">{t('Selecciona una categoría')}</option>
+              <option value="opcion1">{t('opcion1')}</option>
+              <option value="opcion2">{t('opcion2')}</option>
               </select>
             </div>
           </div>
@@ -155,20 +157,20 @@ const ItemEdit = () => {
             onClick={handleUpdateItem}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Guardar Cambios
+            {t('Guardar Cambios')}
           </button>
           <button
             type="button"
             onClick={handleDeleteItem}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           >
-            Eliminar Receta
+            {t('Eliminar Receta')}
           </button>
           <ToastContainer />
           {updateSuccess && (
             <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-              <strong className="font-bold">¡Actualización Exitosa!</strong>
-              <span className="block sm:inline"> Los cambios se han guardado correctamente.</span>
+              <strong className="font-bold">{t('¡Actualización Exitosa!')}</strong>
+              <span className="block sm:inline"> {t('Los cambios se han guardado correctamente')}</span>
             </div>
           )}
         </form>

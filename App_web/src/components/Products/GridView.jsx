@@ -8,11 +8,13 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/slice/cartSlice";
+import { useTranslation } from 'react-i18next';
 
 const GridView = ({ products }) => {
 	const dispatch = useDispatch();
+	const { t } = useTranslation();
 	if (!products.length) {
-		return <h1 className="text-3xl font-bold">No se encontraron productos</h1>;
+		return <h1 className="text-3xl font-bold">{t('No se encontraron productos')}</h1>;
 	}
 
 	function add2CartFunction(product) {
@@ -35,7 +37,7 @@ const GridView = ({ products }) => {
 									effect="blur"
 								/>
 								<div className=" absolute top-0 right-0">
-									<span className="badge badge-primary">Envío gratis</span>
+									<span className="badge badge-primary">{t('Envío gratis')}</span>
 								</div>
 								<div className="my-4 items-center text-center">
 									<h1 className="font-semibold py-2">{name}</h1>
@@ -51,7 +53,7 @@ const GridView = ({ products }) => {
 									className="absolute bottom-1/3 left-[30%] btn btn-sm btn-primary hidden group-hover:block transition-all ease-in duration-300"
 									onClick={() => add2CartFunction(product)}
 								>
-									Añadir al carro
+									{t('Añadir al carro')}
 								</button>
 							</div>
 						</div>

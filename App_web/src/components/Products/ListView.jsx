@@ -7,12 +7,14 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/slice/cartSlice";
+import { useTranslation } from 'react-i18next';
 
 const ListView = ({ products }) => {
 	const dispatch = useDispatch();
+	const { t } = useTranslation();
 
 	if (!products.length) {
-		return <h1 className="text-3xl font-bold">No se encontraron productos</h1>;
+		return <h1 className="text-3xl font-bold">{t('No se encontraron productos')}</h1>;
 	}
 
 	function add2CartFunction(product) {
@@ -33,7 +35,7 @@ const ListView = ({ products }) => {
 								effect="blur"
 							/>
 							<div className=" absolute top-0 right-0">
-								<span className="badge ">Envío gratis</span>
+								<span className="badge ">{t('Envío gratis')}</span>
 							</div>
 							<div className="flex-1">
 								<h1 className="font-semibold">{product.brand}</h1>
@@ -47,11 +49,11 @@ const ListView = ({ products }) => {
 									onClick={() => add2CartFunction(product)}
 									className="btn btn-sm btn-outline mr-4"
 								>
-									Añadir al carro
+									{t('Añadir al carro')}
 								</button>
 								<Link to={`/product-details/${product.id}`}>
 									<button className="btn btn-sm btn-primary mt-2">
-										Ver detalles
+										{t('Ver detalles')}
 									</button>
 								</Link>
 							</div>

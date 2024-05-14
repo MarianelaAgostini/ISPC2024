@@ -3,9 +3,9 @@ import { ListView, GridView, Search, ProductFilter, Pagination } from "../../com
 import { BsFillGridFill, BsFilter } from "react-icons/bs";
 import useDarkMode from "../../hooks/useDarkMode";
 import { MdOutlineSubject } from "react-icons/md";
-// Redux
 import { filterBySearch, sortProducts } from "../../redux/slice/filterSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from 'react-i18next';
 
 const ProductList = ({ products }) => {
 	const { filteredProducts } = useSelector((store) => store.filter);
@@ -19,6 +19,7 @@ const ProductList = ({ products }) => {
 	const [bacToTop, setBackToTop] = useState(false);
 	const dispatch = useDispatch();
 	const [darkMode,] = useDarkMode();
+	const { t } = useTranslation();
 
 	//! Buscar
 	useEffect(() => {
@@ -71,31 +72,31 @@ const ProductList = ({ products }) => {
 						/>
 					</div>
 					<h1>
-						<span className="font-bold">{filteredProducts.length} </span>- Productos encontrados
+						<span className="font-bold">{filteredProducts.length} </span>- {t('productos encontrados')}
 					</h1>
 				</div>
 				{/* Search Bar */}
 				<Search value={search} onChange={(e) => setSearch(e.target.value)} />
 				{/* Sorting List */}
 				<div className="flex gap-2 items-center">
-					<label>Ordenar por:</label>
+					<label>{t('Ordenar por')}:</label>
 					<select
 						value={sort}
 						className="select select-sm select-bordered"
 						onChange={(e) => setSort(e.target.value)}
 					>
-						<option value="latest">Últimos</option>
-						<option value="lowest-price">Menor precio</option>
-						<option value="highest-price">Mayor precio</option>
-						<option value="a2z">Nombre(a - z)</option>
-						<option value="z2a">Nombre(z - a)</option>
+						<option value="latest">{t('Últimos')}</option>
+						<option value="lowest-price">{t('Menor precio')}</option>
+						<option value="highest-price">{t('Mayor precio')}</option>
+						<option value="a2z">{t('Nombre(a - z)')}</option>
+						<option value="z2a">{t('Nombre(z - a)')}</option>
 					</select>
 				</div>
 				{/* Collapse for Filter  */}
 				<div className="collapse sm:hidden">
 					<input type="checkbox" className="peer" />
 					<div className="collapse-title rounded-sm bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content w-80 flex items-center justify-between">
-						<p>Mostrar filtros</p>
+						<p>{t('Mostrar filtros')}</p>
 						<BsFilter size={28} />
 					</div>
 					<div className="collapse-content bg-primary text-primary-content peer-checked:bg-white peer-checked:text-black w-80 border-2 ">
@@ -117,7 +118,7 @@ const ProductList = ({ products }) => {
 						className="btn btn-primary sm:btn-lg rounded-full"
 						onClick={scrollToTop}
 					>
-						&uarr; Volver arriba
+						&uarr; {t('Volver arriba')}
 					</button>
 				</div>
 			)}
