@@ -1,0 +1,185 @@
+{
+  "id": "f96f1c4f-534f-4051-8fa9-2c7aca51c5a4",
+  "version": "2.0",
+  "name": "Pruebas automaticas - Sitio Coctelys",
+  "url": "http://localhost:5173/",
+  "tests": [{
+    "id": "e30d4354-0422-48ba-b04e-76494bd4431a",
+    "name": "Pruebas automaticas - Coctelys",
+    "commands": [{
+      "id": "4b6b9258-8867-46cb-860a-2890f8788356",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:5173/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1207c652-44cd-463b-a56a-1b49db49429f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1616x876",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "baa81c25-6e9a-446c-b391-f1e784544e05",
+      "comment": "",
+      "command": "click",
+      "target": "css=.hidden:nth-child(5) font > font",
+      "targets": [
+        ["css=.hidden:nth-child(5) font > font", "css:finder"],
+        ["xpath=//div[@id='root']/nav/div/div/ul/li[5]/a/font/font", "xpath:idRelative"],
+        ["xpath=//li[5]/a/font/font", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "64cb4e72-092e-455d-9d1e-e71eabc3fca9",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.py-2:nth-child(1) > .input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "add7dc26-d268-45dc-bd0a-836412bc3e56",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.py-2:nth-child(1) > .input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Martin Corral"
+    }, {
+      "id": "fd2ad85c-f688-4de7-8db6-297f9d9f6161",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.py-2:nth-child(2) > .input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa63c9a3-0281-4896-a165-069e5882252b",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.py-2:nth-child(2) > .input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "cmc_883@hotmail.com"
+    }, {
+      "id": "83142ba3-5b4f-4705-8aa7-e2e1ec79fff9",
+      "comment": "",
+      "command": "click",
+      "target": "name=subject",
+      "targets": [
+        ["name=subject", "name"],
+        ["css=.py-2:nth-child(3) > .input", "css:finder"],
+        ["xpath=//input[@name='subject']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ee68be9-555f-4bd0-b6eb-44528f9ce57b",
+      "comment": "",
+      "command": "type",
+      "target": "name=subject",
+      "targets": [
+        ["name=subject", "name"],
+        ["css=.py-2:nth-child(3) > .input", "css:finder"],
+        ["xpath=//input[@name='subject']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "Caso de Prueba"
+    }, {
+      "id": "81b8128e-ab29-4bed-bbdf-f6ec5be3235a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.py-2:nth-child(4)",
+      "targets": [
+        ["css=.py-2:nth-child(4)", "css:finder"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div[4]", "xpath:idRelative"],
+        ["xpath=//div[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0189f617-1c52-4c67-8a9c-e15826e94bda",
+      "comment": "",
+      "command": "click",
+      "target": "name=message",
+      "targets": [
+        ["name=message", "name"],
+        ["css=.textarea", "css:finder"],
+        ["xpath=//textarea[@name='message']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div[4]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4010da66-44d0-43d6-a5ee-96917033c524",
+      "comment": "",
+      "command": "click",
+      "target": "name=message",
+      "targets": [
+        ["name=message", "name"],
+        ["css=.textarea", "css:finder"],
+        ["xpath=//textarea[@name='message']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div[4]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "07c327f7-1441-4345-83fa-2c920827c41e",
+      "comment": "",
+      "command": "type",
+      "target": "name=message",
+      "targets": [
+        ["name=message", "name"],
+        ["css=.textarea", "css:finder"],
+        ["xpath=//textarea[@name='message']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/main/section[2]/form/div[4]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Testing pagina Coctelys"
+    }, {
+      "id": "bc6a6e73-85ec-4d51-9da6-fe972f96b337",
+      "comment": "",
+      "command": "click",
+      "target": "css=.max-w-xs > font > font",
+      "targets": [
+        ["css=.max-w-xs > font > font", "css:finder"],
+        ["xpath=//div[@id='root']/main/section[2]/form/button/font/font", "xpath:idRelative"],
+        ["xpath=//button/font/font", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "4d7a4ffe-8307-4695-a7e5-f864b84c8b4a",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:5173/"],
+  "plugins": []
+}
