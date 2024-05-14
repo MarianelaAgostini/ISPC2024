@@ -7,17 +7,16 @@ import "../../general.css";
 import useDarkMode from "../../hooks/useDarkMode";
 import { AdminOnlyLink } from "../adminRoute/AdminRoute";
 import encabezado from "../../assets/encabezado.png";
-// firebase
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
-//Redux
 import { useDispatch, useSelector } from "react-redux";
 import { removeActiveUser, setActiveUser } from "../../redux/slice/authSlice";
 import { calculateSubtotal, calculateTotalQuantity } from "../../redux/slice/cartSlice";
 import { formatPrice } from "../../utils/formatPrice";
 import { BsMoonStarsFill } from "react-icons/bs"; 
-
-
+import i18n from "../../i18n/i18n";
+import LanguageSelector from "../language/LanguageSelector";
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   const { isUserLoggedIn, userName } = useSelector((store) => store.auth);
@@ -26,10 +25,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, setDarkMode] = useDarkMode()
+  const { t } = useTranslation();
 
-
-
-  //* Usuario logeado actualmente
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -50,18 +47,21 @@ const Navbar = () => {
     });
   }, []);
 
-  
-
   function logOutUser() {
     signOut(auth)
       .then(() => {
-        toast.success("Usuario desconectado ");
+        toast.success(t('Usuario desconectado'));
         navigate("/");
       })
       .catch((error) => {
         toast.error(error.code, error.message);
       });
   }
+
+  const handleChangeLanguage = (languageCode) => {
+    i18n.changeLanguage(languageCode);
+  };
+
   let activeStyle = {
     borderBottom: "2px solid white",
   };
@@ -84,45 +84,49 @@ const Navbar = () => {
             <ul className="flex items-center gap-x-6">
               <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/" style={({ isActive }) => (isActive ? activeStyle : null)} end>
-                  Inicio
+                  {t('Inicio')}
                 </NavLink>
               </li>
               <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/category" style={({ isActive }) => (isActive ? activeStyle : null)} end>
-                  Categorías
+                {t('Categorías')}
                 </NavLink>
               </li>
               <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/all" style={({ isActive }) => (isActive ? activeStyle : null)}>
-                  Tienda
+                {t('Tienda')}
                 </NavLink>
               </li>
               <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/SobreNosotros" style={({ isActive }) => (isActive ? activeStyle : null)}>
-                  Sobre nosotros
+                {t('Sobre nosotros')}
                 </NavLink>
               </li>
               <li className="hidden lg:block text-white text-xs md:text-xl">
                 <NavLink to="/contact" style={({ isActive }) => (isActive ? activeStyle : null)}>
-                  Contacto
+                {t('Contacto')}
                 </NavLink>
               </li>
-              {/* Botón para la app móvil */}
+              <div className="hidden lg:block text-white text-xs md:text-xl">
+                <LanguageSelector handleChangeLanguage={handleChangeLanguage} />
+              </div>
+              
               <li>
                 <a href="https://github.com/MarianelaAgostini/ISPC2024" className="text-yellow-500 text-xs md:text-xl font-bold">
-                  APP MÓVIL
+                  {t('APP MÓVIL')}
                 </a>
               </li>
+              
             </ul>
           </div>
           <div className="md:gap-2">
             <label for="button" id="label_button">
-              </label>
-              <button className="boton" onClick = {() => setDarkMode(prevDarkMode => !prevDarkMode)}>
-              <BsMoonStarsFill/>
-              </button>
-              <div class="contenedor">
-              </div>
+                </label>
+                <button className="boton" onClick = {() => setDarkMode(prevDarkMode => !prevDarkMode)}>
+                <BsMoonStarsFill/>
+                </button>
+                <div class="contenedor">
+                </div>
             <div className="dropdown dropdown-end ">
               <label tabIndex={0} className="btn btn-ghost btn-circle">
                 <div className="indicator">
@@ -139,7 +143,7 @@ const Navbar = () => {
                   <span>Subtotal: {formatPrice(totalAmount)}</span>
                   <div className="card-actions">
                     <Link to="/cart" className="btn btn-primary btn-block">
-                      Ver carrito
+                      {t('Ver carrito')}
                     </Link>
                   </div>
                 </div>
@@ -169,22 +173,22 @@ const Navbar = () => {
                 <div className="block lg:hidden">
                   <li>
                     <Link to="/" className="text-lg ">
-                      Home
+                      {t('Inicio')}
                     </Link>
                   </li>
                   <li>
                     <Link to="/all" className="text-lg ">
-                      All Products
+                      {t('Tienda')}
                     </Link>
                   </li>
                   <li>
                     <Link to="/SobreNosotros" className="text-lg ">
-                      Sobre nosotros
+                      {t('Sobre nosotros')}
                     </Link>
                   </li>
                   <li>
                     <Link to="/contact" className="text-lg">
-                      Contact Us
+                      {t('Contacto')}
                     </Link>
                   </li>
                 </div>
@@ -193,12 +197,12 @@ const Navbar = () => {
                   <div>
                     <li>
                       <Link to="/my-orders" className="text-lg text-primary">
-                        Mis Ordenes
+                        {t('Mis órdenes')}
                       </Link>
                     </li>
                     <li>
                       <Link to="/EditarPerfil" className="text-lg text-primary">
-                        Editar Perfil
+                        {t('Editar Perfil')}
                       </Link>
                     </li>
                     <li>
@@ -207,14 +211,14 @@ const Navbar = () => {
                         className="flex justify-between hover:bg-red-100  text-red-500 text-lg"
                         onClick={logOutUser}
                       >
-                        Cerrar sesión
+                        {t('Cerrar sesión')}
                       </Link>
                     </li>
                   </div>
                 ) : (
                   <li>
                     <label htmlFor="my-modal-4" className="modal-button text-lg text-primary">
-                      Iniciar sesión
+                      {t('Iniciar sesión')}
                     </label>
                   </li>
                 )}
@@ -225,16 +229,13 @@ const Navbar = () => {
       </nav>
       <AdminOnlyLink>
         <div className="min-w-screen h-10  py-1 bg-red-200 text-red-700 font-bold text-center cursor-pointer">
-          <span>ADMINISTRADOR</span>
+          <span>{t('Adminstrador')}</span>
           <Link to="/admin/home" className="btn btn-primary btn-sm mx-4">
-            VER DASHBOARD
+            {t('Ver Dashboard')}
           </Link>
         </div>
       </AdminOnlyLink>
-      {/* <div className="min-w-screen py-2 bg-accent flex items-center justify-center">
-        <p className="uppercase font-medium inline-block mx-2">Sale end in </p>
-        <Countdown />
-      </div> */}
+      
     </>
   );
 };
