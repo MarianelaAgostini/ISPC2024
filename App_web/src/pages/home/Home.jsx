@@ -6,7 +6,6 @@ import { storeProducts, getPriceRange } from "../../redux/slice/productSlice";
 import Hero from "../../components/hero/Hero";
 import "../../general.css"
 
-
 async function fetchDataFromFirestore(collectionName) {
 	const querySnapshot = await getDocs(collection(db, collectionName))
 

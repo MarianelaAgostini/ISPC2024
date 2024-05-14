@@ -3,16 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "../../components";
 import { formatPrice } from "../../utils/formatPrice";
 import { toast } from "react-toastify";
-// lazy load
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-// Star rating library
 import StarsRating from "react-star-rate";
-//redux
 import { useSelector } from "react-redux";
-// firebase
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import { useTranslation } from 'react-i18next';
+
 
 const Review = () => {
 	const [rating, setRating] = useState(0);
@@ -21,8 +19,8 @@ const Review = () => {
 	const { id } = useParams();
 	const { products } = useSelector((store) => store.product);
 	const { userId, userName } = useSelector((store) => store.auth);
+	const { t } = useTranslation();
 
-	//! find the the matching product from the productsSlice
 	const filteredProduct = products.find((item) => item.id === id);
 
 	function submitReview(e) {
@@ -41,7 +39,7 @@ const Review = () => {
 		};
 		try {
 			addDoc(collection(db, "reviews"), reviewConfig);
-			toast.success("Thanks for Sharing your feedback");
+			toast.success(t('¡Gracias por compartir tu opinión!'));
 			setRating(0);
 			setReview("");
 			navigate(`/product-details/${id}`);
@@ -54,7 +52,7 @@ const Review = () => {
 		<>
 			<Header text="Review" />
 			{filteredProduct === null ? (
-				<h1 className="text-2xl font-bold"> No product Found </h1>
+				<h1 className="text-2xl font-bold"> {t('Producto no encontrado')} </h1>
 			) : (
 				<main className="w-full mx-auto px-2 md:w-9/12 md:px-6 mt-6 ">
 					<section className="flex justify-evenly items-center flex-col lg:flex-row p-6">
@@ -85,7 +83,7 @@ const Review = () => {
 							onSubmit={submitReview}
 							className="p-4 w-full md:w-[30rem] rounded-md shadow-lg flex flex-col"
 						>
-							<h1 className="font-semibold">Rating : </h1>
+							<h1 className="font-semibold">{t('Calificación')} : </h1>
 							<StarsRating
 								value={rating}
 								onChange={(rating) => {
@@ -100,7 +98,7 @@ const Review = () => {
 								onChange={(e) => setReview(e.target.value)}
 							></textarea>
 							<button type="submit" className="btn btn-primary mt-3">
-								Submit review
+								{t('Enviar reseña')}
 							</button>
 						</form>
 					</section>

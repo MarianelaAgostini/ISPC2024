@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
 const NotFound = () => {
+	const { t } = useTranslation();
 	return (
 		<>
 			<div className="lg:px-24 lg:py-24 md:py-20 md:px-44 px-4 py-24 items-center flex justify-center flex-col-reverse lg:flex-row md:gap-28 gap-16">
@@ -9,14 +12,14 @@ const NotFound = () => {
 						<div className="absolute">
 							<div className="">
 								<h1 className="my-2 text-gray-800 font-bold text-2xl">
-									¡Lo lamento! la página que buscas no existe.
+									{t('¡Lo lamento! la página que buscas no existe')}
 								</h1>
 								<p className="my-2 text-gray-800">
-								Por favor visite nuestra página de inicio para llegar a donde necesita ir.
+								{t('Por favor visite nuestra página de inicio para llegar a donde necesita ir')}
 								</p>
 
 								<Link to="/">
-									<button className="btn btn-primary">Volver a inicio</button>
+									<button className="btn btn-primary">{t('Volver a inicio')}</button>
 								</Link>
 							</div>
 						</div>

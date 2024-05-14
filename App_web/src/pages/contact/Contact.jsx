@@ -3,10 +3,12 @@ import { Header } from "../../components";
 import { AiOutlineFacebook, AiOutlineInstagram, AiOutlineMail } from "react-icons/ai";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
    const formRef = useRef();
    const [loading, setLoading] = useState(true);
+   const { t } = useTranslation();
 
    const sendEmail = (e) => {
       e.preventDefault();
@@ -21,11 +23,11 @@ const Contact = () => {
          .then(
             (result) => {
                console.log(result.text);
-               toast.success("Feedback Recorded. We will Contact you shortly");
+               toast.success(t('Comentarios registrados. Nos pondremos en contacto contigo en breve.'));
             },
             (error) => {
                console.log(error.text);
-               toast.error("Something went Wrong , Please try again later");
+               toast.error(t('Algo salió mal, por favor intenta nuevamente más tarde.'));
             }
          );
       setLoading(false);
@@ -34,16 +36,16 @@ const Contact = () => {
 
    return (
       <>
-         <Header text="Contáctanos" />
+         <Header text={t('Contáctanos')} />
          <main className="w-full mx-auto px-2 lg:w-9/12 md:px-6 mt-4 lg:mt-6 flex flex-col md:flex-row justify-between gap-10">
             <section className="w-full md:w-[30rem] bg-primary rounded-md p-6 h-72">
                {/* Card */}
                <div className="mb-10">
                   <h1 className="text-white md:text-3xl mb-2">
-                     Información de contacto
+                     {t('Información de contacto')}
                   </h1>
                   <p className="md:text-white">
-                     Rellena el formulario o contacta con nosotros por otros medios.
+                     {t('Rellena el formulario o contacta con nosotros por otros medios')}
                   </p>
                </div>
                <div>
@@ -77,7 +79,7 @@ const Contact = () => {
             </section>
             <section className="w-full md:w-2/3 rounded-md shadow-lg border-2 p-6">
                {/* Form */}
-               <h1 className="text-xl md:text-3xl">Contáctanos</h1>
+               <h1 className="text-xl md:text-3xl">{t('Contáctanos')}</h1>
                <form
                   className="form-control"
                   onSubmit={sendEmail}
@@ -85,53 +87,54 @@ const Contact = () => {
                >
                   <div className="py-2">
                      <label className="label-text md:font-semibold mb-2 block text-lg">
-                        Nombre y apellido :
+                        {t('Nombre y apellido')} :
                      </label>
                      <input
                         className="input input-bordered max-w-lg w-full border-2"
                         type="text"
-                        placeholder="Nombre y apellido"
+                        placeholder={t('Nombre y apellido')}
                         required
                         name="username"
                      />
                   </div>
                   <div className="py-2">
                      <label className="label-text md:font-semibold mb-2 block text-lg">
-                        Email :
+                        {t('Email')} :
                      </label>
                      <input
                         className="input input-bordered max-w-lg w-full border-2"
                         type="email"
-                        placeholder="Email"
+                        placeholder={t('Email')}
                         required
                         name="email"
                      />
                   </div>
                   <div className="py-2">
                      <label className="label-text md:font-semibold mb-2 block text-lg">
-                        Asunto :
+                        {t('Asunto')} :
                      </label>
                      <input
                         className="input input-bordered max-w-lg w-full border-2"
                         type="text"
-                        placeholder="Asunto"
+                        placeholder={t('Asunto')}
                         required
                         name="subject"
                      />
                   </div>
                   <div className="py-2">
                      <label className="label-text md:font-semibold mb-2 block text-lg">
-                        Mensaje :
+                        {t('Mensaje')} :
                      </label>
                      <textarea
                         className="textarea textarea-bordered max-w-[100%] w-full"
                         rows={5}
+                        placeholder={t('Mensaje')}
                         required
                         name="message"
                      ></textarea>
                   </div>
                   <button className="btn max-w-xs w-full" type="submit">
-                     Enviar mensaje
+                     {t('Enviar mensaje')}
                   </button>
                </form>
             </section>
