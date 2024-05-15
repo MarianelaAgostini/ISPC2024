@@ -23,7 +23,6 @@ const LanguageSelector = () => {
 
   return (
     <div className="flex items-center gap-x-2">
-      <p className="text-neutral text-xs md:text-xl">{t('Seleccione su idioma')}:</p>
       <LanguageButton languageCode="en" onClick={handleLanguageChange} />
       <LanguageButton languageCode="es" onClick={handleLanguageChange} />
       <LanguageButton languageCode="ru" onClick={handleLanguageChange} />

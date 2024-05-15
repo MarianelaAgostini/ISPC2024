@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiFillAlipayCircle, AiOutlineShoppingCart, AiOutlineTranslation, AiOutlineUser } from "react-icons/ai";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,6 +26,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const [, setDarkMode] = useDarkMode()
   const { t } = useTranslation();
+  const [modoNocturno, setModoNocturno] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -73,61 +74,67 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="h-[8vh] bg-neutral shadow-xl ">
-        <div className="navbar w-full md:w-9/12 mx-auto flex items-center justify-between">
+      <nav className="w-screen bg-neutral shadow-xl ">
+        <div className="max-w-screen-xl mx-auto flex items-center justify-between">
           <section className="md:gap-4">
             <Link to="/" className="btn btn-ghost ">
               <img src={encabezado} alt="encabezado" style={{ maxWidth: '60px' }} />
             </Link>
           </section>
-          <div>
+          <div className="flex items-center gap-x-10">
             <ul className="flex items-center gap-x-6">
-              <li className="hidden lg:block text-white text-xs md:text-xl">
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/" style={({ isActive }) => (isActive ? activeStyle : null)} end>
                   {t('Inicio')}
                 </NavLink>
               </li>
-              <li className="hidden lg:block text-white text-xs md:text-xl">
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/category" style={({ isActive }) => (isActive ? activeStyle : null)} end>
                 {t('Categorías')}
                 </NavLink>
               </li>
-              <li className="hidden lg:block text-white text-xs md:text-xl">
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/all" style={({ isActive }) => (isActive ? activeStyle : null)}>
                 {t('Tienda')}
                 </NavLink>
               </li>
-              <li className="hidden lg:block text-white text-xs md:text-xl">
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/SobreNosotros" style={({ isActive }) => (isActive ? activeStyle : null)}>
                 {t('Sobre nosotros')}
                 </NavLink>
               </li>
-              <li className="hidden lg:block text-white text-xs md:text-xl">
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/contact" style={({ isActive }) => (isActive ? activeStyle : null)}>
                 {t('Contacto')}
                 </NavLink>
               </li>
-              <div className="hidden lg:block text-white text-xs md:text-xl">
-                <LanguageSelector handleChangeLanguage={handleChangeLanguage} />
-              </div>
               
-              <li>
+            </ul>
+            <div className="dropdown dropdown-end ">
+            <label tabIndex={0} className="btn btn-ghost btn-circle">       
+                <div className="indicator">
+                    <AiOutlineTranslation size={30} color="white" />
+                </div>   
+            </label>
+            <div
+                tabIndex={0}
+                className="mt-3 card card-compact dropdown-content w-52 bg-base-100  shadow-xl "
+              >
+                <div className="card-body bg-neutral flex items-center">
+                <span className="badge badge-primary indicator-item"><LanguageSelector handleChangeLanguage={handleChangeLanguage}/></span>
+                </div>
+              </div>
+            
+            </div>
+              <li className="hidden lg:block text-white text-xs md:text-xl">
                 <a href="https://github.com/MarianelaAgostini/ISPC2024" className="text-yellow-500 text-xs md:text-xl font-bold">
                   {t('APP MÓVIL')}
                 </a>
               </li>
-              
-            </ul>
-          </div>
-          <div className="md:gap-2">
-            <label for="button" id="label_button">
-                </label>
-                <button className="boton" onClick = {() => setDarkMode(prevDarkMode => !prevDarkMode)}>
+              <button className="boton" onClick = {() => setDarkMode(prevDarkMode => !prevDarkMode)}>
                 <BsMoonStarsFill/>
-                </button>
-                <div class="contenedor">
-                </div>
-            <div className="dropdown dropdown-end ">
+              </button>
+              <div className="dropdown dropdown-end ">
               <label tabIndex={0} className="btn btn-ghost btn-circle">
                 <div className="indicator">
                   <AiOutlineShoppingCart size={30} color="white" />
@@ -149,31 +156,26 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <div className="dropdown dropdown-end ml-4">
+          </div>
+          <div className="lg:hidden">
+          <div className="dropdown dropdown-end ml-4">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="rounded-full">
-                  <img
-                    src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-placeholder-white-blue-png-image_3918443.jpg"
-                    alt="dp"
-                    className="w-10 h-10 object-fill"
-                  />
+                  <AiFillAlipayCircle size={30} color="white" />
                 </div>
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 "
-              >
-                {userName && (
-                  <li className="bg-primary text-gray-200">
-                    <p className="block">
-                      Bienvenido, <span className="font-bold">{userName}</span>
-                    </p>
-                  </li>
-                )}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
                 <div className="block lg:hidden">
                   <li>
                     <Link to="/" className="text-lg ">
                       {t('Inicio')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/category" className="text-lg">
+                      {t('Categorias')}
                     </Link>
                   </li>
                   <li>
@@ -192,7 +194,27 @@ const Navbar = () => {
                     </Link>
                   </li>
                 </div>
-
+              </ul>
+          </div>
+          </div>
+          <div className="md:gap-2">     
+            <div className="dropdown dropdown-end m-10">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="rounded-full">
+                  <AiOutlineUser size={30} color="white" />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 "
+              >
+                {userName && (
+                  <li className="bg-primary text-gray-200">
+                    <p className="block">
+                      Bienvenido, <span className="font-bold">{userName}</span>
+                    </p>
+                  </li>
+                )}
                 {isUserLoggedIn ? (
                   <div>
                     <li>
@@ -229,7 +251,7 @@ const Navbar = () => {
       </nav>
       <AdminOnlyLink>
         <div className="min-w-screen h-10  py-1 bg-red-200 text-red-700 font-bold text-center cursor-pointer">
-          <span>{t('Adminstrador')}</span>
+          <span>{t('Administrador')}</span>
           <Link to="/admin/home" className="btn btn-primary btn-sm mx-4">
             {t('Ver Dashboard')}
           </Link>
