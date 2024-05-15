@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory, filterByBrand, filterByprice } from "../../redux/slice/filterSlice";
 import { formatPrice } from "../../utils/formatPrice";
 import { useTranslation } from 'react-i18next';
+import useDarkMode from "../../hooks/useDarkMode";
 
 const ProductFilter = () => {
 	const { products } = useSelector((store) => store.product);
 	const { minPrice, maxPrice } = useSelector((store) => store.product);
 	const dispatch = useDispatch();
 	const { t } = useTranslation();
+	const darkMode = useDarkMode();
 
 	const [category, setCategory] = useState("All");
 	const [brand, setBrand] = useState("All");
@@ -45,14 +47,14 @@ const ProductFilter = () => {
 		<div className="flex flex-col gap-y-5">
 			{/* Categorias */}
 			<div>
-				<div className="flex flex-col gap-y-2 items-start">
+				<div className={`flex flex-col gap-y-2 items-start`}>
 					{allCategories.map((c, index) => {
-				<h1 className="font-bold">{t('Categorías')}</h1>
+				<h3 className="font-bold">{t('Categorías')}</h3>
 						return (
 							<button
 								key={index}
 								type="button"
-								className={`w-full text-left ${
+								className={`w-full text-left btn neutral ${
 									category === c
 										? "border-l-4 border-primary px-2 font-semibold"
 										: null
@@ -85,7 +87,7 @@ const ProductFilter = () => {
 			{/* precio */}
 			<div>
 				<h1 className="font-bold">{t('Precio')}</h1>
-				<p>{formatPrice(price)}</p>
+				<h2>{formatPrice(price)}</h2>
 				<input
 					className="range range-primary"
 					type="range"
