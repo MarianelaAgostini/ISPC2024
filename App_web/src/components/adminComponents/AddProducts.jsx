@@ -1,29 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Loader from "../loader/Loader";
 import { useNavigate, useParams } from "react-router-dom";
 import { categories } from "../../utils/adminProductCategories";
 import { defaultValues } from "../../utils/adminAddProductDefaultValues";
-import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { collection, addDoc, Timestamp, setDoc, doc } from "firebase/firestore";
-import { storage, db } from "../../firebase/config";
+import { db } from "../../firebase/config";
 import { useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
+import useDarkMode from "../../hooks/useDarkMode";
 
-//Esperar cambios en el input (handle event)
 const AddProducts = () => {
   const navigate = useNavigate();
   const { id: paramsId } = useParams();
   const { products: reduxProducts } = useSelector((store) => store.product);
   const productEdit = reduxProducts.find((item) => item.id === paramsId);
+  const darkMode = useDarkMode();
   const [product, setProduct] = useState(() => {
     return detectForm(paramsId, defaultValues, productEdit);
   });
-  const [uploadProgress, setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
 
-  //Buscar para añadir o modificar
+  useEffect(() => {
+    const allFieldsRequired = checkAllFieldsRequired(product);
+    setIsButtonDisabled(!allFieldsRequired);
+  }, [product]);
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
   function detectForm(paramsId, func1, func2) {
     if (paramsId === "ADD") return func1;
     return func2;
@@ -33,105 +38,61 @@ const AddProducts = () => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   }
-  // Subir archivo (imagen) a Firestore
-  function handleImageChange(e) {
-    const file = e.target.files[0];
-    const storageRef = ref(storage, `images/${Date.now()}${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setUploadProgress(progress);
-      },
-      (error) => {
-        toast.error(error.code, error.message);
-      },
-      () => {
-        // Esperar y avisar cuando se completa la carga de archivo
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setProduct({ ...product, imageURL: downloadURL });
-          toast.success(t('Archivo subido con éxito'));
-        });
-      }
-    );
-  }
-  // Añadir producto a Firebase
+
   async function addProduct(e) {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const docRef = await addDoc(collection(db, "products"), {
-        name: product.name,
-        imageURL: product.imageURL,
+      await addDoc(collection(db, "products"), {
+        ...product,
         price: Number(product.price),
-        category: product.category,
-        brand: product.brand,
-        description: product.description,
         createdAt: Timestamp.now().toDate(),
       });
-      setUploadProgress(0);
       setProduct(defaultValues);
       setIsLoading(false);
       toast.success(t('Producto añadido a la base de datos'));
       navigate("/admin/all-products");
     } catch (error) {
-      console.log(error.message);
-      toast.error(t('Algo salió mal'));
-      setIsLoading(false);
-    }
-  }
-  //Editar producto
-  async function editProduct(e) {
-    e.preventDefault();
-    setIsLoading(true);
-    // Verificar si la imagen fue actualizada
-    if (product.imageURL !== productEdit.imageURL) {
-      // Borrar imagen de la bd
-      const storageRef = ref(storage, productEdit.imageURL);
-      await deleteObject(storageRef);
-    }
-    try {
-      await setDoc(doc(db, "products", paramsId), {
-        name: product.name,
-        imageURL: product.imageURL,
-        price: Number(product.price),
-        category: product.category,
-        brand: product.brand,
-        description: product.description,
-        // Datos de guardado
-        createdAt: productEdit.createdAt,
-        editedAt: Timestamp.now().toDate(),
-      });
-      setUploadProgress(0);
-      setProduct(defaultValues);
-      setIsLoading(false);
-      toast.success(t('Producto actualizado correctamente'));
-      navigate("/admin/all-products");
-    } catch (error) {
-      console.log(error.message);
-      toast.error(t('Algo salió mal'));
       setIsLoading(false);
     }
   }
 
-  // Deshabilitar botón hasta que se carguen los campos
-  const AllFieldsRequired =
-    Boolean(product.brand) &&
-    Boolean(product.category) &&
-    Boolean(product.description) &&
-    Boolean(product.imageURL) &&
-    Boolean(product.name) &&
-    Boolean(product.name);
+  async function editProduct(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      await setDoc(doc(db, "products", paramsId), {
+        ...product,
+        price: Number(product.price),
+        editedAt: Timestamp.now().toDate(),
+      });
+      setIsLoading(false);
+      toast.success(t('Producto actualizado correctamente'));
+      navigate("/admin/all-products");
+    } catch (error) {
+      setIsLoading(false);
+    }
+  }
+
+  function checkAllFieldsRequired(product) {
+    return (
+      product.brand &&
+      product.category &&
+      product.description &&
+      product.imageURL &&
+      product.name &&
+      product.price
+    );
+  }
 
   return (
     <>
       {isLoading && <Loader />}
 
       <main className="h-full border-r-2 p-1">
-        <h1 className="text-xl md:text-3xl font-semibold pb-3">
-          {detectForm(paramsId, "Add New Product", "Edit Product")}
-        </h1>
+        <h3 className={`text-xl md:text-3xl font-semibold pb-3 bg-${darkMode ? 'dark' : 'neutral'}`}>
+          {detectForm(paramsId, (t('Añadir producto')), (t('Editar producto')))}
+        </h3>
         <form className="form-control" onSubmit={detectForm(paramsId, addProduct, editProduct)}>
           <div className="py-2">
             <label className="label-text font-bold mb-2 block text-lg">{t('Nombre del producto')}:</label>
@@ -205,41 +166,25 @@ const AddProducts = () => {
           </div>
           <div>
             <label className="label-text font-bold mb-2 block text-lg">{t('Imagen del producto')}: </label>
-            <div className="border-2 rounded-sm  max-w-xl w-full px-4 pb-2">
-              <div>
-                <progress
-                  className="progress progress-primary w-44 md:w-72 xl:w-full"
-                  value={uploadProgress}
-                  max="100"
-                ></progress>
-              </div>
+            <div className="flex items-center border-2 rounded-sm  max-w-xl w-full px-4 pb-2">
               <input
-                className="max-w-lg w-full"
-                accept="image/all"
-                type="file"
-                placeholder="IMAGE URL"
-                name="image"
-                onChange={handleImageChange}
+                className="max-w-lg w-full flex items-center"
+                type="text"
+                placeholder="URL de la imagen"
+                name="imageURL"
+                value={product.imageURL}
+                onChange={handleInputChange}
+                required
               />
-              {product.imageURL === "" ? null : (
-                <input
-                  className="input input-sm input-bordered max-w-lg w-full my-2"
-                  type="text"
-                  value={product.imageURL}
-                  required
-                  placeholder="Image URL"
-                  disabled
-                />
-              )}
             </div>
           </div>
 
           <button
-            type="submit"
-            className="btn btn-primary text-lg max-w-[200px]  mt-2"
-            disabled={!AllFieldsRequired}
+              type="submit"
+              className="btn btn-primary text-base max-w-[200px] overflow-hidden mt-2"
+              disabled={isButtonDisabled}
           >
-            {detectForm(paramsId, "Add Product", "Update Product")}
+              {detectForm(paramsId, t('Añadir producto'), t('Actualizar producto'))}
           </button>
         </form>
       </main>

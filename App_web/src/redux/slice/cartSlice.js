@@ -32,12 +32,10 @@ const cartSlice = createSlice({
          // item has more than 1 qty present
          if (state.cartItems[itemIndex].qty > 1) {
             state.cartItems[itemIndex].qty -= 1;
-            toast.error(`${action.payload.name} quantity Decreased `);
             // item has only 1 qty
          } else if (state.cartItems[itemIndex].qty === 1) {
             const newCartItems = state.cartItems.filter((item) => item.id !== action.payload.id);
             state.cartItems = newCartItems;
-            toast.error(`${action.payload.name} removed from Cart`);
          }
          // new Cart item array after removing items
          // Add item to local Storaeg
@@ -47,7 +45,6 @@ const cartSlice = createSlice({
          const newCartItems = state.cartItems.filter((item) => item.id !== action.payload.id);
          state.cartItems = newCartItems;
          localStorage.setItem("cart", JSON.stringify(state.cartItems));
-         toast.error(`${action.payload.name} removed from Cart`);
       },
       clearCart: (state) => {
          state.cartItems = [];

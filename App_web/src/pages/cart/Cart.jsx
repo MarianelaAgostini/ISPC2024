@@ -78,8 +78,7 @@ const Cart = () => {
   };
 
   return (
-    <main className="w-full">
-      <Breadcrumbs type="Cart" />
+    <main className="w-full h-screen flex items-center justify-center">
       <section className="w-full mx-auto p-4 md:p-10 lg:w-9/12 md:px-6 flex flex-col h-full">
         {!cartItems.length ? (
           <div className="w-full mx-auto h-max flex flex-col items-center justify-center ">
@@ -127,7 +126,7 @@ const Cart = () => {
                             </Link>
                             <div>
                               <Link to={`/product-details/${id}`}>
-                                <h1 className=" md:text-lg">{name}</h1>
+                                <h3 className=" md:text-lg">{name}</h3>
                               </Link>
                               <p className="font-light md:text-lg">
                                 {formatPrice(price)}
@@ -176,22 +175,22 @@ const Cart = () => {
                 <Link to="/all" className="link italic text-gray-400">
                   &larr; {t('Continuar comprando')}
                 </Link>
-                <p>
+                <h1>
                   {t('Artículos en el carrito')}:{" "}
                   <span className="font-light">{totalQuantity}</span>{" "}
-                </p>
+                </h1>
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-semibold">{t('Subtotal')}</h2>
-                  <p className="text-primary text-2xl">
+                  <h1 className="text-primary text-2xl">
                     {formatPrice(totalAmount)}
-                  </p>
+                  </h1>
                 </div>
                 <p className="text-gray-400">
                   {t('Impuestos y envío calculados en el checkout')}
                 </p>
                 
 
-                <div className="w-88 md:w-96 h-56 shadow-lg rounded-sm p-4 flex flex-col gap-4 bg-white">
+                <div className="w-88 md:w-96 h-max shadow-lg rounded-sm p-4 flex flex-col gap-4 bg-white">
                   <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <h2 className="text-xl font-semibold">{t('Pagar con tarjeta')}</h2>
                     <div className="flex items-center gap-2">
@@ -205,7 +204,7 @@ const Cart = () => {
                       onChange={handleChange}
                       placeholder= {t('Nombre del titular')}
                       className="border border-gray-300 rounded-md p-2"
-					  maxLength={100}
+					            maxLength={100}
                       pattern="[A-Za-z\s]+"
                       title={t('Ingrese solo letras y espacios')}
                       required
@@ -217,7 +216,7 @@ const Cart = () => {
                       onChange={handleChange}
                       placeholder={t('Número de tarjeta')}
                       className="border border-gray-300 rounded-md p-2"
-					  maxLength={16}
+					            maxLength={16}
                       pattern="\d{16}"
                       title={t('Ingrese 16 números')}
                       required
@@ -229,9 +228,9 @@ const Cart = () => {
                       onChange={handleChange}
                       placeholder={t('Fecha de vencimiento MM/AA')}
                       className="border border-gray-300 rounded-md p-2"
-					   maxLength={5}
-					  pattern="(0[1-9]|1[0-2]\/?[0-9]{2})"
-					  title={t('Ingrese MM/AA')}
+					            maxLength={5}
+                      pattern="(0[1-9]|1[0-2]\/?[0-9]{2})"
+                      title={t('Ingrese MM/AA')}
                       required
                     />
                     <input
@@ -241,7 +240,7 @@ const Cart = () => {
                       onChange={handleChange}
                       placeholder={t('Código de seguridad (CVC)')}
                       className="border border-gray-300 rounded-md p-2"
-					  maxLength={3}
+					        maxLength={3}
                       pattern="\d{3}"
                       title={t('Ingrese 3 números')}
                       required

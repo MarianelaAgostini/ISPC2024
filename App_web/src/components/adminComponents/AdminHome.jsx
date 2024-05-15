@@ -29,11 +29,11 @@ const AdminHome = () => {
 
 	return (
 		<main className="h-full border-r-2 p-1">
-			<h1 className="text-xl md:text-3xl font-light mb-4">{t('Admin Home')}</h1>
+			<h3 className="text-xl md:text-3xl font-light mb-4">{t('Admin Home')}</h3>
 			<section className="flex flex-wrap gap-10">
-				<InfoBox title={t('Ganancias')} count={formatPrice(totalAmount)} icon={earningIcon} />
-				<InfoBox title={t('Productos')} count={products.length} icon={orderIcon} />
-				<InfoBox title={t('Órdenes')} count={orderHistory.length} icon={productIcon} />
+				<InfoBox title={t('Ganancias')} count={<span className="number">{formatPrice(totalAmount)}</span>} icon={earningIcon} />
+				<InfoBox title={t('Productos')} count={<span className="number">{products.length}</span>} icon={orderIcon} />
+				<InfoBox title={t('Órdenes')} count={<span className="number">{orderHistory.length}</span>} icon={productIcon} />
 			</section>
 			<div>
 				<Chart />

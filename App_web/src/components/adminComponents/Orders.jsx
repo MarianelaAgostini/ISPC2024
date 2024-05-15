@@ -24,7 +24,7 @@ const Orders = () => {
 	return (
 		<>
 			{isLoading && <Loader />}
-			<h1 className="text-xl md:text-3xl font-light mb-4">{t('Todas las órdenes')}</h1>
+			<h3 className="black text-xl md:text-3xl font-light mb-4">{t('Todas las órdenes')}</h3>
 			<div>
 				<OrdersComponent orders={orderHistory} user={false} admin={true} />
 			</div>

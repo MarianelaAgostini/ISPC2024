@@ -17,13 +17,13 @@ const OrdersComponent = ({ orders, user, admin }) => {
 	return (
 		<main>
 			{!orders.length ? (
-				<h1 className="text-2xl font-bold"> {t('No se encontraron órdenes')} </h1>
+				<h3 className="black text-2xl font-bold"> {t('No se encontraron órdenes')} </h3>
 			) : (
 				<div>
-					<p className="text-lg font-light">
+					<p className="black text-lg font-light">
 						{t('Abra la orden para')} (
 						{admin ? (
-							<span className="font-semibold text-primary">{t('Modificar Estado del Pedido')}</span>
+							<span className="black font-semibold text-primary">{t('Modificar Estado del Pedido')}</span>
 						) : (
 							<span className="font-semibold text-primary">{t('Seguir Estado del Pedido')}</span>
 						)}
@@ -67,7 +67,7 @@ const OrdersComponent = ({ orders, user, admin }) => {
 									<p className="text-sm md:text-lg">
 										ID: <span className="font-semibold "> {id}</span>
 									</p>
-									<p className="text-sm md:text-lg ">
+									<p className="black text-sm md:text-lg ">
 										{t('Estado')}: <br />{" "}
 										<span
 											className={`font-semibold ${

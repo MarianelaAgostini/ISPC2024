@@ -197,6 +197,11 @@ const resources = {
       "Adminstrador":"Administrator",
       "Ver Dashboard":"View Dashboard",
       "Usuario desconectado":"User disconnected",
+      "Añadir producto":"Add Product",
+      "Actualizar producto":"Update Product",
+      "Buscar por nombre":"Search by name",
+      "Añadir producto":"Add New Product",
+      "Editar producto":"Edit product",
     }
   },
   es: {
@@ -394,6 +399,11 @@ const resources = {
       "Adminstrador":"Adminstrador",
       "Ver Dashboard":"Ver Dashboard",
       "Usuario desconectado":"Usuario desconectado",
+      "Añadir producto":"Añadir producto",
+      "Actualizar producto":"Actualizar producto",
+      "Buscar por nombre":"Buscar por nombre",
+      "Añadir producto":"Añadir producto",
+      "Editar producto":"Editar producto",
     }
   },
   ru: {
@@ -588,8 +598,11 @@ const resources = {
       "Cerrar sesión":"Выйти",
       "Adminstrador":"Администратор",
       "Ver Dashboard":"Просмотреть панель управления",
-      "Usuario desconectado":"Пользователь отключен",
-    }
+      "Usuario desconectado":"Пользователь отключен",      "Añadir producto":"Добавить продукт",
+      "Actualizar producto":"Обновить продукт",
+      "Buscar por nombre":"Поиск по имени",
+      "Añadir producto":"Добавить продукт",
+      "Editar producto":"Редактировать продукт",    }
   }
 };
 

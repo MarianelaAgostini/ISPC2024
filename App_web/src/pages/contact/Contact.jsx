@@ -36,7 +36,6 @@ const Contact = () => {
 
    return (
       <>
-         <Header text={t('Contáctanos')} />
          <main className="w-full mx-auto px-2 lg:w-9/12 md:px-6 mt-4 lg:mt-6 flex flex-col md:flex-row justify-between gap-10">
             <section className="w-full md:w-[30rem] bg-primary rounded-md p-6 h-72">
                {/* Card */}
@@ -133,7 +132,7 @@ const Contact = () => {
                         name="message"
                      ></textarea>
                   </div>
-                  <button className="btn max-w-xs w-full" type="submit">
+                  <button className="m-auto link modal-button btn neutral md:w-auto mb-4 md:mb-0 max-w-xs w-full" type="submit">
                      {t('Enviar mensaje')}
                   </button>
                </form>

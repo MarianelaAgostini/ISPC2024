@@ -13,7 +13,7 @@ const CheckoutSummary = () => {
          <h1 className="text-3xl font-light">{t('Resumen del pago')}</h1>
          <div className="mt-2">
             <p className="text-sm font-light text-gray-500">
-               Obeto(s) del carro: {totalQuantity}{" "}
+               Objeto(s) del carro: {totalQuantity}{" "}
             </p>
             <div className="flex items-center justify-between">
                <h1 className="text-xl font-light">{t('Subtotal')}: </h1>

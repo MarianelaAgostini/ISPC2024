@@ -3,11 +3,13 @@ import { useParams, Link } from 'react-router-dom'; // Importa Link
 import { db } from "../../firebase/config";
 import { doc, getDoc } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
+import useDarkMode from "../../hooks/useDarkMode";
 
 const ItemDetail = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const { t } = useTranslation();
+  const darkMode = useDarkMode();
 
   useEffect(() => {
     async function fetchItem() {
@@ -29,8 +31,8 @@ const ItemDetail = () => {
   }
 
   return (
-    <div className="h-screen w-200 bg-accent flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
+    <div className={`bg-${darkMode ? 'dark' : 'neutral'}`}>
+      <div className={`rounded-lg shadow-lg p-6 flex flex-col items-center bg-${darkMode ? 'dark' : 'neutral'}`}>
         <h1 className="text-2xl font-bold mb-4">{item.name}</h1>
         <img src={item.imageURL} alt={item.name} className="w-80 h-80 object-cover mb-4 rounded-lg"></img>
         <p className="text-xl font-semibold mb-2">{t('Ingredientes')}</p>

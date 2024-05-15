@@ -78,8 +78,8 @@ const ProductList = ({ products }) => {
 				{/* Search Bar */}
 				<Search value={search} onChange={(e) => setSearch(e.target.value)} />
 				{/* Sorting List */}
-				<div className="flex gap-2 items-center">
-					<label>{t('Ordenar por')}:</label>
+				<div className="m-4 flex gap-2 items-center">
+					<h2>{t('Ordenar por')}:</h2>
 					<select
 						value={sort}
 						className="select select-sm select-bordered"

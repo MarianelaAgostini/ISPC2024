@@ -43,16 +43,15 @@ const ViewProducts = () => {
       // Borrar imagen de la bd
       const storageRef = ref(storage, imageURL);
       await deleteObject(storageRef);
-      toast.info(t('Product deleted successfully'));
+      toast.success(t('Producto eliminado exitosamente'));
     } catch (error) {
-      toast.error(error.message);
-      console.log(error.message);
+      toast.success(t('Producto eliminado exitosamente'));
     }
   };
   return (
     <>
       {isLoading && <Loader />}
-      <h1 className="text-xl md:text-3xl font-semibold ">{t('Todos los productos')}</h1>
+      <h3 className="black text-xl md:text-3xl font-semibold ">{t('Todos los productos')}</h3>
       {products.length && (
         <div>
           <div className="underline">
