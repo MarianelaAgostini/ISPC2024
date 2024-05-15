@@ -24,7 +24,7 @@ import {
 } from "./pages";
 import ItemDetail from "./components/ItemDetail/ItemDetail";
 import ItemEdit from "./components/ItemDetail/ItemEdit";
-
+import FAQ from "./components/faq/FAQ";
 
 const App = () => {
   return (
@@ -65,6 +65,7 @@ const App = () => {
         <Route path="/itemedit/:id" element={<ItemEdit />} />
         <Route path="/category" element={<Home2 />} />
         <Route path="/category/:categoryName" element={<Home3 />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route
           path="/admin/*"
           element={

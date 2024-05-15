@@ -108,6 +108,11 @@ const Navbar = () => {
                 {t('Contacto')}
                 </NavLink>
               </li>
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
+                <NavLink to="/faq" style={({ isActive }) => (isActive ? activeStyle : null)}>
+                {t('Preguntas Frecuentes')}
+                </NavLink>
+              </li>
               
             </ul>
             <div className="dropdown dropdown-end ">
