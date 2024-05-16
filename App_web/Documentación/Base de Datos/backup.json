@@ -1,7 +1,198 @@
 {
   "__collections__": {
+    "orders": {
+      "QT4YTPaekmfE6nYxX9d8": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715751583, "_nanoseconds": 303000000 }
+        },
+        "orderTime": "2:39:43",
+        "orderAmount": 5622,
+        "orderStatus": "Orden realizada",
+        "shippingAddress": {
+          "country": "Argentina",
+          "city": "La Quiaca",
+          "phone": "121231231332",
+          "pin_code": "1542",
+          "name": "Marianela Agostini",
+          "line2": "notengo",
+          "line1": "Calle tanteando 2314"
+        },
+        "cartItems": [
+          {
+            "createdAt": "",
+            "price": 5622,
+            "imageURL": "https://funnyveggie.com.ar/wp-content/uploads/2022/09/Picsart_22-11-28_13-37-26-111.jpg",
+            "qty": 1,
+            "editedAt": { "seconds": 1714141206, "nanoseconds": 414000000 },
+            "name": "Jugo de Frutillaaaaa",
+            "description": "Un jugo de frutas naturales",
+            "id": "pV53nNXHuBPuadTn3f1Y",
+            "category": "JUGOS",
+            "brand": "Las Brisas"
+          }
+        ],
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "orderDate": "Wed May 15 2024",
+        "email": "asd@asd.com",
+        "__collections__": {}
+      },
+      "T9zg65j6KirO6OHRmcN7": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715672105, "_nanoseconds": 472000000 }
+        },
+        "orderTime": "4:35:05",
+        "orderAmount": 5622,
+        "editedAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715672526, "_nanoseconds": 664000000 }
+        },
+        "orderStatus": "Item(s) Shipped",
+        "shippingAddress": {
+          "country": "asd",
+          "city": "asd",
+          "phone": "5645654645",
+          "pin_code": "1234",
+          "name": "asd",
+          "line2": "asd",
+          "line1": "asd"
+        },
+        "cartItems": [
+          {
+            "createdAt": "",
+            "price": 5622,
+            "imageURL": "https://funnyveggie.com.ar/wp-content/uploads/2022/09/Picsart_22-11-28_13-37-26-111.jpg",
+            "qty": 1,
+            "editedAt": { "seconds": 1714141206, "nanoseconds": 414000000 },
+            "name": "Jugo de Frutillaaaaa",
+            "description": "Un jugo de frutas naturales",
+            "id": "pV53nNXHuBPuadTn3f1Y",
+            "category": "JUGOS",
+            "brand": "Las Brisas"
+          }
+        ],
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "orderDate": "Tue May 14 2024",
+        "email": "asd@asd.com",
+        "__collections__": {}
+      },
+      "VGiRqQjmcEZtC8uRLG2X": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715786632, "_nanoseconds": 375000000 }
+        },
+        "orderTime": "12:23:52",
+        "orderAmount": 5622,
+        "orderStatus": "Orden realizada",
+        "shippingAddress": {
+          "country": "dsrtjhsdrh",
+          "city": "drtjydrsytj6hd",
+          "phone": "sdrt5hsdrt5hsrh",
+          "pin_code": "dytjdry6tjd",
+          "name": "tgdrtu",
+          "line2": "drtjhr6thjd",
+          "line1": "dsrj6tsdrhj"
+        },
+        "cartItems": [
+          {
+            "createdAt": "",
+            "price": 5622,
+            "imageURL": "https://funnyveggie.com.ar/wp-content/uploads/2022/09/Picsart_22-11-28_13-37-26-111.jpg",
+            "qty": 1,
+            "editedAt": {
+              "__datatype__": "timestamp",
+              "value": { "_seconds": 1714141206, "_nanoseconds": 414000000 }
+            },
+            "name": "Jugo de Frutillaaaaa",
+            "description": "Un jugo de frutas naturales",
+            "id": "pV53nNXHuBPuadTn3f1Y",
+            "category": "JUGOS",
+            "brand": "Las Brisas"
+          }
+        ],
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "orderDate": "Wed May 15 2024",
+        "email": "asd@asd.com",
+        "__collections__": {}
+      },
+      "gBsSosL1Z1Cxj0ts1m3Q": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715792783, "_nanoseconds": 748000000 }
+        },
+        "orderTime": "14:06:23",
+        "orderAmount": 6547,
+        "orderStatus": "Orden realizada",
+        "shippingAddress": {
+          "country": "Argentina",
+          "city": "La Quiaca",
+          "phone": "5645654645",
+          "pin_code": "1542",
+          "name": "asd",
+          "line2": "notengo",
+          "line1": "asd"
+        },
+        "cartItems": [
+          {
+            "createdAt": "",
+            "price": 6547,
+            "imageURL": "https://http2.mlstatic.com/D_NQ_NP_747316-MLA54956528642_042023-O.webp",
+            "qty": 1,
+            "name": "Copa de Tragos",
+            "description": "La copa de los tragos",
+            "id": "WL3t7t2VhZretRJAXoHg",
+            "category": "COPAS",
+            "brand": "MilCopas"
+          }
+        ],
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "orderDate": "Wed May 15 2024",
+        "email": "asd@asd.com",
+        "__collections__": {}
+      },
+      "h4sMhfKAyQ5VsUmvhsPe": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715831725, "_nanoseconds": 552000000 }
+        },
+        "orderTime": "0:55:25",
+        "orderAmount": 852,
+        "editedAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715831802, "_nanoseconds": 192000000 }
+        },
+        "orderStatus": "Item(s) Delivered",
+        "shippingAddress": {
+          "country": "Argentina",
+          "phone": "3482409687",
+          "city": "La Quiaca",
+          "pin_code": "3580",
+          "name": "Marianela Agostini",
+          "line2": "notengo",
+          "line1": "Calle tanteando 2314"
+        },
+        "cartItems": [
+          {
+            "createdAt": "",
+            "price": "852",
+            "imageURL": "https://acdn.mitiendanube.com/stores/001/434/490/products/15l1-0d408f92b664af37ce16138620181367-640-0.jpeg",
+            "qty": 1,
+            "name": "Jugo de Naranja",
+            "description": "El mejor jugo de naranja",
+            "id": "lPnM2IT3vE4XnzPo9RgO",
+            "category": "JUGOS",
+            "brand": "Citric"
+          }
+        ],
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "orderDate": "Thu May 16 2024",
+        "email": "asd@asd.com",
+        "__collections__": {}
+      }
+    },
     "products": {
-      "Alcohol Germany": {
+      "HCNGMQ7w1PYnfL2CoW3T": {
         "createdAt": "",
         "price": "33566",
         "imageURL": "https://images.ctfassets.net/f6vi7rcobfjz/2jbGJfY4De0scOIYaiY0Q6/9b8764a981e994c276bd64445e446a89/bottle_optim.png",
@@ -11,7 +202,7 @@
         "brand": "Jagermeifter",
         "__collections__": {}
       },
-      "Alcohol inglés": {
+      "Nge7Q56Ulzxe2gofkq9S": {
         "createdAt": "",
         "price": "5662",
         "imageURL": "https://www.debarricas.com.ar/wp-content/uploads/01302076.webp",
@@ -21,7 +212,7 @@
         "brand": "Bridge Alcohol",
         "__collections__": {}
       },
-      "Jugo de Durazno": {
+      "QfZKcYxfDk84IYn0gvdE": {
         "createdAt": "",
         "price": 1666,
         "imageURL": "https://www.conaprole.uy/wp-content/uploads/2018/03/durazno-250ml.png",
@@ -31,7 +222,7 @@
         "brand": "Conaprole",
         "__collections__": {}
       },
-      "Copa de Champagne": {
+      "UTbEewY78ZyugMs1zwe2": {
         "name": "Copa de Champagne",
         "price": 5655,
         "category": "COPAS",
@@ -41,7 +232,7 @@
         "imageURL": "https://acdn.mitiendanube.com/stores/001/173/051/products/12661-81f96102e6edea21d915899219456552-640-0.jpg",
         "__collections__": {}
       },
-      "Copa de Tragos": {
+      "WL3t7t2VhZretRJAXoHg": {
         "createdAt": "",
         "price": 6547,
         "imageURL": "https://http2.mlstatic.com/D_NQ_NP_747316-MLA54956528642_042023-O.webp",
@@ -51,7 +242,7 @@
         "brand": "MilCopas",
         "__collections__": {}
       },
-      "Copa de vino": {
+      "cg4YMu6xnNHjnBoiQ5Vk": {
         "createdAt": "",
         "price": 1223,
         "description": "cristal fino",
@@ -61,7 +252,7 @@
         "name": "Copa de vino",
         "__collections__": {}
       },
-      "Jugo de Naranja": {
+      "lPnM2IT3vE4XnzPo9RgO": {
         "createdAt": "",
         "price": "852",
         "imageURL": "https://acdn.mitiendanube.com/stores/001/434/490/products/15l1-0d408f92b664af37ce16138620181367-640-0.jpeg",
@@ -71,7 +262,7 @@
         "category": "JUGOS",
         "__collections__": {}
       },
-      "Gin": {
+      "mBgHNLVVNwCoLfcN3Mck": {
         "createdAt": "",
         "price": "25000",
         "imageURL": "https://www.supermercadosmas.com/media/catalog/product/cache/d91bc430dbe2e3d899436802c7aa5233/a/e/aecoc_05000281015248_05000281015248_c1n1.jpg",
@@ -81,7 +272,7 @@
         "brand": "Tanqueray",
         "__collections__": {}
       },
-      "Jugo de Frutilla": {
+      "pV53nNXHuBPuadTn3f1Y": {
         "createdAt": "",
         "price": 5622,
         "imageURL": "https://funnyveggie.com.ar/wp-content/uploads/2022/09/Picsart_22-11-28_13-37-26-111.jpg",
@@ -97,44 +288,218 @@
       }
     },
     "recipes": {
-      "Cóctel de naranja": {
+      "1e4ibSF7B7DzqX9CWsVV": {
         "imageURL": "https://okdiario.com/img/2020/03/06/coctel-naranja-vodka.jpg",
         "name": "Cóctel de naranja",
         "description": "Se agregan todos los ingredientes y se los mezcla.",
         "ingredients": "Zumo de piña, 1 vaso de zumo de naranja, zumo de arándanos, vaso de zumo de fresa, hielo picado, menta, 3 naranjas",
-        "category": "Con alcohol",
+        "category": "opcion1",
+        "dislikes": 1,
+        "likes": 1,
         "__collections__": {}
       },
-      "Daiquiri": {
-        "name": "Daiquiri",
+      "CMVzYBVgvtgCv1mE7rqF": {
         "ingredients": "1 puñado de frutillas frescas (6 o 7 u) una cucharada panzona de azúcar, 2 cdas de jugo de lima o limón, 1/2 taza de ron blanco o dorado, hielo",
         "imageURL": "https://mandolina.co/wp-content/uploads/2023/07/daiquiri-frambuesa-1200x900.jpg",
         "description": "El daiquiri es un cóctel a base de ron y frutas. Queda mucho más rico cuando se utiliza fruta fresca.",
-        "category": "Sin alcohol",
+        "name": "Daiquiri",
+        "category": "opcion2",
+        "dislikes": 3,
+        "likes": 4,
         "__collections__": {}
       },
-      "Aperol": {
-        "imageURL": "https://www.piloncilloyvainilla.com/wp-content/uploads/2023/03/aperol-spritz-4.jpg",
-        "ingredients": "Cava Brut, Aperol, Agua y gas, naranja y hielos",
+      "N4bTYQ6ft3mDgqyx4uVd": {
+        "imageURL": "https://oipacyl.es/wp-content/uploads/cocteles-deliciosos-y-coloridos.jpg",
+        "ingredients": "alcohol, agua, hielo, jenjibre, frutilla, azucar",
+        "description": "el mejor trago de argentina",
+        "name": "Trago Cangrejo",
+        "category": "opcion1",
+        "__collections__": {}
+      },
+      "Ob4BsOvP1gTIz1PeIVQW": {
+        "imageURL": "https://laroussecocina.mx/wp-content/uploads/2023/06/Caipirin%E2%95%A0aa-e1686912614417.jpg.webp",
+        "name": "Caipiriña clásica",
+        "ingredients": "1 limón, cortado en gajos + rodajas de limón al gusto para decorar 2 cucharadas de azúcar 2 oz (60 ml) de cachaza cantidad suficiente de hielo",
+        "description": "Vierte los gajos de limón en un vaso agitador o shaker, añade el azúcar y machaca con un macerador para extraer el jugo. Añade un poco de hielo y 2 oz (60 ml) de cachaza, tapa el vaso y agita durante 20 segundos. Coloca dos rodajas de limón en un vaso old fashioned y rellena con cubos de hielo. Cuela el contenido del shaker dentro del vaso con ayuda de un colador de gusano, decora con una rodaja de limón y sirve.",
+        "category": "opcion1",
+        "__collections__": {}
+      },
+      "X3Tist4wav6BK68aDwoK": {
         "name": "Aperol",
         "description": "Primero se agrega el hielo. Luego los demás ingredientes y se mezclan.",
-        "category": "Con alcohol",
+        "imageURL": "https://www.clarin.com/2020/07/28/ltk75xfor_1200x0__1.jpg",
+        "ingredients": "1 botella de Prosecco o Champaña Brut 1 botella de Aperol 1 botella de soda Hielo a gusto 1 naranja",
+        "category": "opcion1",
+        "__collections__": {}
+      },
+      "mW3RS7Xr4MOZ6wf7aBYD": {
+        "imageURL": "https://cocteles.club/wp-content/uploads/coctel-acapulco-de-noche.jpg",
+        "description": "el mejor trago de mexico sin alcohol",
+        "ingredients": "30 ml (1 Onzas) de Tequila. 30 ml (1 Onza) de Ron oscuro. 60 ml (2 Onzas) de Jugo de Toronja. 60 ml (2 Onzas) de Jugo piña.",
+        "name": "Acapulco de ANANA",
+        "category": "opcion2",
+        "__collections__": {}
+      }
+    },
+    "reviews": {
+      "7qly1C7YCcsf30GZevAD": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715821363, "_nanoseconds": 615000000 }
+        },
+        "productId": "pV53nNXHuBPuadTn3f1Y",
+        "reviewDate": "Wed May 15 2024",
+        "review": "MUY RICO",
+        "rating": 5,
+        "userName": "",
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "reviewTime": "22:02:43",
+        "__collections__": {}
+      },
+      "DZfaxm8FUB278lEG3wx0": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715758731, "_nanoseconds": 272000000 }
+        },
+        "productId": "pV53nNXHuBPuadTn3f1Y",
+        "reviewDate": "Wed May 15 2024",
+        "review": "un asco",
+        "rating": 2.5,
+        "userName": "",
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "reviewTime": "4:38:51",
+        "__collections__": {}
+      },
+      "Hwe38UBj50IsAungvKLb": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715379783, "_nanoseconds": 20000000 }
+        },
+        "productId": "Nge7Q56Ulzxe2gofkq9S",
+        "reviewDate": "Fri May 10 2024",
+        "review": "el mejor alcohol ingles",
+        "rating": 5,
+        "userName": "",
+        "userId": "7qcDxfZVy6S95HraH1xku8XD8dJ2",
+        "reviewTime": "19:23:03",
+        "__collections__": {}
+      },
+      "K6TM5HLmae26vxAdxOKy": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715758132, "_nanoseconds": 145000000 }
+        },
+        "productId": "mBgHNLVVNwCoLfcN3Mck",
+        "reviewDate": "Wed May 15 2024",
+        "review": "Rico",
+        "rating": 5,
+        "userName": "",
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "reviewTime": "4:28:52",
+        "__collections__": {}
+      },
+      "kS8Q1nZgoBYsGThmSr6a": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715758766, "_nanoseconds": 615000000 }
+        },
+        "productId": "pV53nNXHuBPuadTn3f1Y",
+        "reviewDate": "Wed May 15 2024",
+        "review": "rico",
+        "rating": 4.5,
+        "userName": "",
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "reviewTime": "4:39:26",
+        "__collections__": {}
+      },
+      "kqkNqT1mHOfEKRn9lH5K": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1715758385, "_nanoseconds": 432000000 }
+        },
+        "productId": "lPnM2IT3vE4XnzPo9RgO",
+        "reviewDate": "Wed May 15 2024",
+        "review": "Bonito",
+        "rating": 4.5,
+        "userName": "",
+        "userId": "nEsQvPRFVQXfVKxgqGRsyMNgcIU2",
+        "reviewTime": "4:33:05",
+        "__collections__": {}
+      },
+      "tnbTlSkfM4i1OI1rc1E0": {
+        "createdAt": {
+          "__datatype__": "timestamp",
+          "value": { "_seconds": 1714273023, "_nanoseconds": 377000000 }
+        },
+        "productId": "pV53nNXHuBPuadTn3f1Y",
+        "reviewDate": "Sat Apr 27 2024",
+        "review": "Rico ",
+        "rating": 5,
+        "userName": "",
+        "userId": "EHRNZuUxOfMQthE9YjA8cHFCBO82",
+        "reviewTime": "23:57:03",
         "__collections__": {}
       }
     },
     "users": {
-      "admin": {
+      "7qcDxfZVy6S95HraH1xku8XD8dJ2": {
+        "firstName": "mario",
+        "lastName": "lu",
+        "phone": "254126544",
+        "email": "mario@gmail.com",
+        "rol": "user",
+        "__collections__": {}
+      },
+      "EHRNZuUxOfMQthE9YjA8cHFCBO82": {
+        "email": "ozarenko2719@gmail.com",
+        "rol": "user",
+        "password": "11111111v",
+        "firstName": "viky",
+        "lastName": "ozarenko",
+        "phone": "6545854565",
+        "__collections__": {}
+      },
+      "Y8JiU3VI0CMr5xx0yNWZ2tl00iO2": {
+        "firstName": "user nombre",
+        "lastName": "user apellido",
+        "phone": "2541654123",
+        "email": "usuario@gmail.com",
+        "rol": "user",
+        "__collections__": {}
+      },
+      "as5zqwwciiSE8tu4xaSjjlOzcBp1": {
         "password": "admin123",
         "email": "admin@admin.com",
         "rol": "admin",
+        "firstName": "admin",
+        "lastName": "admin",
+        "phone": "el teléfono del admin",
         "__collections__": {}
       },
-      "user": {
-        "password": "fabioweb2024",
-        "email": "fabiomarioluna@gmail.com",
+      "nEsQvPRFVQXfVKxgqGRsyMNgcIU2": {
+        "password": "asd123",
+        "email": "asd@asd.com",
         "rol": "user",
+        "firstName": "asd nombre",
+        "lastName": "asd apellido",
+        "phone": "121231231333",
         "__collections__": {}
       }
+    },
+    "votes": {
+      "h2CcUKDp6RAXYYVgb799": {
+        "voteType": "likes",
+        "userId": "user-id",
+        "recipeId": "CMVzYBVgvtgCv1mE7rqF",
+        "__collections__": {}
+      },
+      "ppQjJjmDrJYfEHWO62w7": {
+        "voteType": "likes",
+        "userId": "user-id",
+        "recipeId": "1e4ibSF7B7DzqX9CWsVV",
+        "__collections__": {}
+      },
+      "rcevGANBq5oBb4K4JugS": { "like": "0", "__collections__": {} }
     }
   }
 }
