@@ -68,11 +68,6 @@ Haz clic en la imagen para ver el video de demostración.
 - Entorno de desarrollo **VSC**
 - Base de datos **Firebase** para almacenar y gestionar las recetas de cócteles.
 
-## Video de demostración
-
-[![Video de demostración](https://img.youtube.com/vi/FARpIWs5YMk/0.jpg)](https://www.youtube.com/watch?v=FARpIWs5YMk)
-
-Haz clic en la imagen para ver el video de demostración.
 
 ## Instalación del Proyecto
 
