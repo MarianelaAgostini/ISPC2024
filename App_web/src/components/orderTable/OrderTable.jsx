@@ -49,7 +49,7 @@ const OrderTable = ({ user, order }) => {
                 {user && (
                   <td>
                     <Link
-                      to={`/review-product/${productId}`}
+                      to={`/all`}
                       className="border p-2 rounded-md md:text-lg"
                     >
                       {t('Escribe una reseña')}

@@ -56,7 +56,6 @@ const ProductDetails = () => {
 	return (
 		<>
 			{isLoading && <Loader />}
-			<Breadcrumbs type={product.name} />
 			<section className="w-full mx-auto p-4 md:p-10 lg:w-9/12 md:px-6 ">
 				<h1 className="text-2xl font-semibold">{t('Detalles del producto')}</h1>
 				<Link to="/all" className="link ">
@@ -68,7 +67,7 @@ const ProductDetails = () => {
 							src={product.imageURL}
 							alt={product.name}
 							className="w-96 h-96 object-contain "
-							placeholderSrc="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg"
+							placeholderSrc="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
 							effect="blur"
 						/>
 					</div>
@@ -119,12 +118,13 @@ const ProductDetails = () => {
 				<section className="rounded-md shadow-lg">
 					<div className=" w-full ">
 						<h1 className="text-lg md:text-2xl font-semibold mt-2 p-2">{t('Reseñas')}</h1>
+						<Link to={`/review-product/${id}`} className="link link-primary ">
+							{t('Escribe una reseña')}
+						</Link>
 					</div>
 					{!filteredReview.length ? (
 						<p className="p-4">
-							<Link to={`/review-product/${id}`} className="link link-primary ">
-								{t('Sé el primero en escribir una reseña')}
-							</Link>
+							
 						</p>
 					) : (
 						<div className="flex flex-col gap-4 p-2 ">
