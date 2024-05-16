@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiFillAlipayCircle, AiOutlineShoppingCart, AiOutlineTranslation, AiOutlineUser } from "react-icons/ai";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../../general.css";
+import useDarkMode from "../../hooks/useDarkMode";
 import { AdminOnlyLink } from "../adminRoute/AdminRoute";
 import encabezado from "../../assets/encabezado.png";
-// firebase
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
-//Redux
 import { useDispatch, useSelector } from "react-redux";
 import { removeActiveUser, setActiveUser } from "../../redux/slice/authSlice";
 import { calculateSubtotal, calculateTotalQuantity } from "../../redux/slice/cartSlice";
 import { formatPrice } from "../../utils/formatPrice";
+import { BsMoonStarsFill } from "react-icons/bs"; 
+import i18n from "../../i18n/i18n";
+import LanguageSelector from "../language/LanguageSelector";
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   const { isUserLoggedIn, userName } = useSelector((store) => store.auth);
@@ -20,8 +24,10 @@ const Navbar = () => {
   const [displayName, setDisplayName] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [, setDarkMode] = useDarkMode()
+  const { t } = useTranslation();
+  const [modoNocturno, setModoNocturno] = useState(false);
 
-  //* Usuario logeado actualmente
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -45,13 +51,21 @@ const Navbar = () => {
   function logOutUser() {
     signOut(auth)
       .then(() => {
-        toast.success("Usuario desconectado ");
-        navigate("/");
+        toast.success(t('Usuario desconectado'));
+        setTimeout(() => {
+          navigate("/");
+          window.location.reload();
+        }, 1000);
       })
       .catch((error) => {
         toast.error(error.code, error.message);
       });
-  }
+  }  
+
+  const handleChangeLanguage = (languageCode) => {
+    i18n.changeLanguage(languageCode);
+  };
+
   let activeStyle = {
     borderBottom: "2px solid white",
   };
@@ -63,39 +77,72 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="h-[8vh] bg-neutral shadow-xl ">
-        <div className="navbar w-full md:w-9/12 mx-auto flex items-center justify-between">
+      <nav className="w-screen bg-neutral shadow-xl ">
+        <div className="max-w-screen-xl mx-auto flex items-center justify-between">
           <section className="md:gap-4">
             <Link to="/" className="btn btn-ghost ">
               <img src={encabezado} alt="encabezado" style={{ maxWidth: '60px' }} />
             </Link>
           </section>
-          <div>
+          <div className="flex items-center gap-x-10">
             <ul className="flex items-center gap-x-6">
-              <li className="hidden lg:block text-white text-xs md:text-xl">
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/" style={({ isActive }) => (isActive ? activeStyle : null)} end>
-                  Inicio
+                  {t('Inicio')}
                 </NavLink>
               </li>
-              <li className="hidden lg:block text-white text-xs md:text-xl">
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
+                <NavLink to="/category" style={({ isActive }) => (isActive ? activeStyle : null)} end>
+                {t('Categorías')}
+                </NavLink>
+              </li>
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/all" style={({ isActive }) => (isActive ? activeStyle : null)}>
-                  Tienda
+                {t('Tienda')}
                 </NavLink>
               </li>
-              <li className="hidden lg:block text-white text-xs md:text-xl">
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/SobreNosotros" style={({ isActive }) => (isActive ? activeStyle : null)}>
-                  Sobre nosotros
+                {t('Sobre nosotros')}
                 </NavLink>
               </li>
-              <li className="hidden lg:block text-white text-xs md:text-xl">
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/contact" style={({ isActive }) => (isActive ? activeStyle : null)}>
-                  Contacto
+                {t('Contacto')}
                 </NavLink>
               </li>
+              <li className="hidden lg:block text-white text-xs md:text-xl m-2">
+                <NavLink to="/faq" style={({ isActive }) => (isActive ? activeStyle : null)}>
+                {t('Preguntas Frecuentes')}
+                </NavLink>
+              </li>
+              
             </ul>
-          </div>
-          <div className="md:gap-2">
             <div className="dropdown dropdown-end ">
+            <label tabIndex={0} className="btn btn-ghost btn-circle">       
+                <div className="indicator">
+                    <AiOutlineTranslation size={30} color="white" />
+                </div>   
+            </label>
+            <div
+                tabIndex={0}
+                className="mt-3 card card-compact dropdown-content w-52 bg-base-100  shadow-xl "
+              >
+                <div className="card-body bg-neutral flex items-center">
+                <span className="badge badge-primary indicator-item"><LanguageSelector handleChangeLanguage={handleChangeLanguage}/></span>
+                </div>
+              </div>
+            
+            </div>
+              <li className="hidden lg:block text-white text-xs md:text-xl">
+                <a href="https://github.com/MarianelaAgostini/ISPC2024" className="text-yellow-500 text-xs md:text-xl font-bold">
+                  {t('APP MÓVIL')}
+                </a>
+              </li>
+              <button className="boton" onClick = {() => setDarkMode(prevDarkMode => !prevDarkMode)}>
+                <BsMoonStarsFill/>
+              </button>
+              <div className="dropdown dropdown-end ">
               <label tabIndex={0} className="btn btn-ghost btn-circle">
                 <div className="indicator">
                   <AiOutlineShoppingCart size={30} color="white" />
@@ -111,20 +158,63 @@ const Navbar = () => {
                   <span>Subtotal: {formatPrice(totalAmount)}</span>
                   <div className="card-actions">
                     <Link to="/cart" className="btn btn-primary btn-block">
-                      Ver carrito
+                      {t('Ver carrito')}
                     </Link>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="dropdown dropdown-end ml-4">
+          </div>
+          <div className="lg:hidden">
+          <div className="dropdown dropdown-end ml-4">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="rounded-full">
-                  <img
-                    src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-placeholder-white-blue-png-image_3918443.jpg"
-                    alt="dp"
-                    className="w-10 h-10 object-fill"
-                  />
+                  <AiFillAlipayCircle size={30} color="white" />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
+                <div className="block lg:hidden">
+                  <li>
+                    <Link to="/" className="text-lg ">
+                      {t('Inicio')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/category" className="text-lg">
+                      {t('Categorias')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/all" className="text-lg ">
+                      {t('Tienda')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/SobreNosotros" className="text-lg ">
+                      {t('Sobre nosotros')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/contact" className="text-lg">
+                      {t('Contacto')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/faq" className="text-lg">
+                      {t('Preguntas frecuentes')}
+                    </Link>
+                  </li>
+                </div>
+              </ul>
+          </div>
+          </div>
+          <div className="md:gap-2">     
+            <div className="dropdown dropdown-end m-10">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="rounded-full">
+                  <AiOutlineUser size={30} color="white" />
                 </div>
               </label>
               <ul
@@ -138,34 +228,16 @@ const Navbar = () => {
                     </p>
                   </li>
                 )}
-                <div className="block lg:hidden">
-                  <li>
-                    <Link to="/" className="text-lg ">
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/all" className="text-lg ">
-                      All Products
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/SobreNosotros" className="text-lg ">
-                      Sobre nosotros
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/contact" className="text-lg">
-                      Contact Us
-                    </Link>
-                  </li>
-                </div>
-
                 {isUserLoggedIn ? (
                   <div>
                     <li>
                       <Link to="/my-orders" className="text-lg text-primary">
-                        My Orders
+                        {t('Mis órdenes')}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/EditarPerfil" className="text-lg text-primary">
+                        {t('Editar Perfil')}
                       </Link>
                     </li>
                     <li>
@@ -174,14 +246,14 @@ const Navbar = () => {
                         className="flex justify-between hover:bg-red-100  text-red-500 text-lg"
                         onClick={logOutUser}
                       >
-                        Cerrar sesión
+                        {t('Cerrar sesión')}
                       </Link>
                     </li>
                   </div>
                 ) : (
                   <li>
                     <label htmlFor="my-modal-4" className="modal-button text-lg text-primary">
-                      Iniciar sesión
+                      {t('Iniciar sesión')}
                     </label>
                   </li>
                 )}
@@ -192,16 +264,13 @@ const Navbar = () => {
       </nav>
       <AdminOnlyLink>
         <div className="min-w-screen h-10  py-1 bg-red-200 text-red-700 font-bold text-center cursor-pointer">
-          <span>ADMIN</span>
+          <span>{t('Administrador')}</span>
           <Link to="/admin/home" className="btn btn-primary btn-sm mx-4">
-            VIEW DASHBOARD
+            {t('Ver Dashboard')}
           </Link>
         </div>
       </AdminOnlyLink>
-      {/* <div className="min-w-screen py-2 bg-accent flex items-center justify-center">
-        <p className="uppercase font-medium inline-block mx-2">Sale end in </p>
-        <Countdown />
-      </div> */}
+      
     </>
   );
 };

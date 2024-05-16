@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 //Redux
 import { useDispatch } from "react-redux";
 import { saveShippingAddress, saveBillingAddress } from "../../redux/slice/checkoutSlice";
+import { useTranslation } from 'react-i18next';
 
 const defaultValues = {
 	name: "",
@@ -20,6 +21,7 @@ const CheckoutDetails = () => {
 	const [shippingAddress, setShippingAddress] = useState(defaultValues);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	function handleShipping(e) {
 		const { name, value } = e.target;
@@ -49,11 +51,11 @@ const CheckoutDetails = () => {
 			<section className="w-full mx-auto p-4 lg:p-10 lg:w-9/12 md:px-6 flex flex-col h-full">
 				<article className="flex flex-col-reverse  md:flex-row gap-4">
 					<div className="flex-1 p-4 rounded-md shadow-lg">
-						<h1 className="text-3xl font-light">Shipping Address</h1>
+						<h1 className="text-3xl font-light">{t('Dirección de envío')}</h1>
 						<form onSubmit={handleSubmit} className="form-control mt-2">
 							<div className="mt-2">
 								<label className="label-text mb-2 block text-lg">
-									Recipient Name :
+									{t('Nombre del destinatario')} :
 								</label>
 								<input
 									className="input input-sm text-lg input-bordered max-w-md w-full "
@@ -66,7 +68,7 @@ const CheckoutDetails = () => {
 							</div>
 							<div className="mt-2">
 								<label className="label-text mb-2 block text-lg">
-									Address Line 1 :
+									{t('Línea de dirección 1')}:
 								</label>
 								<input
 									className="input input-sm text-lg input-bordered max-w-md w-full "
@@ -79,7 +81,7 @@ const CheckoutDetails = () => {
 							</div>
 							<div className="mt-2">
 								<label className="label-text mb-2 block text-lg">
-									Address Line 2 :
+									{t('Línea de dirección 2')} :
 								</label>
 								<input
 									className="input input-sm text-lg input-bordered max-w-md w-full "
@@ -92,7 +94,7 @@ const CheckoutDetails = () => {
 							</div>
 
 							<div className="mt-2">
-								<label className="label-text mb-2 block text-lg">City:</label>
+								<label className="label-text mb-2 block text-lg">{t('Ciudad')}:</label>
 								<input
 									className="input input-sm text-lg input-bordered max-w-md w-full "
 									type="text"
@@ -103,7 +105,7 @@ const CheckoutDetails = () => {
 								/>
 							</div>
 							<div className="mt-2">
-								<label className="label-text mb-2 block text-lg">Pin Code:</label>
+								<label className="label-text mb-2 block text-lg">{t('Código postal')}:</label>
 								<input
 									className="input input-sm text-lg input-bordered max-w-md w-full "
 									type="text"
@@ -114,7 +116,7 @@ const CheckoutDetails = () => {
 								/>
 							</div>
 							<div className="mt-2">
-								<label className="label-text mb-2 block text-lg">Country:</label>
+								<label className="label-text mb-2 block text-lg">{t('País')}:</label>
 								<input
 									className="input input-sm text-lg input-bordered max-w-md w-full "
 									type="text"
@@ -125,7 +127,7 @@ const CheckoutDetails = () => {
 								/>
 							</div>
 							<div className="mt-2 mb-4">
-								<label className="label-text mb-2 block text-lg">Phone:</label>
+								<label className="label-text mb-2 block text-lg">{t('Teléfono')}:</label>
 								<input
 									className="input input-sm text-lg input-bordered max-w-md w-full "
 									type="text"
@@ -140,7 +142,7 @@ const CheckoutDetails = () => {
 								className="btn btn-primary max-w-sm w-full"
 								disabled={!AllFieldsRequired}
 							>
-								Proceed To Checkout
+								{t('Proceder al pago')}
 							</button>
 						</form>
 					</div>

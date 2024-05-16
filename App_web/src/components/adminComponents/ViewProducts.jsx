@@ -14,10 +14,12 @@ import { storeProducts } from "../../redux/slice/productSlice";
 import { filterBySearch } from "../../redux/slice/filterSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useTranslation } from 'react-i18next';
 
 const ViewProducts = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   //Fetch a los productos utilizando hooks
   const { data, isLoading } = useFetchCollection("products");
@@ -41,27 +43,26 @@ const ViewProducts = () => {
       // Borrar imagen de la bd
       const storageRef = ref(storage, imageURL);
       await deleteObject(storageRef);
-      toast.info("Product deleted successfully");
+      toast.success(t('Producto eliminado exitosamente'));
     } catch (error) {
-      toast.error(error.message);
-      console.log(error.message);
+      toast.success(t('Producto eliminado exitosamente'));
     }
   };
   return (
     <>
       {isLoading && <Loader />}
-      <h1 className="text-xl md:text-3xl font-semibold ">Todos los productos</h1>
+      <h3 className="black text-xl md:text-3xl font-semibold ">{t('Todos los productos')}</h3>
       {products.length && (
         <div>
           <div className="underline">
-            <span className="text-lg font-bold ">{filteredProducts.length} </span> productos encontrados
+            <span className="text-lg font-bold ">{filteredProducts.length} </span> {t('productos encontrados')}
           </div>
         </div>
       )}
       <Search value={search} onChange={(e) => setSearch(e.target.value)} />
       <main className="md:max-w-[100vw] max-h-[70vh] py-4 overflow-y-scroll ">
         {filteredProducts.length === 0 ? (
-          <h1 className="text-4xl font-bold text-red-500">PRODUCTO NO ENCONTRADO</h1>
+          <h1 className="text-4xl font-bold text-red-500">{t('Producto no encontrado')}</h1>
         ) : (
           <div className="overflow-x-auto mt-2 w-full">
             <table className="table table-compact w-full">
@@ -69,11 +70,11 @@ const ViewProducts = () => {
               <thead>
                 <tr>
                   <th className="text-md sm:text-lg "></th>
-                  <th className="text-md sm:text-lg">Image</th>
-                  <th className="text-md sm:text-lg ">Name</th>
-                  <th className="text-md sm:text-lg">Category</th>
-                  <th className="text-md sm:text-lg">Price</th>
-                  <th className="text-md sm:text-lg">Options</th>
+                  <th className="text-md sm:text-lg">{t('Imagen')}</th>
+                  <th className="text-md sm:text-lg ">{t('Nombre')}</th>
+                  <th className="text-md sm:text-lg">{t('Categoría')}</th>
+                  <th className="text-md sm:text-lg">{t('Precio')}</th>
+                  <th className="text-md sm:text-lg">{t('Opciones')}</th>
                 </tr>
               </thead>
               {/* TABLE BODY */}

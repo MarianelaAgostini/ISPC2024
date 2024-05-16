@@ -1,0 +1,202 @@
+{
+  "id": "f34f9a12-ea34-4150-bcba-e06f6fca9745",
+  "version": "2.0",
+  "name": "Automatizacion testing",
+  "url": "http://localhost:5173",
+  "tests": [{
+    "id": "7d9e167e-9bbc-4e7e-8952-9a88d674461f",
+    "name": "2º Automatizacion Testing - ",
+    "commands": [{
+      "id": "6af997a2-fba6-48fe-a404-3abbf21c19fe",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0637af8b-768a-4633-82f9-7d1449766923",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "927x850",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1105ab16-9de0-4348-a905-c9595bdcdf17",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-button",
+      "targets": [
+        ["css=.modal-button", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/AddRecipeForm')]", "xpath:href"],
+        ["xpath=//div[2]/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "912b800d-d324-461c-aad1-6f0b63c24a3c",
+      "comment": "",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1bb554c2-5d44-4cad-ae53-4b84bdf4453d",
+      "comment": "",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Caipiriña clásica"
+    }, {
+      "id": "63a7a369-1eec-469a-8ea8-7f2ce8d92e6d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mb-4:nth-child(2) > .block",
+      "targets": [
+        ["css=.mb-4:nth-child(2) > .block", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/form/div[2]/label", "xpath:idRelative"],
+        ["xpath=//form/div[2]/label", "xpath:position"],
+        ["xpath=//label[contains(.,'URL de la Imagen')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b0c4061-d350-453c-89e2-220a2f2a70f9",
+      "comment": "",
+      "command": "click",
+      "target": "id=imageURL",
+      "targets": [
+        ["id=imageURL", "id"],
+        ["name=imageURL", "name"],
+        ["css=#imageURL", "css:finder"],
+        ["xpath=//input[@id='imageURL']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0aad2745-6e07-47da-a780-27a77a93ffb1",
+      "comment": "",
+      "command": "type",
+      "target": "id=imageURL",
+      "targets": [
+        ["id=imageURL", "id"],
+        ["name=imageURL", "name"],
+        ["css=#imageURL", "css:finder"],
+        ["xpath=//input[@id='imageURL']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "https://laroussecocina.mx/wp-content/uploads/2023/06/Caipirin%E2%95%A0aa-e1686912614417.jpg.webp"
+    }, {
+      "id": "d276be8b-65d4-4f49-972e-dc11ae406516",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["name=ingredients", "name"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/form/div[3]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3af28070-b121-45ea-be3f-163cd887da79",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["name=ingredients", "name"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/form/div[3]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "1 limón, cortado en gajos + rodajas de limón al gusto para decorar 2 cucharadas de azúcar 2 oz (60 ml) de cachaza cantidad suficiente de hielo"
+    }, {
+      "id": "bddefa42-3155-4a25-8022-fe1c3042b8b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mb-4:nth-child(4) > .block",
+      "targets": [
+        ["css=.mb-4:nth-child(4) > .block", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/form/div[4]/label", "xpath:idRelative"],
+        ["xpath=//div[4]/label", "xpath:position"],
+        ["xpath=//label[contains(.,'Descripción')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9052d287-72cd-4149-8538-2b0ea695b897",
+      "comment": "",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/form/div[4]/textarea", "xpath:idRelative"],
+        ["xpath=//div[4]/textarea", "xpath:position"]
+      ],
+      "value": "Vierte los gajos de limón en un vaso agitador o shaker, añade el azúcar y machaca con un macerador para extraer el jugo. Añade un poco de hielo y 2 oz (60 ml) de cachaza, tapa el vaso y agita durante 20 segundos. Coloca dos rodajas de limón en un vaso old fashioned y rellena con cubos de hielo. Cuela el contenido del shaker dentro del vaso con ayuda de un colador de gusano, decora con una rodaja de limón y sirve."
+    }, {
+      "id": "9d79ec64-e60c-4f73-9755-25cc897667bb",
+      "comment": "",
+      "command": "click",
+      "target": "id=category",
+      "targets": [
+        ["id=category", "id"],
+        ["name=category", "name"],
+        ["css=#category", "css:finder"],
+        ["xpath=//select[@id='category']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/form/div[5]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a230417f-6011-4612-8a3f-b2ed3cc88440",
+      "comment": "",
+      "command": "select",
+      "target": "id=category",
+      "targets": [],
+      "value": "label=Con alcohol"
+    }, {
+      "id": "67fa440c-ec07-41bc-b836-a45af69e7a46",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-button",
+      "targets": [
+        ["css=.modal-button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "afaa711f-f970-4926-a760-b3e8ac2904c5",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["7d9e167e-9bbc-4e7e-8952-9a88d674461f"]
+  }],
+  "urls": ["http://localhost:5173/"],
+  "plugins": []
+}

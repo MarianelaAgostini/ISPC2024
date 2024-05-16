@@ -1,9 +1,11 @@
 import { RiAdminLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const AdminSidebar = () => {
 	const { userName } = useSelector((store) => store.auth);
+	const { t } = useTranslation();
 
 	// Active link class
 	let activeStyle = {
@@ -19,7 +21,7 @@ const AdminSidebar = () => {
 			</div>
 			<div className="text-md md:text-xl py-4 pl-2">
 				<NavLink to="/admin/home" style={({ isActive }) => (isActive ? activeStyle : null)}>
-					Home
+					{t('Inicio')}
 				</NavLink>
 			</div>
 			<div className="text-md md:text-xl py-4 pl-2">
@@ -27,7 +29,7 @@ const AdminSidebar = () => {
 					to="/admin/all-products"
 					style={({ isActive }) => (isActive ? activeStyle : null)}
 				>
-					Todos los productos
+					{t('Todos los productos')}
 				</NavLink>
 			</div>
 			<div className="text-md md:text-xl py-4  pl-2">
@@ -35,7 +37,7 @@ const AdminSidebar = () => {
 					to="/admin/add-product/ADD"
 					style={({ isActive }) => (isActive ? activeStyle : null)}
 				>
-					Agregar productos
+					{t('Agregar productos')}
 				</NavLink>
 			</div>
 			<div className="text-md md:text-xl py-4  pl-2">
@@ -43,7 +45,7 @@ const AdminSidebar = () => {
 					to="/admin/orders"
 					style={({ isActive }) => (isActive ? activeStyle : null)}
 				>
-					Ordenes
+					{t('Órdenes')}
 				</NavLink>
 			</div>
 		</div>

@@ -5,9 +5,63 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
 	font-family: "Rubik", sans-serif;
 }
+body.dark-mode {
+
+	background-color: black;
+
+}
+
+
+body.dark-mode h1 {
+
+	color: #fff;
+
+}
+
+
+body.dark-mode h2 {
+
+	color: #fff;
+
+}
+
+body.dark-mode h3 {
+
+	color: #000;
+
+}
+
+.bg-negro{
+	color: #000;
+	background-color: #000;
+}
+
+
+body.dark-mode h3 {
+
+	color: rgb(0, 0, 0);
+
+}
+
+
+body.dark-mode h4 {
+
+	color: #000;
+
+}
+
+
+body.dark-mode label {
+
+	color: #fff;
+
+}
+
+
 
 .page {
 	height: calc(100vh - 10rem);
@@ -21,7 +75,6 @@ td {
 	font-weight: 600;
 }
 
-/* LOADING SPINNER CSS */
 
 .overlay {
 	height: 100vh;
@@ -42,6 +95,21 @@ td {
 	animation: spin 2s linear infinite;
 }
 
+.modo-nocturno{
+	background-color: #000;
+}
+.modo-claro{
+	background-color: #fff;
+}
+.number{
+	color: #129c12;
+}
+.black{
+	color: #000;
+}
+.white{
+	color:#fff;
+}
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);

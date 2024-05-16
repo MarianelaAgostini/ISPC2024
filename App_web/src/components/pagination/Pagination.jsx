@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 
 const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts }) => {
+	const { t } = useTranslation();
 	function prevPage() {
 		setCurrentPage((prev) => {
 			if (prev <= 1) {
@@ -31,7 +33,7 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
 				</button>
 			</div>
 			<p className="font-semibold">
-				<span className="text-primary">Pag {currentPage} </span> de
+				<span className="text-primary">{t('Pag')} {currentPage} </span> {t('de')}
 				<span> {Math.ceil(totalProducts / productPerPage)} </span>
 			</p>
 		</div>

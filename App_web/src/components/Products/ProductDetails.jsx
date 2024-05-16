@@ -4,33 +4,29 @@ import { Link, useParams } from "react-router-dom";
 import { formatPrice } from "../../utils/formatPrice";
 import Loader from "../loader/Loader";
 import ReviewComponent from "../review/ReviewComponent";
-// Custom Hook
 import useFetchCollection from "../../hooks/useFetchCollection";
-//Lazy Load
+import useDarkMode from "../../hooks/useDarkMode";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-// Firebase
 import { useEffect, useState } from "react";
 import { db } from "../../firebase/config";
-// Redux
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decreaseCart, calculateTotalQuantity } from "../../redux/slice/cartSlice";
+import { useTranslation } from 'react-i18next';
 
 const ProductDetails = () => {
-	// Ver los objetos del carrito usando redux store
 	const { cartItems } = useSelector((store) => store.cart);
 	const [product, setProduct] = useState({});
 	const [isLoading, setIsLoading] = useState(false);
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	const [darkMode,] = useDarkMode()
+	const { t } = useTranslation();
 
-	//Fetch a la colección reviews
 	const { data } = useFetchCollection("reviews");
 
-	// Encuentra la reseña (review) del objeto
 	const filteredReview = data.filter((item) => item.productId === id);
 
-	//Busca el objeto entre la colección
 	async function getSingleDocument() {
 		setIsLoading(true);
 		const docRef = doc(db, "products", id);
@@ -39,36 +35,31 @@ const ProductDetails = () => {
 			setProduct(docSnap.data());
 			setIsLoading(false);
 		} else {
-			console.log("No existe el documento");
+			console.log(t('No existe el documento'));
 			setIsLoading(false);
 		}
 	}
-	// Obtener un único documento de Firestore 
 	useEffect(() => {
 		getSingleDocument();
 	}, []);
 
-	// Añadir al carro
 	function add2CartFunction(product) {
 		dispatch(addToCart({ ...product, id }));
 		dispatch(calculateTotalQuantity());
 	}
-	// Reducir cantidad
 	function decreaseQty(product) {
 		dispatch(decreaseCart({ ...product, id }));
 		dispatch(calculateTotalQuantity());
 	}
-	// Verificar si el objeto está en el carro
 	let currentItem = cartItems.find((item) => item.id === id);
 
 	return (
 		<>
 			{isLoading && <Loader />}
-			<Breadcrumbs type={product.name} />
 			<section className="w-full mx-auto p-4 md:p-10 lg:w-9/12 md:px-6 ">
-				<h1 className="text-2xl font-semibold">Detalles del producto </h1>
+				<h1 className="text-2xl font-semibold">{t('Detalles del producto')}</h1>
 				<Link to="/all" className="link ">
-					&larr; Volver a los productos
+					&larr; {t('Volver a los productos')}
 				</Link>
 				<article className="flex flex-col md:flex-row items-start justify-between py-4 gap-x-4">
 					<div className=" w-full md:w-1/3 flex items-center justify-center border-2">
@@ -90,9 +81,9 @@ const ProductDetails = () => {
 							SKU : <span className="font-light">{id}</span>
 						</p>
 						<p className="font-semibold mb-2">
-							Marca : <span className="font-light">{product.brand}</span>
+							{t('Marca')} : <span className="font-light">{product.brand}</span>
 						</p>
-						{/* Button Group */}
+						
 						{cartItems.includes(currentItem) && (
 							<div className="btn-group items-center mb-2">
 								<button
@@ -119,20 +110,21 @@ const ProductDetails = () => {
 								className="btn btn-primary btn-active"
 								onClick={() => add2CartFunction(product)}
 							>
-								Añadir al carro
+								{t('Añadir al carro')}
 							</button>
 						</div>
 					</div>
 				</article>
 				<section className="rounded-md shadow-lg">
 					<div className=" w-full ">
-						<h1 className="text-lg md:text-2xl font-semibold mt-2 p-2">Reseñas</h1>
+						<h1 className="text-lg md:text-2xl font-semibold mt-2 p-2">{t('Reseñas')}</h1>
+						<Link to={`/review-product/${id}`} className="link link-primary ">
+							{t('Escribe una reseña')}
+						</Link>
 					</div>
 					{!filteredReview.length ? (
 						<p className="p-4">
-							<Link to={`/review-product/${id}`} className="link link-primary ">
-								Sé el primero en escribir una reseña.
-							</Link>
+							
 						</p>
 					) : (
 						<div className="flex flex-col gap-4 p-2 ">

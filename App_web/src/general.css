@@ -1,0 +1,22 @@
+.boton {
+
+    color: #FFFFFF;
+    background-color: #131f2f;
+
+}
+
+.boton > svg {
+
+    width: 1.4rem;
+    height: 1.4rem;
+
+}
+
+
+.dark {
+
+    color: beige;
+    background-color: #111;
+    border-color: black;
+
+}
