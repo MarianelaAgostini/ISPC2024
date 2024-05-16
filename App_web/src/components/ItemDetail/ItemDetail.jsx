@@ -1,19 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { db } from "../../firebase/config";
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { db, auth } from "../../firebase/config";
 import { doc, getDoc, onSnapshot, updateDoc, collection, query, where, getDocs, addDoc, deleteDoc } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
 import useDarkMode from "../../hooks/useDarkMode";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { AiOutlineLike, AiOutlineDislike, AiOutlineSend } from "react-icons/ai";
+import copy from 'copy-to-clipboard';
+import { onAuthStateChanged } from "firebase/auth";
 
 const ItemDetail = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const { t } = useTranslation();
   const darkMode = useDarkMode();
+  const url = window.location.href; // Obtener la URL actual
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
 
-  // Aquí debes obtener el ID del usuario actualmente autenticado
-  const userId = "user-id"; // Reemplaza esto con la lógica para obtener el userId autenticado
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        if (userDoc.exists()) {
+          setIsAdmin(userDoc.data().rol === 'admin');
+        }
+      } else {
+        setIsAdmin(false);
+      }
+    });
+  
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const docRef = doc(db, "recipes", id);
@@ -26,7 +43,6 @@ const ItemDetail = () => {
       }
     });
 
-    // Cleanup function to unsubscribe from the snapshot listener when el componente se desmonta
     return () => unsubscribe();
   }, [id]);
 
@@ -35,26 +51,29 @@ const ItemDetail = () => {
   }
 
   const handleVote = async (voteType) => {
+    // Verificar si el usuario ha iniciado sesión
+    if (!auth.currentUser) {
+      alert('Por favor inicia sesión para votar');
+      return;
+    }
+  
     const votesCollection = collection(db, "votes");
-    const q = query(votesCollection, where("userId", "==", userId), where("recipeId", "==", id));
+    const q = query(votesCollection, where("userId", "==", auth.currentUser.uid), where("recipeId", "==", id));
     const querySnapshot = await getDocs(q);
-
+  
     const docRef = doc(db, "recipes", id);
     const recipeSnapshot = await getDoc(docRef);
     const recipeData = recipeSnapshot.data();
-
+  
     if (!querySnapshot.empty) {
-      // El usuario ya ha votado
       querySnapshot.forEach(async (voteDoc) => {
         const voteData = voteDoc.data();
         if (voteData.voteType === voteType) {
-          // Si el voto es del mismo tipo, elimínalo (destildar)
           await deleteDoc(voteDoc.ref);
           await updateDoc(docRef, { [voteType]: (recipeData[voteType] || 0) - 1 });
         } else {
-          // Si el voto es del tipo contrario, elimina el anterior y agrega el nuevo
           await deleteDoc(voteDoc.ref);
-          await addDoc(votesCollection, { userId, recipeId: id, voteType });
+          await addDoc(votesCollection, { userId: auth.currentUser.uid, recipeId: id, voteType });
           await updateDoc(docRef, {
             [voteData.voteType]: (recipeData[voteData.voteType] || 0) - 1,
             [voteType]: (recipeData[voteType] || 0) + 1,
@@ -62,10 +81,15 @@ const ItemDetail = () => {
         }
       });
     } else {
-      // El usuario no ha votado, así que agregamos un voto
-      await addDoc(votesCollection, { userId, recipeId: id, voteType });
+      await addDoc(votesCollection, { userId: auth.currentUser.uid, recipeId: id, voteType });
       await updateDoc(docRef, { [voteType]: (recipeData[voteType] || 0) + 1 });
     }
+  };
+  
+
+  const handleShare = () => {
+    copy(url); // Copiar la URL al portapapeles
+    alert(t('URL de la receta copiada al portapapeles'));
   };
 
   return (
@@ -79,15 +103,22 @@ const ItemDetail = () => {
         <p className="text-gray-700 mb-2">{item.description}</p>
         <p className="text-xl font-semibold mb-2">{t('Categoría')}</p>
         <p className="text-gray-500 mb-4">{t(item.category)}</p>
-        <div className="mb-4">
-    <button onClick={() => handleVote('likes')}>
-      <AiOutlineLike /> {t('Me gusta')} {item.likes || 0}
-    </button>
-    <button onClick={() => handleVote('dislikes')}>
-      <AiOutlineDislike /> {t('No me gusta')} {item.dislikes || 0}
-    </button>
-  </div>
-        <Link to={`/itemedit/${id}`} className="modal-button btn btn-primary w-full">{t('Editar')}</Link>
+        <div className="mb-4 flex gap-4">
+          <button onClick={() => handleVote('likes')} className="btn btn-primary">
+            <AiOutlineLike /> {t('Me gusta')} {item.likes || 0}
+          </button>
+          <button onClick={() => handleVote('dislikes')} className="btn btn-primary">
+            <AiOutlineDislike /> {t('No me gusta')} {item.dislikes || 0}
+          </button>
+          <button onClick={handleShare} className="btn btn-primary">
+            <AiOutlineSend />{t('Compartir')}
+          </button>
+          {isAdmin && (
+            <Link to={`/itemedit/${id}`} className="btn btn-primary">
+              {t('Editar')}
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
