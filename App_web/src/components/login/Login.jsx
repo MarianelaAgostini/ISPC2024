@@ -19,19 +19,47 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [rememberSession, setRememberSession] = useState(false); // State para recordar sesión
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("rememberedEmail");
+    const storedPassword = localStorage.getItem("rememberedPassword");
+    if (storedEmail) {
+      setEmail(storedEmail);
+      setRememberSession(true); // Setear rememberSession a true si hay un correo electrónico guardado
+    }
+    if (storedPassword) {
+      setPassword(storedPassword);
+    }
+  }, []);
+
+  const handleChangeRememberSession = () => {
+    setRememberSession(!rememberSession);
+    localStorage.setItem("rememberSession", !rememberSession);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     document.getElementById("my-modal-4").checked = false;
     setIsLoading(true);
+
+    console.log(rememberSession); // Verificar el estado de rememberSession
+
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const user = userCredential.user;
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const role = userDoc.data().rol;
+        if (rememberSession) {
+          localStorage.setItem("rememberedEmail", email);
+          localStorage.setItem("rememberedPassword", password); // Guardar la contraseña si se ha marcado "Recordar sesión"
+        } else {
+          localStorage.removeItem("rememberedEmail");
+          localStorage.removeItem("rememberedPassword"); // Eliminar la contraseña guardada si no se ha marcado "Recordar sesión"
+        }
         dispatch(setRole(role)); // Despacha la acción setRole con el rol del usuario
         toast.success(t('Inicio de sesión exitoso'));
         setIsLoading(false);
@@ -49,10 +77,6 @@ const Login = () => {
     setEmail("");
     setPassword("");
   };
-  
-
-
-  
 
   const AllFieldsRequired = Boolean(email) && Boolean(password);
 
@@ -105,6 +129,15 @@ const Login = () => {
                 </span>
               </div>
               <div className="mt-4 w-full flex flex-col items-center justify-center">
+              <label htmlFor="rememberSession" className="mb-2">
+              <input
+                type="checkbox"
+                id="rememberSession"
+                checked={rememberSession}
+                onChange={handleChangeRememberSession}
+              />
+                {t('Recordar sesión')}
+              </label>
                 <button type="submit" className="btn w-full" disabled={!AllFieldsRequired}>
                   {t('Iniciar sesión')}
                 </button>
@@ -119,3 +152,4 @@ const Login = () => {
 };
 
 export default Login;
+

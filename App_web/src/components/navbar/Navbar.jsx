@@ -52,12 +52,15 @@ const Navbar = () => {
     signOut(auth)
       .then(() => {
         toast.success(t('Usuario desconectado'));
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+          window.location.reload();
+        }, 1000);
       })
       .catch((error) => {
         toast.error(error.code, error.message);
       });
-  }
+  }  
 
   const handleChangeLanguage = (languageCode) => {
     i18n.changeLanguage(languageCode);
@@ -196,6 +199,11 @@ const Navbar = () => {
                   <li>
                     <Link to="/contact" className="text-lg">
                       {t('Contacto')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/faq" className="text-lg">
+                      {t('Preguntas frecuentes')}
                     </Link>
                   </li>
                 </div>

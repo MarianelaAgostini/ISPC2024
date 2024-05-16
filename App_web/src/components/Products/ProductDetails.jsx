@@ -67,7 +67,7 @@ const ProductDetails = () => {
 							src={product.imageURL}
 							alt={product.name}
 							className="w-96 h-96 object-contain "
-							placeholderSrc="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+							placeholderSrc="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg"
 							effect="blur"
 						/>
 					</div>
