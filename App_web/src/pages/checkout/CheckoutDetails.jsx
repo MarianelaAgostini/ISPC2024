@@ -47,7 +47,6 @@ const CheckoutDetails = () => {
 
 	return (
 		<main className="w-full">
-			<Breadcrumbs type="cart" checkout="Checkout-Details" />
 			<section className="w-full mx-auto p-4 lg:p-10 lg:w-9/12 md:px-6 flex flex-col h-full">
 				<article className="flex flex-col-reverse  md:flex-row gap-4">
 					<div className="flex-1 p-4 rounded-md shadow-lg">

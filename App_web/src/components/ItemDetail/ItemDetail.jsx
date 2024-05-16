@@ -39,7 +39,7 @@ const ItemDetail = () => {
       if (docSnap.exists()) {
         setItem({ id: docSnap.id, ...docSnap.data() });
       } else {
-        console.log("No such document!");
+        console.log("¡No existe tal documento!");
       }
     });
 
@@ -53,7 +53,7 @@ const ItemDetail = () => {
   const handleVote = async (voteType) => {
     // Verificar si el usuario ha iniciado sesión
     if (!auth.currentUser) {
-      alert('Por favor inicia sesión para votar');
+      alert(t('Por favor inicia sesión para votar'));
       return;
     }
   

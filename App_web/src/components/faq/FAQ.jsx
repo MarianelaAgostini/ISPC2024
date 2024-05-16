@@ -8,7 +8,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: t('¿Cómo puedo agregar una receta?'),
-      answer: t('Para agregar una receta, primero debes iniciar sesión en tu cuenta. Luego, haz clic en "Agregar Receta" en la página principal.'),
+      answer: t('Para agregar una receta, primero debes iniciar sesión en tu cuenta. Luego, haz clic en Agregar Receta en la página principal.'),
     },
     {
       question: t('¿Es gratis usar Coctelis?'),
@@ -20,13 +20,13 @@ const FAQ = () => {
     },
     {
       question: t('¿Qué hago si olvidé mi contraseña?'),
-      answer: t('Si olvidaste tu contraseña, haz clic en "¿Olvidaste tu contraseña?" en la página de inicio de sesión y sigue las instrucciones para restablecerla.'),
+      answer: t('Si olvidaste tu contraseña, haz clic en ¿Olvidaste tu contraseña? en la página de inicio de sesión y sigue las instrucciones para restablecerla.'),
     },
   ];
 
   return (
     <div className="flex flex-col items-center justify-center h-full p-8">
-      <h1 className="text-5xl font-bold mb-8">{t('Preguntas Frecuentes')}</h1>
+      <h1 className="text-5xl font-bold mb-8">{t('Preguntas frecuentes')}</h1>
       <div className="w-full max-w-4xl">
         {faqs.map((faq, index) => (
           <div key={index} className="bg-accent p-4 rounded-lg mb-4">

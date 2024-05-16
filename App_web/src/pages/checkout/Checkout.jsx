@@ -11,36 +11,57 @@ const Checkout = () => {
   const { shippingAddress, billingAddress } = useSelector((store) => store.checkout);
   const { email } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(calculateSubtotal());
     dispatch(calculateTotalQuantity());
   }, [dispatch, cartItems]);
 
-  // local States
+  // Local states
   const [clientSecret, setClientSecret] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const description = `Payment of ${formatPrice(totalAmount)} from ${email}`;
+
   useEffect(() => {
-    fetch("https://ecom-stripe-server.onrender.com/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        items: cartItems,
-        userEmail: email,
-        shippingAddress,
-        billingAddress,
-        description,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, []);
+    const createPaymentIntent = async () => {
+      try {
+        const response = await fetch("https://ecom-stripe-server.onrender.com/create-payment-intent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: cartItems,
+            userEmail: email,
+            shippingAddress,
+            billingAddress,
+            description,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setClientSecret(data.clientSecret);
+          setLoading(false);
+        } else {
+          throw new Error(data.message || "Failed to create payment intent");
+        }
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    createPaymentIntent();
+  }, [cartItems, email, shippingAddress, billingAddress, description]);
 
   return (
     <main>
-      {!clientSecret && <Loader />}
+      {loading && <Loader />}
+      {error && <div className="error">{error}</div>}
       <div>
-        {clientSecret && <CheckoutForm />}
+        {clientSecret && <CheckoutForm clientSecret={clientSecret} />}
       </div>
     </main>
   );

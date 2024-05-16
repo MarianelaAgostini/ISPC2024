@@ -113,7 +113,7 @@ const Navbar = () => {
               </li>
               <li className="hidden lg:block text-white text-xs md:text-xl m-2">
                 <NavLink to="/faq" style={({ isActive }) => (isActive ? activeStyle : null)}>
-                {t('Preguntas Frecuentes')}
+                {t('Preguntas frecuentes')}
                 </NavLink>
               </li>
               
@@ -224,7 +224,7 @@ const Navbar = () => {
                 {userName && (
                   <li className="bg-primary text-gray-200">
                     <p className="block">
-                      Bienvenido, <span className="font-bold">{userName}</span>
+                      {t('Bienvenido,')} <span className="font-bold">{userName}</span>
                     </p>
                   </li>
                 )}
