@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import { db, auth } from "../../firebase/config";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const [userId, setUserId] = useState(null);
@@ -12,6 +14,8 @@ const UserProfile = () => {
     lastName: "",
     phone: ""
   });
+  const [isSaving, setIsSaving] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async (userId) => {
@@ -53,16 +57,34 @@ const UserProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (!userData.email || !userData.firstName || !userData.lastName || !userData.phone) {
+        toast.error("Todos los campos son obligatorios");
+        return;
+      }
+
+      if (!/^\d+$/.test(userData.phone)) {
+        toast.error("El campo de teléfono solo puede contener caracteres numéricos");
+        return;
+      }
+
+      setIsSaving(true);
+
       if (userId) {
         const userDocRef = doc(db, "users", userId);
         await updateDoc(userDocRef, userData);
-        toast.success("User data updated successfully");
+        toast.success("Datos de usuario actualizados correctamente");
+
+        // Esperar 1 segundo antes de redirigir al usuario al inicio
+        setTimeout(() => {
+          setIsSaving(false);
+          navigate("/"); // Redirigir al usuario a la página de inicio
+        }, 1000);
       } else {
-        toast.error("No user is logged in");
+        toast.error("No hay ningún usuario conectado");
       }
     } catch (error) {
-      console.error("Error updating user data:", error);
-      toast.error("Error updating user data");
+      console.error("Error al actualizar los datos del usuario:", error);
+      toast.error("Error al actualizar los datos del usuario");
     }
   };
 
@@ -80,6 +102,7 @@ const UserProfile = () => {
                 name="email"
                 value={userData.email}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="mt-4">
@@ -90,6 +113,7 @@ const UserProfile = () => {
                 name="firstName"
                 value={userData.firstName}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="mt-4">
@@ -100,6 +124,7 @@ const UserProfile = () => {
                 name="lastName"
                 value={userData.lastName}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="mt-4">
@@ -109,13 +134,23 @@ const UserProfile = () => {
                 type="text"
                 name="phone"
                 value={userData.phone}
-                onChange={handleInputChange}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  if (/^\d*$/.test(value)) {
+                    setUserData((prevData) => ({
+                      ...prevData,
+                      phone: value
+                    }));
+                  }
+                }}
+                required
               />
             </div>
             <div className="mt-4 w-full flex items-center justify-center">
-              <button type="submit" className="btn">
-                Guardar cambios
+              <button type="submit" className="btn" disabled={isSaving}>
+                {isSaving ? "Guardando..." : "Guardar cambios"}
               </button>
+              <Link to="/" className="btn ml-4">Cancelar</Link>
             </div>
           </form>
         </div>
