@@ -40,6 +40,8 @@ https://github.com/CelesteJohanna92/Movil_ISPC2023.git
 
 Haz clic en la imagen para ver el video de demostración.
 
+https://www.youtube.com/watch?v=WILCtHiIdM0
+
 
 ## Capturas de Plantillas - muesta de algunas plantillas de la aplicación.
 
@@ -70,9 +72,10 @@ Haz clic en la imagen para ver el video de demostración.
 
 ## Video de demostración
 
-[![Video de demostración](https://img.youtube.com/vi/FARpIWs5YMk/0.jpg)](https://www.youtube.com/watch?v=FARpIWs5YMk)
+[![Video de demostración](https://img.youtube.com/vi/WILCtHiIdM0/0.jpg)](https://www.youtube.com/watch?v=WILCtHiIdM0)
 
 Haz clic en la imagen para ver el video de demostración.
+
 
 ## Instalación del Proyecto
 
