@@ -4,7 +4,7 @@
 
 Coctelis es un sitio web de comercio electrónico que permite a los usuarios comprar una variedad de productos (articulos de cocteleria), agregar productos a su carrito y proceder al pago. Un usuario puede registrarse con su propio nombre de usuario y contraseña, o iniciar sesión con Google, o simplemente utilizar el botón de "Inicio de sesión como invitado" para navegar por el sitio web sin registrarse.
 
-![download](/App_web/src/assets/screenshot-web.png)
+![download](/App_web/src/assets/2024-05-16_113403.png)
 
 ## Indice
 
