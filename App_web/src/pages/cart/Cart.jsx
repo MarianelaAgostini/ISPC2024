@@ -19,7 +19,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useTranslation } from 'react-i18next';
 
-
 const Cart = () => {
   const [formData, setFormData] = useState({
     cardholderName: "",
@@ -58,13 +57,37 @@ const Cart = () => {
     const { cardholderName, cardNumber, expiryDate, securityCode } = formData;
     if (cardholderName && cardNumber && expiryDate && securityCode) {
       setShowSuccessMessage(true);
-      // Limpiar los campos del formulario
-      setFormData({
-        cardholderName: "",
-        cardNumber: "",
-        expiryDate: "",
-        securityCode: "",
+
+      // Aquí se haría el envío de los datos del formulario y los artículos del carrito a la base de datos
+      const orderData = {
+        cardholderName,
+        cardNumber,
+        expiryDate,
+        securityCode,
+        items: cartItems,
+      };
+
+      fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Order saved:', data);
+        // Limpiar los campos del formulario y el carrito si se guarda con éxito
+        setFormData({
+          cardholderName: "",
+          cardNumber: "",
+          expiryDate: "",
+          securityCode: "",
+        });
+        dispatch(clearCart());
+      })
+      .catch(error => {
+        console.error('Error saving order:', error);
       });
+
     } else {
       alert(t('Por favor complete todos los campos obligatorios'));
     }
@@ -187,7 +210,6 @@ const Cart = () => {
                 <p className="text-gray-400">
                   {t('Impuestos y envío calculados en el checkout')}
                 </p>
-                
 
                 <div className="w-88 md:w-96 h-max shadow-lg rounded-sm p-4 flex flex-col gap-4 bg-white">
                   <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -201,9 +223,9 @@ const Cart = () => {
                       name="cardholderName"
                       value={formData.cardholderName}
                       onChange={handleChange}
-                      placeholder= {t('Nombre del titular')}
+                      placeholder={t('Nombre del titular')}
                       className="border border-gray-300 rounded-md p-2"
-					            maxLength={100}
+                      maxLength={100}
                       pattern="[A-Za-z\s]+"
                       title={t('Ingrese solo letras y espacios')}
                       required
@@ -215,7 +237,7 @@ const Cart = () => {
                       onChange={handleChange}
                       placeholder={t('Número de tarjeta')}
                       className="border border-gray-300 rounded-md p-2"
-					            maxLength={16}
+                      maxLength={16}
                       pattern="\d{16}"
                       title={t('Ingrese 16 números')}
                       required
@@ -224,14 +246,21 @@ const Cart = () => {
                       type="text"
                       name="expiryDate"
                       value={formData.expiryDate}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        let value = e.target.value;
+                        if (value.length === 2 && formData.expiryDate.length === 1) {
+                          value += '/';
+                        }
+                        setFormData({ ...formData, expiryDate: value });
+                      }}
                       placeholder={t('Fecha de vencimiento MM/AA')}
                       className="border border-gray-300 rounded-md p-2"
-					            maxLength={5}
-					            pattern="(0[1-9]|1[0-2]\/?[0-9]{2})"
-					            title={t('Ingrese MM/AA')}
+                      maxLength={5}
+                      pattern="(0[1-9]|1[0-2])\/?[0-9]{2}"
+                      title={t('Ingrese MM/AA')}
                       required
                     />
+
                     <input
                       type="text"
                       name="securityCode"
@@ -239,7 +268,7 @@ const Cart = () => {
                       onChange={handleChange}
                       placeholder={t('Código de seguridad (CVC)')}
                       className="border border-gray-300 rounded-md p-2"
-					            maxLength={3}
+                      maxLength={3}
                       pattern="\d{3}"
                       title={t('Ingrese 3 números')}
                       required
@@ -268,8 +297,7 @@ const Cart = () => {
                 className="btn btn-primary"
                 onClick={() => setShowSuccessMessage(false)}
               >
-				<Link to="/checkout-details" className="btn btn-primary w-full" > OK</Link>
-                
+                <Link to="/checkout-details" className="btn btn-primary w-full" > OK</Link>
               </button>
             </div>
           </div>

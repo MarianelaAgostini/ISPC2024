@@ -5,6 +5,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const UserProfile = () => {
   const [userId, setUserId] = useState(null);
@@ -16,6 +17,7 @@ const UserProfile = () => {
   });
   const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchUserData = async (userId) => {
@@ -26,11 +28,11 @@ const UserProfile = () => {
           const userDataFromFirestore = docSnap.data();
           setUserData(userDataFromFirestore);
         } else {
-          console.log("No such document!");
+          console.log(t('¡No existe tal documento!'));
         }
       } catch (error) {
-        console.error("Error getting user document:", error);
-        toast.error("Error getting user data");
+        console.error(t('Error al obtener el documento del usuario'), error);
+        toast.error(t('Error al obtener los datos del usuario'));
       }
     };
 
@@ -39,7 +41,7 @@ const UserProfile = () => {
         setUserId(user.uid);
         fetchUserData(user.uid);
       } else {
-        console.log("User is not logged in");
+        console.log(t('El usuario no ha iniciado sesión'));
       }
     });
 
@@ -58,12 +60,12 @@ const UserProfile = () => {
     e.preventDefault();
     try {
       if (!userData.email || !userData.firstName || !userData.lastName || !userData.phone) {
-        toast.error("Todos los campos son obligatorios");
+        toast.error(t('Todos los campos son obligatorios'));
         return;
       }
 
       if (!/^\d+$/.test(userData.phone)) {
-        toast.error("El campo de teléfono solo puede contener caracteres numéricos");
+        toast.error(t('El campo de teléfono solo puede contener caracteres numéricos'));
         return;
       }
 
@@ -72,19 +74,18 @@ const UserProfile = () => {
       if (userId) {
         const userDocRef = doc(db, "users", userId);
         await updateDoc(userDocRef, userData);
-        toast.success("Datos de usuario actualizados correctamente");
+        toast.success(t('Datos de usuario actualizados correctamente'));
 
-        // Esperar 1 segundo antes de redirigir al usuario al inicio
         setTimeout(() => {
           setIsSaving(false);
-          navigate("/"); // Redirigir al usuario a la página de inicio
+          navigate("/");
         }, 1000);
       } else {
-        toast.error("No hay ningún usuario conectado");
+        toast.error(t('No hay ningún usuario conectado'));
       }
     } catch (error) {
-      console.error("Error al actualizar los datos del usuario:", error);
-      toast.error("Error al actualizar los datos del usuario");
+      console.error(t('Error al actualizar los datos del usuario'), error);
+      toast.error(t('Error al actualizar los datos del usuario'));
     }
   };
 
@@ -92,21 +93,10 @@ const UserProfile = () => {
     <div className="py-6">
       <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-4xl">
         <div className="w-full px-8 pt-4 pb-6">
-          <p className="text-xl text-gray-600 text-center">Perfil de Usuario</p>
+          <p className="text-xl text-gray-600 text-center">{t('Perfil de Usuario')}</p>
           <form className="form-control" onSubmit={handleSubmit}>
-            <div>
-              <label className="label-text font-bold mb-2 block">Email</label>
-              <input
-                className="input input-bordered w-full border-2"
-                type="email"
-                name="email"
-                value={userData.email}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
             <div className="mt-4">
-              <label className="label-text font-bold mb-2 block">Nombre</label>
+              <label className="label-text font-bold mb-2 block">{t('Nombre')}</label>
               <input
                 className="input input-bordered w-full border-2"
                 type="text"
@@ -117,7 +107,7 @@ const UserProfile = () => {
               />
             </div>
             <div className="mt-4">
-              <label className="label-text font-bold mb-2 block">Apellido</label>
+              <label className="label-text font-bold mb-2 block">{t('Apellido')}</label>
               <input
                 className="input input-bordered w-full border-2"
                 type="text"
@@ -128,7 +118,7 @@ const UserProfile = () => {
               />
             </div>
             <div className="mt-4">
-              <label className="label-text font-bold mb-2 block">Teléfono</label>
+              <label className="label-text font-bold mb-2 block">{t('Teléfono')}</label>
               <input
                 className="input input-bordered w-full border-2"
                 type="text"
@@ -148,9 +138,9 @@ const UserProfile = () => {
             </div>
             <div className="mt-4 w-full flex items-center justify-center">
               <button type="submit" className="btn" disabled={isSaving}>
-                {isSaving ? "Guardando..." : "Guardar cambios"}
+                {isSaving ? t('Guardando...') : t('Guardar cambios')}
               </button>
-              <Link to="/" className="btn ml-4">Cancelar</Link>
+              <Link to="/" className="btn ml-4">{t('Cancelar')}</Link>
             </div>
           </form>
         </div>
