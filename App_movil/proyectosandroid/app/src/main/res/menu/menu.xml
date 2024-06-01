@@ -24,6 +24,11 @@
             android:icon="@drawable/subir_receta">
         </item>
 
+        <item
+            android:id="@+id/EditarReceta"
+            android:title="@string/EditarReceta"
+            android:icon="@drawable/subir_receta">
+        </item>
 
         <item
             android:id="@+id/Perfil"

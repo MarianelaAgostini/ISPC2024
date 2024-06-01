@@ -115,6 +115,7 @@
     <string name="EditarNombreImagen">Nombre de la receta</string>
     <string name="EditarIngredientesReceta">Ingredientes </string>
     <string name="EditarInstruccionesReceta">Instrucciones</string>
+    <string name="EditarReceta">Editar recetas</string>
 
     <!---Sobre nosotros-->
     <string name="OptimusWeb">OptimusWeb</string>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetallesReceta">
+
+    <EditText
+        android:id="@+id/txtNombreReceta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de la receta" />
+
+    <EditText
+        android:id="@+id/txtIngredientesReceta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingredientes" />
+
+    <EditText
+        android:id="@+id/txtInstruccionesReceta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Instrucciones" />
+
+    <EditText
+        android:id="@+id/txtCategoriasReceta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Categoría" />
+
+    <EditText
+        android:id="@+id/txtImagenReceta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="URL imagen" />
+
+    <Button
+        android:id="@+id/btnActualizarReceta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actualizar Receta" />
+
+</LinearLayout>

@@ -2,65 +2,57 @@ package com.example.asd;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Callback;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.bumptech.glide.Glide;
+import com.example.asd.R;
+
+import java.util.ArrayList;
 
 public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder> {
 
-    private List<Receta> listaRecetas;
+    private ArrayList<Receta> listaRecetas;
     private Context context;
+    private boolean isClickable;
 
-    public RecetaAdapter(List<Receta> listaRecetas, Context context) {
+    public RecetaAdapter(ArrayList<Receta> listaRecetas, Context context, boolean isClickable) {
         this.listaRecetas = listaRecetas;
         this.context = context;
+        this.isClickable = isClickable;
+    }
+
+    @NonNull
+    @Override
+    public RecetaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_receta, parent, false);
+        return new RecetaViewHolder(view);
     }
 
     @Override
-    public RecetaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_receta, parent, false);
-        return new RecetaViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(RecetaViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecetaViewHolder holder, int position) {
         Receta receta = listaRecetas.get(position);
-        holder.nombreTextView.setText(receta.getNombre());
-        holder.ingredientesView.setText(receta.getIngredientes());
-        holder.instruccionesView.setText(receta.getInstrucciones());
+        holder.nombre.setText(receta.getNombre());
+        holder.ingredientes.setText(receta.getIngredientes());
+        holder.instrucciones.setText(receta.getInstrucciones());
 
-        String imagenURL = receta.getImagenURL();
+        // Usar Glide para cargar la imagen
+        Glide.with(context)
+                .load(receta.getImagenURL())
+                .into(holder.imagenReceta);
 
-        Log.d("RecetaAdapter", "URL de imagen: " + imagenURL);
-        loadImage(imagenURL, holder.imagenImageView);
-    }
-    public void loadImage(String imagenURL, ImageView imageView) {
-        if (imagenURL != null && !imagenURL.isEmpty()) {
-            Uri uri = Uri.parse(imagenURL);
-            if (uri != null && uri.isAbsolute()) {
-                Picasso.get()
-                        .load(imagenURL)
-                        .placeholder(R.drawable.encabezado)
-                        .error(R.drawable.margarita)
-                        .fit()
-                        .into(imageView);
-            } else {
-                // URL de la imagen no válida
-                imageView.setImageResource(R.drawable.margarita);
-            }
-        } else {
-            // URL de la imagen vacía o nula
-            imageView.setImageResource(R.drawable.margarita);
+        if (isClickable) {
+            holder.itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, DetallesReceta.class);
+                intent.putExtra("receta", receta);
+                context.startActivity(intent);
+            });
         }
     }
 
@@ -69,30 +61,21 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
         return listaRecetas.size();
     }
 
-    public class RecetaViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imagenImageView;
-        public TextView nombreTextView, ingredientesView, instruccionesView;
-
-        public RecetaViewHolder(View view) {
-            super(view);
-            imagenImageView = view.findViewById(R.id.itemsImagenReceta);
-            nombreTextView = view.findViewById(R.id.itemTextImagen);
-            ingredientesView = view.findViewById(R.id.itemIngredientesReceta);
-            instruccionesView = view.findViewById(R.id.itemInstruccionesReceta);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Context context = itemView.getContext();
-                    Intent intent = new Intent(context, EditarReceta.class);
-                    intent.putExtra("ID", listaRecetas.get(getBindingAdapterPosition()).getId());
-                    context.startActivity(intent);
-                }
-            });
-
-        }
-    }
-    public void setRecetas(List<Receta> listaRecetas) {
+    public void setRecetas(ArrayList<Receta> listaRecetas) {
         this.listaRecetas = listaRecetas;
+        notifyDataSetChanged();
+    }
+
+    public static class RecetaViewHolder extends RecyclerView.ViewHolder {
+        TextView nombre, ingredientes, instrucciones;
+        ImageView imagenReceta;
+
+        public RecetaViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nombre = itemView.findViewById(R.id.name);
+            ingredientes = itemView.findViewById(R.id.itemIngredientesReceta);
+            instrucciones = itemView.findViewById(R.id.itemInstruccionesReceta);
+            imagenReceta = itemView.findViewById(R.id.imageURL); // Asegúrate de que este ID coincida con el ID en item_receta.xml
+        }
     }
 }
