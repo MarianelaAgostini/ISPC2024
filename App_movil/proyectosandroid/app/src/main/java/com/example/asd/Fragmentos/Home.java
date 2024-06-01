@@ -1,56 +1,41 @@
 package com.example.asd.Fragmentos;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.asd.R;
 import com.example.asd.Receta;
 import com.example.asd.RecetaAdapter;
-import com.example.asd.daoUsuario;
-
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Home extends Fragment {
 
     private ArrayList<Receta> listaRecetas;
-    private daoUsuario dao;
     private RecetaAdapter recetaAdapter;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FirebaseFirestore db;
+
     public Home() {
         // Required empty public constructor
-    }
-
-    public static Home newInstance(String param1, String param2) {
-        Home fragment = new Home();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        listaRecetas = new ArrayList<>();
         initRecyclerView(view);
         return view;
     }
@@ -58,30 +43,43 @@ public class Home extends Fragment {
     private void initRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        recetaAdapter = new RecetaAdapter(listaRecetas, requireContext());
+        recetaAdapter = new RecetaAdapter(listaRecetas, requireContext(), false); // false para no clicable
         recyclerView.setAdapter(recetaAdapter);
 
-        dao = new daoUsuario(requireContext());
-        listaRecetas = dao.selectRecetas();
-        dao.close();
-
-        recetaAdapter.setRecetas(listaRecetas);
-        recetaAdapter.notifyDataSetChanged();
+        db = FirebaseFirestore.getInstance();
+        cargarRecetasDesdeFirestore();
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    private void cargarRecetasDesdeFirestore() {
+        db.collection("recipes")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String id = document.getId();
+                                String nombre = document.getString("name");
+                                String ingredientes = document.getString("ingredients");
+                                String instrucciones = document.getString("description");
+                                String categoria = document.getString("category");
+                                String imagenURL = document.getString("imageURL");
 
-        dao = new daoUsuario(getContext());
-        listaRecetas = dao.selectRecetas();
-        dao.close();
+                                Receta receta = new Receta(nombre, ingredientes, instrucciones, imagenURL, categoria);
+                                receta.setId(id);
 
-        // Actualiza la lista de recetas en el adaptador y notifica el cambio
-        recetaAdapter.setRecetas(listaRecetas);
-        recetaAdapter.notifyDataSetChanged();
+                                Log.d("Firestore", "Receta: " + receta.getNombre() + ", " +
+                                        receta.getIngredientes() + ", " +
+                                        receta.getInstrucciones() + ", " +
+                                        receta.getImagenURL());
+
+                                listaRecetas.add(receta);
+                            }
+                            recetaAdapter.setRecetas(listaRecetas);
+                        } else {
+                            Log.d("Firestore", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
-
 }
-
-

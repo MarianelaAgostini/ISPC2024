@@ -1,14 +1,20 @@
 package com.example.asd;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -59,6 +65,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (task.isSuccessful()) {
                         FirebaseUser currentUser = mAuth.getCurrentUser();
                         if (currentUser != null) {
+                            String userID = currentUser.getUid();
+                            DocumentReference userRef = db.collection("users").document(userID);
+                            userRef.get().addOnSuccessListener(documentSnapshot -> {
+                                if (documentSnapshot.exists()) {
+                                    String userRole = documentSnapshot.getString("rol");
+                                    // Guardar el ID del usuario y el rol en SharedPreferences
+                                    SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("user_id", userID);
+                                    editor.putString("user_role", userRole);
+                                    editor.apply();
+                                }
+                            });
                             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this, Carga.class);
                             startActivity(intent);

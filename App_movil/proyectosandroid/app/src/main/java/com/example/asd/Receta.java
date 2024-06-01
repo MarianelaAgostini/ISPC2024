@@ -1,36 +1,49 @@
 package com.example.asd;
 
-public class Receta {
+import com.google.firebase.firestore.PropertyName;
 
-    private int id;
-    private int idCategoria;
+import java.io.Serializable;
+
+public class Receta implements Serializable {
+
+    private String id;
+    private String idCategoria;
     private int idUsuario;
     private String nombre;
     private String ingredientes;
     private String instrucciones;
     private String imagen;
 
-    private String nombreCategoria;
-
-    // Constructor
+    // Constructor sin argumentos necesario para Firestore
     public Receta() {
-        // Constructor vacío
     }
 
+    // Constructor con argumentos
+    public Receta(String nombre, String ingredientes, String instrucciones, String imagenURL, String idCategoria) {
+        this.nombre = nombre;
+        this.ingredientes = ingredientes;
+        this.instrucciones = instrucciones;
+        this.imagen = imagenURL;
+        this.idCategoria = idCategoria;
+    }
+
+
     // Métodos getters y setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getIdCategoria() {
+    @PropertyName("category")
+    public String getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
+    @PropertyName("category")
+    public void setIdCategoria(String idCategoria) {
         this.idCategoria = idCategoria;
     }
 
@@ -42,37 +55,43 @@ public class Receta {
         this.idUsuario = idUsuario;
     }
 
+    @PropertyName("name")
     public String getNombre() {
         return nombre;
     }
 
+    @PropertyName("name")
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    @PropertyName("ingredients")
     public String getIngredientes() {
         return ingredientes;
     }
 
+    @PropertyName("ingredients")
     public void setIngredientes(String ingredientes) {
         this.ingredientes = ingredientes;
     }
 
+    @PropertyName("description")
     public String getInstrucciones() {
         return instrucciones;
     }
 
+    @PropertyName("description")
     public void setInstrucciones(String instrucciones) {
         this.instrucciones = instrucciones;
     }
 
+    @PropertyName("imageURL")
     public String getImagenURL() {
         return imagen;
     }
 
+    @PropertyName("imageURL")
     public void setImagenURL(String imagenURL) {
         this.imagen = imagenURL;
     }
-
 }
-
