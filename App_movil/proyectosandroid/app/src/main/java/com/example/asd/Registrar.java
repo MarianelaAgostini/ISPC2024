@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Registrar extends AppCompatActivity implements View.OnClickListener {
 
@@ -62,6 +63,16 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
             return;
         }
 
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "Error: email no válido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!isValidPassword(password)) {
+            Toast.makeText(this, "Error: contraseña no válida", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -73,6 +84,16 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                         Toast.makeText(Registrar.this, "Registro fallido: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailPattern = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        return Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE).matcher(email).matches();
+    }
+
+    private boolean isValidPassword(String password) {
+        String passwordPattern = "^(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])[A-Za-z0-9!@#\\$%\\^&\\*]{6,}$";
+        return Pattern.compile(passwordPattern).matcher(password).matches();
     }
 
     private void saveUserToFirestore(String userId, String email, String firstName, String lastName) {
