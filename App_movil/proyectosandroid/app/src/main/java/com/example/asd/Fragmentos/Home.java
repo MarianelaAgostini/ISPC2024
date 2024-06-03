@@ -65,6 +65,12 @@ public class Home extends Fragment {
                                 String categoria = document.getString("category");
                                 String imagenURL = document.getString("imageURL");
 
+                                if ("opcion1".equals(categoria)) {
+                                    categoria = "Cócteles con alcohol";
+                                } else if ("opcion2".equals(categoria)) {
+                                    categoria = "Cócteles sin alcohol";
+                                }
+
                                 Receta receta = new Receta(nombre, ingredientes, instrucciones, imagenURL, categoria);
                                 receta.setId(id);
 

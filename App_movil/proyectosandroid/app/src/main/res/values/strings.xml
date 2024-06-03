@@ -103,6 +103,7 @@
     <string name="itemTextImagen">--</string>
     <string name="itenDescripcionReceta">--</string>
     <string name="itemIngredientesReceta">--</string>
+    <string name="itemCategoria">--</string>
 
     <!--Con Alcohol-->
     <string name="NombreConAlcohol">Nombre de receta</string>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -16,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SubirRecetas extends AppCompatActivity {
 
@@ -36,6 +40,8 @@ public class SubirRecetas extends AppCompatActivity {
                 }
             }
     );
+
+    private final Map<String, String> opcionesMap = new HashMap<>();
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -66,6 +72,16 @@ public class SubirRecetas extends AppCompatActivity {
         btnSubirRecetas = findViewById(R.id.SubirRecetas);
         spinnerCategoria = findViewById(R.id.spinnerCategoria);
 
+        // Configurar el adaptador del spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.opciones_categoria, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategoria.setAdapter(adapter);
+
+        // Llenar el mapa con las opciones y sus claves
+        opcionesMap.put("Cócteles con alcohol", "opcion1");
+        opcionesMap.put("Cócteles sin alcohol", "opcion2");
+
         btnSubirRecetas.setOnClickListener(v -> {
             String nombre = edtNombre.getText().toString();
             String ingredientes = edtIngredientes.getText().toString();
@@ -78,7 +94,9 @@ public class SubirRecetas extends AppCompatActivity {
             }
 
             String categoria = spinnerCategoria.getSelectedItem().toString();
-            agregarReceta(nombre, ingredientes, instrucciones, imagenURL, categoria);
+            String categoriaClave = opcionesMap.get(categoria); // Obtener la clave correspondiente
+
+            agregarReceta(nombre, ingredientes, instrucciones, imagenURL, categoriaClave);
 
             limpiarCampos();
         });

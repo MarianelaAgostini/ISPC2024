@@ -42,4 +42,12 @@
         android:layout_height="wrap_content"
         android:text="Actualizar Receta" />
 
+    <Button
+        android:id="@+id/btnEliminarReceta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Receta"
+        android:background="#FF0000"
+        android:textColor="#FFFFFF" />
+
 </LinearLayout>

@@ -32,7 +32,7 @@
             android:textColor="#fff"
             android:background="#131f30"
             android:gravity="center"
-            android:text="@string/itemTextImagen" />
+            android:text="Nombre de la receta" />
 
         <TextView
             android:id="@+id/títuloIngredientes"
@@ -43,7 +43,7 @@
             android:textSize="20sp"
             android:textColor="#000"
             android:background="#7f8fa6"
-            android:text="@string/Ingrediente" />
+            android:text="Ingredientes" />
 
         <TextView
             android:id="@+id/itemIngredientesReceta"
@@ -53,7 +53,7 @@
             android:textSize="18sp"
             android:textColor="#000"
             android:background="#fff"
-            android:text="@string/itenDescripcionReceta" />
+            android:text="Descripción de los ingredientes" />
 
         <TextView
             android:id="@+id/títuloInstrucciones"
@@ -63,7 +63,7 @@
             android:textSize="20sp"
             android:textColor="#000"
             android:background="#7f8fa6"
-            android:text="@string/Descripción" />
+            android:text="Instrucciones" />
 
         <TextView
             android:id="@+id/itemInstruccionesReceta"
@@ -73,7 +73,37 @@
             android:textSize="18sp"
             android:textColor="#000"
             android:background="#fff"
-            android:text="@string/itemIngredientesReceta" />
+            android:text="Descripción de las instrucciones" />
 
+        <TextView
+            android:id="@+id/títuloCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:background="#7f8fa6"
+            android:text="Categoría" />
+
+        <TextView
+            android:id="@+id/itemCategorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:text="Descripción de la categoría" />
+
+        <Button
+            android:id="@+id/btnDescargar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descargar Receta"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:background="#131f30"
+            android:padding="10dp"
+            android:layout_marginTop="10dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>

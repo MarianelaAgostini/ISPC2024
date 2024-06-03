@@ -2,6 +2,7 @@ package com.example.asd;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class DetallesReceta extends AppCompatActivity {
 
     EditText txtNombre, txtIngredientes, txtInstrucciones, txtCategoria, txtImagen;
-    Button btnActualizar;
+    Button btnActualizar, btnEliminar;
 
     private FirebaseFirestore db;
     private Receta receta;
@@ -41,6 +42,7 @@ public class DetallesReceta extends AppCompatActivity {
         txtCategoria = findViewById(R.id.txtCategoriasReceta);
         txtImagen = findViewById(R.id.txtImagenReceta);
         btnActualizar = findViewById(R.id.btnActualizarReceta);
+        btnEliminar = findViewById(R.id.btnEliminarReceta);
 
         receta = (Receta) getIntent().getSerializableExtra("receta");
         if (receta != null) {
@@ -52,6 +54,7 @@ public class DetallesReceta extends AppCompatActivity {
         }
 
         btnActualizar.setOnClickListener(v -> actualizarReceta());
+        btnEliminar.setOnClickListener(v -> eliminarReceta());
     }
 
     private void actualizarReceta() {
@@ -76,5 +79,26 @@ public class DetallesReceta extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error al actualizar la receta", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void eliminarReceta() {
+        db.collection("recipes").document(receta.getId())
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Receta eliminada con éxito", Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error al eliminar la receta", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
