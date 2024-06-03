@@ -55,7 +55,14 @@ https://www.youtube.com/watch?v=WILCtHiIdM0
 - Lenguaje de programación **Java**.
 - Base de datos **SQLite** para almacenar y gestionar las recetas de cócteles.
 
-
+### Descarga y compilación del proyecto
+  ## Comandos Git
+-Descargar Git.
+- Ir a la ruta deseada de descarga. cd ruta/del/directorio.
+- Obtener la URL del repositorio de github.
+- git clone https://github.com/MarianelaAgostini/ISPC2024.git
+- Descarga Andorid Studio Jellyfish  (https://developer.android.com/studio).
+- Adentro de Android Studio. - File - open - ISPC2024
 
 
 ## PÁGINA WEB
