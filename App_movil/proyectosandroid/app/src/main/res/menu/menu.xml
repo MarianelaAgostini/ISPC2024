@@ -49,6 +49,12 @@
         </item>
 
         <item
+            android:id="@+id/PagWeb"
+            android:title="@string/PagWeb"
+            android:icon="@drawable/pagweb">
+        </item>
+
+        <item
             android:id="@+id/Cerrar_sesion"
             android:title="@string/Cerrar_sesion"
             android:icon="@drawable/salir">

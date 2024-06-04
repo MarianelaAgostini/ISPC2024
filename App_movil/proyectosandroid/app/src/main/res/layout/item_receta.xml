@@ -53,7 +53,7 @@
             android:textSize="18sp"
             android:textColor="#000"
             android:background="#fff"
-            android:text="Descripción de los ingredientes" />
+            android:text="--" />
 
         <TextView
             android:id="@+id/títuloInstrucciones"
@@ -73,7 +73,7 @@
             android:textSize="18sp"
             android:textColor="#000"
             android:background="#fff"
-            android:text="Descripción de las instrucciones" />
+            android:text="--" />
 
         <TextView
             android:id="@+id/títuloCategoria"
@@ -93,7 +93,7 @@
             android:textSize="18sp"
             android:textColor="#000"
             android:background="#fff"
-            android:text="Descripción de la categoría" />
+            android:text="--" />
 
         <Button
             android:id="@+id/btnDescargar"

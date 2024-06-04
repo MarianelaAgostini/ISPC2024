@@ -107,7 +107,7 @@ public class EditarReceta extends AppCompatActivity {
                             receta.setId(id);
                             listaRecetas.add(receta);
                         }
-                        adapter = new RecetaAdapter(listaRecetas, EditarReceta.this);
+                        adapter = new RecetaAdapter(listaRecetas, EditarReceta.this, true);
                         recyclerView.setAdapter(adapter);
                     } else {
                         Toast.makeText(this, "Error al obtener las recetas", Toast.LENGTH_SHORT).show();
@@ -119,10 +119,12 @@ public class EditarReceta extends AppCompatActivity {
 
         private List<Receta> listaRecetas;
         private Context context;
+        private boolean isClickable;
 
-        public RecetaAdapter(List<Receta> listaRecetas, Context context) {
+        public RecetaAdapter(List<Receta> listaRecetas, Context context, boolean isClickable) {
             this.listaRecetas = listaRecetas;
             this.context = context;
+            this.isClickable = isClickable;
         }
 
         @NonNull
@@ -138,13 +140,25 @@ public class EditarReceta extends AppCompatActivity {
             holder.nombreTextView.setText(receta.getNombre());
             holder.ingredientesTextView.setText(receta.getIngredientes());
             holder.instruccionesTextView.setText(receta.getInstrucciones());
+
+            // Convertir la categoría
+            String categoria = receta.getIdCategoria();
+            if ("opcion1".equals(categoria)) {
+                categoria = "Cócteles con alcohol";
+            } else if ("opcion2".equals(categoria)) {
+                categoria = "Cócteles sin alcohol";
+            }
+            holder.categoriaTextView.setText(categoria);
+
             Glide.with(context).load(receta.getImagenURL()).into(holder.imagenImageView);
 
-            holder.itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(context, DetallesReceta.class);
-                intent.putExtra("receta", receta);
-                context.startActivity(intent);
-            });
+            if (isClickable) {
+                holder.itemView.setOnClickListener(v -> {
+                    Intent intent = new Intent(context, DetallesReceta.class);
+                    intent.putExtra("receta", receta);
+                    context.startActivity(intent);
+                });
+            }
         }
 
         @Override
@@ -164,7 +178,7 @@ public class EditarReceta extends AppCompatActivity {
                 nombreTextView = itemView.findViewById(R.id.name);
                 ingredientesTextView = itemView.findViewById(R.id.itemIngredientesReceta);
                 instruccionesTextView = itemView.findViewById(R.id.itemInstruccionesReceta);
-                categoriaTextView = itemView.findViewById(R.id.títuloIngredientes);
+                categoriaTextView = itemView.findViewById(R.id.itemCategorias);
                 imagenImageView = itemView.findViewById(R.id.imageURL);
             }
         }

@@ -8,7 +8,6 @@ public class Receta implements Serializable {
 
     private String id;
     private String idCategoria;
-    private int idUsuario;
     private String nombre;
     private String ingredientes;
     private String instrucciones;
@@ -29,6 +28,7 @@ public class Receta implements Serializable {
 
 
     // Métodos getters y setters
+    @PropertyName("idRecipes")
     public String getId() {
         return id;
     }
@@ -45,14 +45,6 @@ public class Receta implements Serializable {
     @PropertyName("category")
     public void setIdCategoria(String idCategoria) {
         this.idCategoria = idCategoria;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     @PropertyName("name")
@@ -94,4 +86,5 @@ public class Receta implements Serializable {
     public void setImagenURL(String imagenURL) {
         this.imagen = imagenURL;
     }
+
 }

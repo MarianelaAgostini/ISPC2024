@@ -78,7 +78,7 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            saveUserToFirestore(user.getUid(), email, firstName, lastName);
+                            saveUserToFirestore(user.getUid(), email, firstName, lastName, password);
                         }
                     } else {
                         Toast.makeText(Registrar.this, "Registro fallido: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -86,21 +86,24 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                 });
     }
 
+
     private boolean isValidEmail(String email) {
         String emailPattern = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         return Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE).matcher(email).matches();
     }
 
     private boolean isValidPassword(String password) {
-        String passwordPattern = "^(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])[A-Za-z0-9!@#\\$%\\^&\\*]{6,}$";
+        String passwordPattern = "^(?=.*[0-9])[A-Za-z0-9]{6,}$";
         return Pattern.compile(passwordPattern).matcher(password).matches();
     }
 
-    private void saveUserToFirestore(String userId, String email, String firstName, String lastName) {
+
+    private void saveUserToFirestore(String userId, String email, String firstName, String lastName, String password) {
         Map<String, Object> user = new HashMap<>();
         user.put("email", email);
         user.put("firstname", firstName);
         user.put("lastname", lastName);
+        user.put("password", password); // Añadir la contraseña
         user.put("phone", ""); // Puedes añadir el teléfono si tienes el campo correspondiente
         user.put("rol", "user"); // Establecer rol automáticamente en "user"
 
@@ -113,4 +116,5 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                 })
                 .addOnFailureListener(e -> Toast.makeText(Registrar.this, "Error al registrar usuario en Firestore: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
+
 }

@@ -59,14 +59,13 @@
     <string name="Apellido">Apellido</string>
     <string name="Registrar">Registrar</string>
 
-    <!--Categorías-->
-
-    <string name="CoctelCA">Coc con</string>
-    <string name="ColctelSA">Coc sin</string>
+    <!-- Categorías -->
+    <string name="CoctelCA">Cócteles con alcohol</string>
+    <string name="ColctelSA">Cócteles sin alcohol</string>
     <string name="Coctelca">Con Alcohol</string>
     <string name="Colctelsa">Sin Alcohol</string>
 
-    <!--spinner-->
+    <!-- spinner -->
     <string-array name="opciones_categoria">
         <item>Cócteles con alcohol</item>
         <item>Cócteles sin alcohol</item>
@@ -134,5 +133,6 @@
     </string>
 
     <string name="EDITAR">EDITAR</string>
+    <string name="PagWeb">Página web</string>
 
 </resources>

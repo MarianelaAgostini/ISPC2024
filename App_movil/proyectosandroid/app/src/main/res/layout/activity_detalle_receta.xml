@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,47 +8,44 @@
     tools:context=".DetallesReceta">
 
     <EditText
-        android:id="@+id/txtNombreReceta"
+        android:id="@+id/txtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre de la receta" />
+        android:hint="Nombre de la receta"/>
 
     <EditText
-        android:id="@+id/txtIngredientesReceta"
+        android:id="@+id/txtIngredientes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingredientes" />
+        android:hint="Ingredientes"/>
 
     <EditText
-        android:id="@+id/txtInstruccionesReceta"
+        android:id="@+id/txtInstrucciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Instrucciones" />
+        android:hint="Instrucciones"/>
 
     <EditText
-        android:id="@+id/txtCategoriasReceta"
+        android:id="@+id/txtImagen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Categoría" />
+        android:hint="URL de la imagen"/>
 
-    <EditText
-        android:id="@+id/txtImagenReceta"
+    <Spinner
+        android:id="@+id/spinnerCategoria"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="URL imagen" />
+        android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/btnActualizarReceta"
-        android:layout_width="match_parent"
+        android:id="@+id/btnActualizar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actualizar Receta" />
+        android:text="Actualizar"/>
 
     <Button
-        android:id="@+id/btnEliminarReceta"
-        android:layout_width="match_parent"
+        android:id="@+id/btnEliminar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eliminar Receta"
-        android:background="#FF0000"
-        android:textColor="#FFFFFF" />
+        android:text="Eliminar"/>
 
 </LinearLayout>

@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.asd.Fragmentos.Categorias;
 import com.example.asd.Fragmentos.Contacto;
 import com.example.asd.Fragmentos.Home;
+import com.example.asd.Fragmentos.PagWeb;
 import com.example.asd.Fragmentos.Sobre_nosotros;
 import com.google.android.material.navigation.NavigationView;
 
@@ -103,6 +104,8 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Sobre_nosotros()).commit();
         } else if (itemId == R.id.Contacto) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Contacto()).commit();
+        } else if (itemId == R.id.PagWeb) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new PagWeb()).commit();
         } else if (itemId == R.id.Cerrar_sesion) {
             Toast.makeText(this, "Has cerrado sesión", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
