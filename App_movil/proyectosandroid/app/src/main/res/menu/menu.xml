@@ -60,6 +60,11 @@
             android:icon="@drawable/salir">
         </item>
 
+        <item
+            android:id="@+id/nav_change_language"
+            android:title="@string/nav_change_language"
+            android:icon="@drawable/idiomas">
+        </item>
     </group>
 
 </menu>

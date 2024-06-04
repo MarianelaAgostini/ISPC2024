@@ -1,9 +1,14 @@
 package com.example.asd;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -14,13 +19,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import com.example.asd.Fragmentos.PagWeb;
 
 import com.example.asd.Fragmentos.Categorias;
 import com.example.asd.Fragmentos.Contacto;
 import com.example.asd.Fragmentos.Home;
-import com.example.asd.Fragmentos.PagWeb;
 import com.example.asd.Fragmentos.Sobre_nosotros;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Locale;
 
 public class menu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,8 +63,11 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
         // Mostrar/ocultar el ícono de "Editar Recetas" basado en el rol del usuario
         Menu menu = navigationView.getMenu();
         MenuItem editarRecetaItem = menu.findItem(R.id.EditarReceta);
-        editarRecetaItem.setVisible(isAdmin);
-        if(savedInstanceState == null){
+        if (editarRecetaItem != null) {
+            editarRecetaItem.setVisible(isAdmin);
+        }
+
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Home()).commit();
             navigationView.setCheckedItem(R.id.Home);
         }
@@ -80,7 +90,7 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(intent);
             } else {
                 // Manejar el caso en el que no se pudo obtener el ID del usuario
-                Toast.makeText(this, "No se pudo obtener el ID del usuario.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.user_id_error), Toast.LENGTH_SHORT).show();
             }
         } else if (itemId == R.id.Perfil) {
             // Verificar si se ha establecido el ID del usuario
@@ -90,10 +100,9 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(intent);
             } else {
                 // Manejar el caso en el que no se pudo obtener el ID del usuario
-                Toast.makeText(this, "No se pudo obtener el ID del usuario.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.user_id_error), Toast.LENGTH_SHORT).show();
             }
         } else if (itemId == R.id.EditarReceta) {
-            // Verificar si el usuario es administrador
             if (isAdmin) {
                 Intent intent = new Intent(this, EditarReceta.class);
                 startActivity(intent);
@@ -104,18 +113,70 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Sobre_nosotros()).commit();
         } else if (itemId == R.id.Contacto) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Contacto()).commit();
-        } else if (itemId == R.id.PagWeb) {
+        }else if (itemId == R.id.PagWeb) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new PagWeb()).commit();
-        } else if (itemId == R.id.Cerrar_sesion) {
+        }else if (itemId == R.id.Cerrar_sesion) {
             Toast.makeText(this, "Has cerrado sesión", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-
             finish();
+        } else if (itemId == R.id.nav_change_language) {
+            showChangeLanguageDialog();
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    private void showChangeLanguageDialog() {
+        final String[] languages = {"Español", "English", "Русский"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.language_selection_title));
+        builder.setSingleChoiceItems(languages, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        setLocale("es");
+                        break;
+                    case 1:
+                        setLocale("en");
+                        break;
+                    case 2:
+                        setLocale("ru");
+                        break;
+                }
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+        // Guardar la configuración del idioma en SharedPreferences
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+
+        // Recargar la actividad para aplicar el cambio de idioma
+        Intent refresh = new Intent(this, menu.class);
+        startActivity(refresh);
+        finish();
+    }
+
+    // Cargar el idioma guardado en SharedPreferences
+    public void loadLocale() {
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        setLocale(language);
     }
 }

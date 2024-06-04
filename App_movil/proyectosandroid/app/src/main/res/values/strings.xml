@@ -4,13 +4,16 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="desarrollador"> Desarrollado por: OptimusWeb</string>
 
-    <string name="Home">Home</string>
+    <string name="Home">Inicio</string>
     <string name="Categorias">Categorías</string>
     <string name="Subir_Receta">Subir recetas</string>
     <string name="Perfil">Perfil</string>
     <string name="Sobre_nosotros">Sobre nosotros</string>
     <string name="Contacto">Contacto</string>
     <string name="Cerrar_sesion">Cerrar sesión</string>
+    <string name="nav_change_language">Cambiar idioma</string>
+    <string name="language_selection_title">Selecciona un idioma</string>
+    <string name="user_id_error">No se pudo obtener el ID del usuario.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -47,7 +50,7 @@
 
     <!--contacto-->
     <string name="Instagram">Instagram: @Coctelis</string>
-    <string name="Facebook"> Facebook: Coctelis</string>
+    <string name="Facebook">Facebook: Coctelis</string>
     <string name="Email">Email: coctelis@gmail.com</string>
 
     <!--registro-->
@@ -59,21 +62,19 @@
     <string name="Apellido">Apellido</string>
     <string name="Registrar">Registrar</string>
 
-    <!-- Categorías -->
+    <!--Categorías-->
     <string name="CoctelCA">Cócteles con alcohol</string>
     <string name="ColctelSA">Cócteles sin alcohol</string>
     <string name="Coctelca">Con Alcohol</string>
     <string name="Colctelsa">Sin Alcohol</string>
 
-    <!-- spinner -->
+    <!--spinner-->
     <string-array name="opciones_categoria">
         <item>Cócteles con alcohol</item>
         <item>Cócteles sin alcohol</item>
     </string-array>
 
     <string name="selecciona_categoria">Selecciona una categoría</string>
-
-    <!--Subir_Receta-->
 
     <!--Subir_Receta-->
 
@@ -119,18 +120,7 @@
 
     <!---Sobre nosotros-->
     <string name="OptimusWeb">OptimusWeb</string>
-    <string name="TextoSobreNostoros">
-    <![CDATA[
-    Somos una empreesa de desarrollo de software.\n\n
-    Nuestro equipo de trabajo se encuentra en constante actualización y formación para brindar un servicio de calidad a nuestros clientes.\n\n
-
-    Nuestro objetivo es mantener una relación activa con el cliente y que se extienda a través de los años. De nuestra parte nos comprometemos a realizar nuestro trabajo con compromiso y dedicación para que estén satisfechos con el servicio contratado.\n\n
-
-    Creamos soluciones de software que se adaptan a las necesidades de cada cliente, acompañándolos a llevar adelante la revolución digital que hoy nos moviliza. Brindamos soporte técnico especializado para garantizar que la actividad nunca se detenga.\n\n
-
-    Nuestro equipo trabaja en relación conjunta con cada cliente, asegurando el éxito de los proyectos. La cercanía con el cliente es nuestro valor diferencial en el mercado del software.
-    ]]>
-    </string>
+    <string name="TextoSobreNostoros">"     <![CDATA[     Somos una empresa de desarrollo de software.\n\n     Nuestro equipo de trabajo se encuentra en constante actualización y formación para brindar un servicio de calidad a nuestros clientes.\n\n      Nuestro objetivo es mantener una relación activa con el cliente y que se extienda a través de los años. De nuestra parte nos comprometemos a realizar nuestro trabajo con compromiso y dedicación para que estén satisfechos con el servicio contratado.\n\n      Creamos soluciones de software que se adaptan a las necesidades de cada cliente, acompañándolos a llevar adelante la revolución digital que hoy nos moviliza. Brindamos soporte técnico especializado para garantizar que la actividad nunca se detenga.\n\n      Nuestro equipo trabaja en relación conjunta con cada cliente, asegurando el éxito de los proyectos. La cercanía con el cliente es nuestro valor diferencial en el mercado del software.     ]]>     "</string>
 
     <string name="EDITAR">EDITAR</string>
     <string name="PagWeb">Página web</string>
