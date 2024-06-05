@@ -125,4 +125,16 @@
     <string name="EDITAR">EDITAR</string>
     <string name="PagWeb">Página web</string>
 
+    <!---Preguntas Frequentes-->
+    <string name="Preguntas_frecuentes">Preguntas frecuentes</string>
+    <string name="Como_puedo">¿Cómo puedo agregar una receta?</string>
+    <string name="Para_agregar">Para agregar una receta, primero debes iniciar sesión en tu cuenta. Luego, haz clic en Agregar Receta en la página principal.</string>
+    <string name="Es_gratis">¿Es gratis usar Coctelis?</string>
+    <string name="Si_usar">Sí, usar Coctelis es completamente gratis. Puedes explorar recetas y agregar las tuyas sin ningún costo.</string>
+    <string name="Como_editar">¿Cómo puedo editar o eliminar una receta que he agregado?</string>
+    <string name="Para_editar">Para editar o eliminar una receta, ve a tu perfil y selecciona la receta que deseas modificar o eliminar.</string>
+    <string name="Que_hago">¿Qué hago si olvidé mi contraseña?</string>
+    <string name="Si_olvidaste"> Si olvidaste tu contraseña, haz clic en ¿Olvidaste tu contraseña? en la página de inicio de sesión y sigue las instrucciones para restablecerla.</string>
+
+
 </resources>

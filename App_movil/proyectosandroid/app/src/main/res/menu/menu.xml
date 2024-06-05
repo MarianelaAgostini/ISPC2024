@@ -55,6 +55,13 @@
         </item>
 
         <item
+            android:id="@+id/Preguntas_frecuentes"
+            android:title="@string/Preguntas_frecuentes"
+            android:icon="@drawable/baseline_question_answer_24">
+        </item>
+
+
+        <item
             android:id="@+id/Cerrar_sesion"
             android:title="@string/Cerrar_sesion"
             android:icon="@drawable/salir">
