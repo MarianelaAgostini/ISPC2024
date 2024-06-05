@@ -1,12 +1,14 @@
 package com.example.asd;
 
 public class Usuario {
-
-    int id;
-    String Nombre,Apellido, Usuario, Password;
+    private int id;
+    private String Nombre;
+    private String Apellido;
+    private String Usuario;
+    private String Password;
 
     public Usuario() {
-
+        // Constructor vacío necesario para Firestore
     }
 
     public Usuario(String nombre, String apellido, String usuario, String password) {
@@ -16,12 +18,8 @@ public class Usuario {
         Password = password;
     }
 
-    public boolean isNull(){
-        if(Nombre.equals("") && Apellido.equals("")&& Usuario.equals("")){
-            return false;
-        }else {
-            return true;
-        }
+    public boolean isNull() {
+        return Nombre.equals("") || Apellido.equals("") || Usuario.equals("");
     }
 
     @Override
@@ -35,6 +33,7 @@ public class Usuario {
                 '}';
     }
 
+    // Getters y setters
     public int getId() {
         return id;
     }
@@ -75,4 +74,3 @@ public class Usuario {
         Password = password;
     }
 }
-

@@ -7,25 +7,26 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.util.List;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SubirRecetas extends AppCompatActivity {
 
     private EditText edtNombre, edtIngredientes, edtInstrucciones, edtImagenURL;
-    private Button SubirRecetas;
+    private Button btnSubirRecetas;
     private Spinner spinnerCategoria;
-    private int id = 0; // Asigna el valor que corresponda
-    private int idUsuario; // Asigna el valor que corresponda
-    private daoUsuario dao;
+    private FirebaseFirestore db;
 
     private final ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -34,11 +35,13 @@ public class SubirRecetas extends AppCompatActivity {
                     Intent data = result.getData();
                     if (data != null) {
                         Uri uri = data.getData();
-                        edtImagenURL.setText(uri.toString()); // Guarda la URL de la imagen
+                        edtImagenURL.setText(uri.toString());
                     }
                 }
             }
     );
+
+    private final Map<String, String> opcionesMap = new HashMap<>();
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -51,11 +54,6 @@ public class SubirRecetas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subir_recetas);
 
-        Bundle b = getIntent().getExtras();
-        if (b != null) {
-            id = b.getInt("id");
-        }
-
         Toolbar toolbar = findViewById(R.id.toolbarB);
         setSupportActionBar(toolbar);
 
@@ -65,51 +63,45 @@ public class SubirRecetas extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        dao = new daoUsuario(this);
-
-        List<String> categoriasList = dao.selectCategorias();
-
-        if (categoriasList.isEmpty()) {
-            Toast.makeText(this, "No se encontraron categorías en la base de datos.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        spinnerCategoria = findViewById(R.id.spinnerCategoria);
-        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categoriasList);
-        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategoria.setAdapter(adapterSpinner);
+        db = FirebaseFirestore.getInstance();
 
         edtNombre = findViewById(R.id.NombreReceta);
         edtIngredientes = findViewById(R.id.Ingrediente);
         edtInstrucciones = findViewById(R.id.Descripcion);
         edtImagenURL = findViewById(R.id.ImagenURL);
-        SubirRecetas = findViewById(R.id.SubirRecetas);
+        btnSubirRecetas = findViewById(R.id.SubirRecetas);
+        spinnerCategoria = findViewById(R.id.spinnerCategoria);
 
-        SubirRecetas.setOnClickListener(v -> {
+        // Configurar el adaptador del spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.opciones_categoria, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategoria.setAdapter(adapter);
+
+        // Llenar el mapa con las opciones y sus claves
+        opcionesMap.put("Cócteles con alcohol", "opcion1");
+        opcionesMap.put("Cócteles sin alcohol", "opcion2");
+
+        btnSubirRecetas.setOnClickListener(v -> {
             String nombre = edtNombre.getText().toString();
             String ingredientes = edtIngredientes.getText().toString();
             String instrucciones = edtInstrucciones.getText().toString();
-            String imagenURL = edtImagenURL.getText().toString(); // Obtén la URL de la imagen
+            String imagenURL = edtImagenURL.getText().toString();
 
             if (imagenURL.isEmpty()) {
                 Toast.makeText(this, "Ingrese una URL válida", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (id == 0) {
-                Toast.makeText(this, "Debe autenticarse antes de subir una receta", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
             String categoria = spinnerCategoria.getSelectedItem().toString();
-            agregarReceta(nombre, ingredientes, instrucciones, imagenURL, categoria);
+            String categoriaClave = opcionesMap.get(categoria); // Obtener la clave correspondiente
 
-            // Limpiar los campos después de subir la receta con éxito
+            agregarReceta(nombre, ingredientes, instrucciones, imagenURL, categoriaClave);
+
             limpiarCampos();
         });
     }
 
-    // Método para limpiar los campos
     private void limpiarCampos() {
         edtNombre.getText().clear();
         edtIngredientes.getText().clear();
@@ -125,14 +117,16 @@ public class SubirRecetas extends AppCompatActivity {
         }
 
         try {
-            int idCategoria = dao.obtenerIdCategoria(categoria);
-
-            if (idCategoria != -1) {
-                dao.insertarReceta(idCategoria, idUsuario, nombre, ingredientes, instrucciones, imagenURL);
-                Toast.makeText(this, "La receta ha sido subida con éxito", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Categoría no encontrada en la base de datos", Toast.LENGTH_SHORT).show();
-            }
+            Receta receta = new Receta(nombre, ingredientes, instrucciones, imagenURL, categoria);
+            db.collection("recipes")
+                    .add(receta)
+                    .addOnSuccessListener(documentReference -> {
+                        Toast.makeText(this, "La receta ha sido subida con éxito", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Error al subir la receta", Toast.LENGTH_SHORT).show();
+                    });
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Error al subir la receta", Toast.LENGTH_SHORT).show();

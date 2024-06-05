@@ -1,23 +1,26 @@
 package com.example.asd;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
+import android.widget.Toast;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SinAlcohol extends AppCompatActivity {
 
     RecyclerView recyclerViewSinAlcohol;
     RecetaAdapter adapter;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +36,29 @@ public class SinAlcohol extends AppCompatActivity {
         recyclerViewSinAlcohol = findViewById(R.id.recyclerViewSinAlcohol);
         recyclerViewSinAlcohol.setLayoutManager(new LinearLayoutManager(this));
 
-        daoUsuario dao = new daoUsuario(this);
-        List<Receta> listaRecetasSinAlcohol = dao.selectRecetasSinAlcohol();
-        dao.close();
+        db = FirebaseFirestore.getInstance();
 
-        adapter = new RecetaAdapter(listaRecetasSinAlcohol, this);
-        recyclerViewSinAlcohol.setAdapter(adapter);
+        obtenerRecetasSinAlcohol();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-
-        return super.onCreateOptionsMenu(menu);
+    private void obtenerRecetasSinAlcohol() {
+        db.collection("recipes")
+                .whereEqualTo("category", "opcion2")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        List<Receta> listaRecetasSinAlcohol = new ArrayList<>();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Receta receta = document.toObject(Receta.class);
+                            listaRecetasSinAlcohol.add(receta);
+                        }
+                        adapter = new RecetaAdapter(new ArrayList<>(listaRecetasSinAlcohol), this, false);
+                        recyclerViewSinAlcohol.setAdapter(adapter);
+                    } else {
+                        Toast.makeText(SinAlcohol.this, "Error al obtener las recetas", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
-
-
 
     @Override
     public boolean onSupportNavigateUp() {

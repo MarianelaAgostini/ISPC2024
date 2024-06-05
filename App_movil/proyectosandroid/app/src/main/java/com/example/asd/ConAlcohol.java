@@ -7,17 +7,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConAlcohol extends AppCompatActivity {
 
     RecyclerView recyclerViewConAlcohol;
     RecetaAdapter adapter;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +36,29 @@ public class ConAlcohol extends AppCompatActivity {
         recyclerViewConAlcohol = findViewById(R.id.recyclerViewConAlcohol);
         recyclerViewConAlcohol.setLayoutManager(new LinearLayoutManager(this));
 
-        daoUsuario dao = new daoUsuario(this);
-        List<Receta> listaRecetasConAlcohol = dao.selectRecetasConAlcohol();
-        dao.close();
+        db = FirebaseFirestore.getInstance();
 
-        adapter = new RecetaAdapter(listaRecetasConAlcohol, this);
-        recyclerViewConAlcohol.setAdapter(adapter);
+        obtenerRecetasConAlcohol();
     }
 
-
+    private void obtenerRecetasConAlcohol() {
+        db.collection("recipes")
+                .whereEqualTo("category", "opcion1")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        List<Receta> listaRecetasConAlcohol = new ArrayList<>();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Receta receta = document.toObject(Receta.class);
+                            listaRecetasConAlcohol.add(receta);
+                        }
+                        adapter = new RecetaAdapter(new ArrayList<>(listaRecetasConAlcohol), this, false);
+                        recyclerViewConAlcohol.setAdapter(adapter);
+                    } else {
+                        Toast.makeText(ConAlcohol.this, "Error al obtener las recetas", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
