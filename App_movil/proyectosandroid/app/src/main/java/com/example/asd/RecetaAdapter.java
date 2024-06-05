@@ -27,10 +27,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder> {
 
@@ -71,6 +74,27 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
                 .load(receta.getImagenURL())
                 .into(holder.imagenReceta);
 
+        // Cargar los contadores de likes y dislikes desde Firestore
+        DocumentReference recipeRef = FirebaseFirestore.getInstance().collection("recipes").document(receta.getId());
+        recipeRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                Long likes = documentSnapshot.getLong("likes");
+                Long dislikes = documentSnapshot.getLong("dislikes");
+
+                // Verificar si los campos existen antes de asignarlos
+                if (likes != null) {
+                    receta.setLikes(likes.intValue());
+                    holder.btnLike.setText("Me gusta (" + receta.getLikes() + ")");
+                }
+
+                if (dislikes != null) {
+                    receta.setDislikes(dislikes.intValue());
+                    holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
+                }
+            }
+        });
+
+
         if (isClickable) {
             holder.itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, DetallesReceta.class);
@@ -79,17 +103,8 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
             });
         }
 
-        holder.btnDescargar.setOnClickListener(v -> {
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-            } else {
-                Log.d("RecetaAdapter", "Permiso concedido, descargando receta");
-                holder.btnDescargar.setVisibility(View.GONE); // Ocultar el botón
-                Bitmap recetaBitmap = getBitmapFromView(holder.itemView);
-                holder.btnDescargar.setVisibility(View.VISIBLE); // Volver a mostrar el botón
-                saveImageToGallery(recetaBitmap, receta.getNombre());
-            }
-        });
+        holder.btnLike.setOnClickListener(v -> handleVote(receta, true, holder));
+        holder.btnDislike.setOnClickListener(v -> handleVote(receta, false, holder));
     }
 
     @Override
@@ -102,41 +117,43 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
         notifyDataSetChanged();
     }
 
-    // Método para capturar la vista como Bitmap
-    private Bitmap getBitmapFromView(View view) {
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        Drawable bgDrawable = view.getBackground();
-        if (bgDrawable != null) {
-            bgDrawable.draw(canvas);
-        } else {
-            canvas.drawColor(0xFFFFFFFF);
-        }
-        view.draw(canvas);
-        return bitmap;
-    }
+    // Manejar votos
+    private void handleVote(Receta receta, boolean isLike, RecetaViewHolder holder) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String recipeId = receta.getId();
 
-    // Método para guardar el Bitmap en la galería
-    private void saveImageToGallery(Bitmap bitmap, String imageName) {
-        String savedImageURL = MediaStore.Images.Media.insertImage(
-                context.getContentResolver(),
-                bitmap,
-                imageName,
-                "Image of " + imageName
-        );
+        DocumentReference recipeRef = db.collection("recipes").document(recipeId);
+        DocumentReference userVoteRef = db.collection("user_votes").document(userId + "_" + recipeId);
 
-        if (savedImageURL != null) {
-            Uri savedImageURI = Uri.parse(savedImageURL);
-            Toast.makeText(context, "Imagen guardada en la galería: " + savedImageURI, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Error guardando la imagen", Toast.LENGTH_SHORT).show();
-        }
+        userVoteRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (!documentSnapshot.exists()) {
+                // El usuario no ha votado todavía
+                userVoteRef.set(new HashMap<String, Object>() {{
+                    put("recipeId", recipeId);
+                    put("userId", userId);
+                    put("vote", isLike ? "like" : "dislike");
+                }});
+
+                if (isLike) {
+                    receta.setLikes(receta.getLikes() + 1);
+                    holder.btnLike.setText("Me gusta (" + receta.getLikes() + ")");
+                } else {
+                    receta.setDislikes(receta.getDislikes() + 1);
+                    holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
+                }
+                recipeRef.set(receta, SetOptions.merge());
+            } else {
+                // El usuario ya ha votado
+                Toast.makeText(context, "Ya has votado esta receta", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public static class RecetaViewHolder extends RecyclerView.ViewHolder {
         TextView nombre, ingredientes, instrucciones, categoria;
         ImageView imagenReceta;
-        Button btnDescargar;
+        Button btnLike, btnDislike;
 
         public RecetaViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -145,7 +162,8 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
             instrucciones = itemView.findViewById(R.id.itemInstruccionesReceta);
             categoria = itemView.findViewById(R.id.itemCategorias);
             imagenReceta = itemView.findViewById(R.id.imageURL);
-            btnDescargar = itemView.findViewById(R.id.btnDescargar);
+            btnLike = itemView.findViewById(R.id.btnLike);
+            btnDislike = itemView.findViewById(R.id.btnDislike);
         }
     }
 }
