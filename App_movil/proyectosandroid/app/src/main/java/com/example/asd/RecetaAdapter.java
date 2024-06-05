@@ -65,8 +65,12 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
         String categoria = receta.getIdCategoria();
         if ("opcion1".equals(categoria)) {
             categoria = "Cócteles con alcohol";
+            holder.btnLike.setVisibility(View.GONE);
+            holder.btnDislike.setVisibility(View.GONE);
         } else if ("opcion2".equals(categoria)) {
             categoria = "Cócteles sin alcohol";
+            holder.btnLike.setVisibility(View.GONE);
+            holder.btnDislike.setVisibility(View.GONE);
         }
         holder.categoria.setText(categoria);
 
@@ -74,26 +78,31 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
                 .load(receta.getImagenURL())
                 .into(holder.imagenReceta);
 
-        // Cargar los contadores de likes y dislikes desde Firestore
-        DocumentReference recipeRef = FirebaseFirestore.getInstance().collection("recipes").document(receta.getId());
-        recipeRef.get().addOnSuccessListener(documentSnapshot -> {
-            if (documentSnapshot.exists()) {
-                Long likes = documentSnapshot.getLong("likes");
-                Long dislikes = documentSnapshot.getLong("dislikes");
+        // Verificar si el ID de la receta no es nulo antes de acceder a Firestore
+        String recipeId = receta.getId();
+        if (recipeId != null) {
+            // Cargar los contadores de likes y dislikes desde Firestore
+            DocumentReference recipeRef = FirebaseFirestore.getInstance().collection("recipes").document(recipeId);
+            recipeRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    Long likes = documentSnapshot.getLong("likes");
+                    Long dislikes = documentSnapshot.getLong("dislikes");
 
-                // Verificar si los campos existen antes de asignarlos
-                if (likes != null) {
-                    receta.setLikes(likes.intValue());
-                    holder.btnLike.setText("Me gusta (" + receta.getLikes() + ")");
+                    // Verificar si los campos existen antes de asignarlos
+                    if (likes != null) {
+                        receta.setLikes(likes.intValue());
+                        holder.btnLike.setText("Me gusta (" + receta.getLikes() + ")");
+                    }
+
+                    if (dislikes != null) {
+                        receta.setDislikes(dislikes.intValue());
+                        holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
+                    }
                 }
-
-                if (dislikes != null) {
-                    receta.setDislikes(dislikes.intValue());
-                    holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
-                }
-            }
-        });
-
+            });
+        } else {
+            Log.e("RecetaAdapter", "ID de receta nulo");
+        }
 
         if (isClickable) {
             holder.itemView.setOnClickListener(v -> {
@@ -106,6 +115,7 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
         holder.btnLike.setOnClickListener(v -> handleVote(receta, true, holder));
         holder.btnDislike.setOnClickListener(v -> handleVote(receta, false, holder));
     }
+
 
     @Override
     public int getItemCount() {
