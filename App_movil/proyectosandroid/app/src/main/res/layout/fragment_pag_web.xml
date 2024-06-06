@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragmentos.PagWeb">
+    tools:context=".Fragmentos.PagWeb"
+    android:background="@color/colorAccent">
 
     <TextView
         android:id="@+id/textViewWeb"
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Visita nuestra página web"
         android:textSize="18sp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

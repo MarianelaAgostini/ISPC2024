@@ -82,4 +82,14 @@
     <string name="TextoSobreNostoros">"     <![CDATA[     We are a software development company.\n\n     Our team is constantly updated and trained to provide quality service to our customers.\n\n      Our goal is to maintain an active relationship with the client that will extend over the years. On our part we are committed to perform our work with commitment and dedication so that they are satisfied with the contracted service.\n\n      We create software solutions that adapt to the needs of each client, accompanying them to carry out the digital revolution that mobilizes us today. We provide specialized technical support to ensure that the activity never stops.\n\n      Our team works closely with each client, ensuring the success of the projects. The closeness with the client is our differential value in the software market.     ]]>     "</string>
     <string name="EDITAR">EDIT</string>
     <string name="PagWeb">Web page</string>
+    <string name="nav_night_mode">Dark mode</string>
+    <string name="Preguntas_frecuentes">Frequently Questions</string>
+    <string name="Como_puedo">How can I add a recipe?</string>
+    <string name="Para_agregar">To add a recipe, you must first log in to your account. Then click on Add Recipe on the main page.</string>
+    <string name="Es_gratis">Is it free to use Coctelis?</string>
+    <string name="Si_usar">Yes, using Coctelis is completely free. You can explore recipes and add your own at no cost.</string>
+    <string name="Como_editar">How can I edit or delete a recipe I have added?</string>
+    <string name="Para_editar">To edit or delete a recipe, go to your profile and select the recipe you wish to edit or delete.</string>
+    <string name="Que_hago">What do I do if I forgot my password?</string>
+    <string name="Si_olvidaste">" If you forgot your password, click Forgot your password? on the login page and follow the instructions to reset it."</string>
 </resources>

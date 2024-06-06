@@ -16,14 +16,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import com.example.asd.Fragmentos.PagWeb;
 
 import com.example.asd.Fragmentos.Categorias;
 import com.example.asd.Fragmentos.Contacto;
 import com.example.asd.Fragmentos.Home;
+import com.example.asd.Fragmentos.PagWeb;
 import com.example.asd.Fragmentos.Sobre_nosotros;
 import com.google.android.material.navigation.NavigationView;
 
@@ -35,11 +36,15 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
     private String userId;
     private String rol;
     private boolean isAdmin;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        // Inicializa SharedPreferences
+        sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbarA);
         setSupportActionBar(toolbar);
@@ -53,7 +58,6 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
         toggle.syncState();
 
         // Recuperar el ID del usuario y el rol del usuario de SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         userId = sharedPreferences.getString("user_id", null);
         rol = sharedPreferences.getString("user_role", null);
 
@@ -71,6 +75,10 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Home()).commit();
             navigationView.setCheckedItem(R.id.Home);
         }
+
+        // Configurar modo nocturno según las preferencias
+        boolean nightMode = sharedPreferences.getBoolean("night_mode", false);
+        AppCompatDelegate.setDefaultNightMode(nightMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     @Override
@@ -113,21 +121,39 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Sobre_nosotros()).commit();
         } else if (itemId == R.id.Contacto) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Contacto()).commit();
-        }else if (itemId == R.id.PagWeb) {
+        } else if (itemId == R.id.PagWeb) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new PagWeb()).commit();
-        }else if (itemId == R.id.Cerrar_sesion) {
+        } else if (itemId == R.id.Cerrar_sesion) {
             Toast.makeText(this, "Has cerrado sesión", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         } else if (itemId == R.id.nav_change_language) {
             showChangeLanguageDialog();
+        } else if (itemId == R.id.nav_night_mode) {
+            toggleNightMode();
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }
+
+    private void toggleNightMode() {
+        boolean nightMode = sharedPreferences.getBoolean("night_mode", false);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (nightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            editor.putBoolean("night_mode", false);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            editor.putBoolean("night_mode", true);
+        }
+        editor.apply();
+
+        recreate();
+    }
+
 
     private void showChangeLanguageDialog() {
         final String[] languages = {"Español", "English", "Русский"};

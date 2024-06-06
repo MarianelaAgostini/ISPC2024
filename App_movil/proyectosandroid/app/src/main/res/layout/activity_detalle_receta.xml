@@ -1,51 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DetallesReceta">
+    tools:context=".DetallesReceta"
+    android:background="@color/colorAccent">
 
     <EditText
         android:id="@+id/txtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre de la receta"/>
+        android:hint="Nombre de la receta"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/txtIngredientes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingredientes"/>
+        android:hint="Ingredientes"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/txtInstrucciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Instrucciones"/>
+        android:hint="Instrucciones"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/txtImagen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="URL de la imagen"/>
+        android:hint="URL de la imagen"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <Spinner
         android:id="@+id/spinnerCategoria"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <Button
         android:id="@+id/btnActualizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actualizar"/>
+        android:text="Actualizar"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <Button
         android:id="@+id/btnEliminar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eliminar"/>
+        android:text="Eliminar"
+        android:textColor="@color/colorPrimaryDark"/>
 
 </LinearLayout>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Editar"
-    android:background="@color/color1">
+    android:background="@color/colorAccent">
 
     <TextView
         android:layout_width="match_parent"

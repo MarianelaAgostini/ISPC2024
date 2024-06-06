@@ -124,6 +124,7 @@
 
     <string name="EDITAR">EDITAR</string>
     <string name="PagWeb">Página web</string>
+    <string name="nav_night_mode">Modo nocturno</string>
 
     <!---Preguntas Frequentes-->
     <string name="Preguntas_frecuentes">Preguntas frecuentes</string>
@@ -135,6 +136,5 @@
     <string name="Para_editar">Para editar o eliminar una receta, ve a tu perfil y selecciona la receta que deseas modificar o eliminar.</string>
     <string name="Que_hago">¿Qué hago si olvidé mi contraseña?</string>
     <string name="Si_olvidaste"> Si olvidaste tu contraseña, haz clic en ¿Olvidaste tu contraseña? en la página de inicio de sesión y sigue las instrucciones para restablecerla.</string>
-
 
 </resources>

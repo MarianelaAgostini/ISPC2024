@@ -72,6 +72,11 @@
             android:title="@string/nav_change_language"
             android:icon="@drawable/idiomas">
         </item>
+        <item
+            android:id="@+id/nav_night_mode"
+            android:title="@string/nav_night_mode"
+            android:icon="@drawable/modo_nocturno" />
+
     </group>
 
 </menu>
