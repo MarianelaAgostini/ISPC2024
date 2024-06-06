@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragmentos.Sobre_nosotros"
+    android:background="@color/colorAccent"
+    >
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#fff"
+        android:padding="30dp">
+
+        <TextView
+            android:id="@+id/Preguntas_frecuentes"
+            android:text="@string/Preguntas_frecuentes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="35dp"
+            android:textColor="#ffff"
+            android:background="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/FAQ1"
+            android:text="@string/Como_puedo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="22dp"
+            android:background="#ca99fa"/>
+
+        <TextView
+            android:id="@+id/FAQA1"
+            android:text="@string/Para_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/FAQ2"
+            android:text="@string/Es_gratis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="22dp"
+            android:background="#ca99fa"/>
+
+        <TextView
+            android:id="@+id/FAQA2"
+            android:text="@string/Si_usar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/FAQ3"
+            android:text="@string/Como_editar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="22dp"
+            android:background="#ca99fa"/>
+
+        <TextView
+            android:id="@+id/FAQA3"
+            android:text="@string/Para_editar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/FAQ4"
+            android:text="@string/Que_hago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="22dp"
+            android:background="#ca99fa"/>
+
+        <TextView
+            android:id="@+id/FAQA4"
+            android:text="@string/Si_olvidaste"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="18dp"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</RelativeLayout>

@@ -4,11 +4,148 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af0e4ef4-5d5e-49ea-b7d9-7b6be6e0a56f" name="Changes" comment="" />
+    <list default="true" id="af0e4ef4-5d5e-49ea-b7d9-7b6be6e0a56f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/Coctelis.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/androidTest/java/com/example/asd/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/assets/animacion_inicio_sesion.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/assets/carga_animacion.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/assets/correo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/assets/facebook.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/assets/instagram.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/assets/registro-animacion.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/ic_launcher-playstore.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Carga.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/ConAlcohol.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Editar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/EditarReceta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Fragmentos/Categorias.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Fragmentos/Contacto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Fragmentos/Home.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Fragmentos/Sobre_nosotros.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Inicio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Mostrar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Receta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/RecetaAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Registrar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/SinAlcohol.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/SubirRecetas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/daoUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/java/com/example/asd/menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-anydpi/agregar_ico.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-anydpi/ic_action_imgcarga.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-anydpi/im_ico.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-anydpi/vista_ico.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-hdpi/agregar_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-hdpi/ic_action_imgcarga.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-hdpi/im_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-hdpi/vista_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-mdpi/agregar_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-mdpi/ic_action_imgcarga.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-mdpi/im_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-mdpi/vista_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-xhdpi/agregar_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-xhdpi/ic_action_imgcarga.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-xhdpi/im_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-xhdpi/vista_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-xxhdpi/agregar_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-xxhdpi/ic_action_imgcarga.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-xxhdpi/im_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable-xxhdpi/vista_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/administracion.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/btn_personalizado.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/btn_personalizado_cuatro.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/btn_personalizado_dos.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/btn_personalizado_tres.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/buscar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/carga.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/con_alcohol.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/contacto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/daiquiri.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/editperfil.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/encabezado.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/hogar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/ic_action_closesession.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/ic_action_delete.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/ic_action_edit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/ic_action_favoritos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/inicio_sesion.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/logooptimus.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/margarita.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/pina.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/salir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/sin_alcohol.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/sobre_nosotros.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/subir_receta.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/drawable/usuario.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/font/coctelis.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/font/font_resources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/font/letrauno.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/activity_agregar_con_alcohol.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/activity_carga.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/activity_con_alcohol.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/activity_editar_receta.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/activity_menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/activity_sin_alcohol.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/activity_subir_recetas.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/editar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/encabezado.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/fragment_categorias.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/fragment_contacto.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/fragment_home.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/fragment_sobre_nosotros.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/inicio.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/item_receta.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/item_sin_alcohol.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/mostrar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/layout/registrar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/menu/menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/mipmap-anydpi-v26/acceso.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/mipmap-anydpi-v26/editperfil.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/mipmap-anydpi-v26/mano.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/values/refs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/app/src/test/java/com/example/asd/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectosandroid con conexion/settings.gradle.kts" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -16,11 +153,14 @@
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2W8ZOObAeCgJfiU4TZkpE4cHQbn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -31,8 +171,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/cmc_8/AndroidStudioProjects/Movil_ISPC2023/proyectosandroid con conexion"
+    "com.android.tools.idea.devicemanager.tab": "Physical",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Maii/Desktop/ISPC20242puntocero/ISPC2024/App_movil/proyectosandroid",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

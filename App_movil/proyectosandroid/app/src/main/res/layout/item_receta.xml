@@ -1,0 +1,132 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="#fff"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp"
+    android:background="@color/colorAccent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageURL"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:background="#131f30"
+            android:gravity="center"
+            android:text="Nombre de la receta" />
+
+        <TextView
+            android:id="@+id/títuloIngredientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:background="#7f8fa6"
+            android:text="Ingredientes" />
+
+        <TextView
+            android:id="@+id/itemIngredientesReceta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:text="--" />
+
+        <TextView
+            android:id="@+id/títuloInstrucciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:background="#7f8fa6"
+            android:text="Instrucciones" />
+
+        <TextView
+            android:id="@+id/itemInstruccionesReceta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:text="--" />
+
+        <TextView
+            android:id="@+id/títuloCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:background="#7f8fa6"
+            android:text="Categoría" />
+
+        <TextView
+            android:id="@+id/itemCategorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:text="--" />
+
+        <Button
+            android:id="@+id/btnDescargar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descargar Receta"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:background="#131f30"
+            android:padding="10dp"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/btnLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Me gusta (0)"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:background="#131f30"
+            android:padding="10dp"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/btnDislike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No me gusta (0)"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:background="#131f30"
+            android:padding="10dp"
+            android:layout_marginTop="10dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>
