@@ -1,4 +1,3 @@
-
 # Coctelis - Tu Recetario de Cócteles y Tragos
 <center>
   <img src="https://github.com/viktoryia40/programador2022/blob/desarrolladViktoryia/20230830_200809_0000.png?raw=true" width="200" height="200" />
@@ -40,6 +39,8 @@ https://github.com/CelesteJohanna92/Movil_ISPC2023.git
 
 Haz clic en la imagen para ver el video de demostración.
 
+https://www.youtube.com/watch?v=WILCtHiIdM0
+
 
 ## Capturas de Plantillas - muesta de algunas plantillas de la aplicación.
 
@@ -53,7 +54,14 @@ Haz clic en la imagen para ver el video de demostración.
 - Lenguaje de programación **Java**.
 - Base de datos **SQLite** para almacenar y gestionar las recetas de cócteles.
 
-
+### Descarga y compilación del proyecto
+  ## Comandos Git
+-Descargar Git.
+- Ir a la ruta deseada de descarga. cd ruta/del/directorio.
+- Obtener la URL del repositorio de github.
+- git clone https://github.com/MarianelaAgostini/ISPC2024.git
+- Descarga Andorid Studio Jellyfish  (https://developer.android.com/studio).
+- Adentro de Android Studio. - File - open - ISPC2024
 
 
 ## PÁGINA WEB
@@ -67,6 +75,12 @@ Haz clic en la imagen para ver el video de demostración.
 - Lenguaje de programación **JavaScript**.
 - Entorno de desarrollo **VSC**
 - Base de datos **Firebase** para almacenar y gestionar las recetas de cócteles.
+
+## Video de demostración
+
+[![Video de demostración](https://img.youtube.com/vi/WILCtHiIdM0/0.jpg)](https://www.youtube.com/watch?v=WILCtHiIdM0)
+
+Haz clic en la imagen para ver el video de demostración.
 
 
 ## Instalación del Proyecto
