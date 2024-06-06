@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.File;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -159,5 +160,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             config.setLocale(locale);
             resources.updateConfiguration(config, resources.getDisplayMetrics());
         }
+    }
+
+    // Método para obtener el tamaño de la carpeta (evitar NullPointerException)
+    private long getFolderSize(File folder) {
+        long length = 0;
+        File[] files = folder.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    length += file.length();
+                } else {
+                    length += getFolderSize(file);
+                }
+            }
+        }
+        return length;
     }
 }

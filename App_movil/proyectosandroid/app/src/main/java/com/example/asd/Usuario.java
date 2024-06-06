@@ -2,34 +2,44 @@ package com.example.asd;
 
 public class Usuario {
     private int id;
-    private String Nombre;
-    private String Apellido;
-    private String Usuario;
-    private String Password;
+    private String firstname;
+    private String lastname;
+    private String usuario;
+    private String password;
+    private String email;
+    private int phone;
 
     public Usuario() {
         // Constructor vacío necesario para Firestore
     }
 
-    public Usuario(String nombre, String apellido, String usuario, String password) {
-        Nombre = nombre;
-        Apellido = apellido;
-        Usuario = usuario;
-        Password = password;
+    public Usuario(String firstname, String lastname, String usuario, String password, String email, int phone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.usuario = usuario;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
     }
 
     public boolean isNull() {
-        return Nombre.equals("") || Apellido.equals("") || Usuario.equals("");
+        return (isNullOrEmpty(firstname) && isNullOrEmpty(lastname) && isNullOrEmpty(usuario) && isNullOrEmpty(password) && isNullOrEmpty(email) && phone == 0);
+    }
+
+    private boolean isNullOrEmpty(String str) {
+        return str == null || str.isEmpty();
     }
 
     @Override
     public String toString() {
         return "Usuario{" +
                 "id=" + id +
-                ", Nombre='" + Nombre + '\'' +
-                ", Apellido='" + Apellido + '\'' +
-                ", Usuario='" + Usuario + '\'' +
-                ", Password='" + Password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone=" + phone +
                 '}';
     }
 
@@ -42,35 +52,51 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getApellido() {
-        return Apellido;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setApellido(String apellido) {
-        Apellido = apellido;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getUsuario() {
-        return Usuario;
+        return usuario;
     }
 
     public void setUsuario(String usuario) {
-        Usuario = usuario;
+        this.usuario = usuario;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 }

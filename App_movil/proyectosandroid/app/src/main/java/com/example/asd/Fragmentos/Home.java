@@ -43,8 +43,13 @@ public class Home extends Fragment {
     private void initRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        recetaAdapter = new RecetaAdapter(listaRecetas, requireContext(), false); // false para no clicable
-        recyclerView.setAdapter(recetaAdapter);
+
+        if (listaRecetas != null) {
+            recetaAdapter = new RecetaAdapter(listaRecetas, requireContext(), false); // false para no clicable
+            recyclerView.setAdapter(recetaAdapter);
+        } else {
+            Log.e("Firestore", "Lista de recetas es nula");
+        }
 
         db = FirebaseFirestore.getInstance();
         cargarRecetasDesdeFirestore();
@@ -57,33 +62,42 @@ public class Home extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String id = document.getId();
-                                String nombre = document.getString("name");
-                                String ingredientes = document.getString("ingredients");
-                                String instrucciones = document.getString("description");
-                                String categoria = document.getString("category");
-                                String imagenURL = document.getString("imageURL");
+                            QuerySnapshot querySnapshot = task.getResult();
+                            if (querySnapshot != null) {
+                                for (QueryDocumentSnapshot document : querySnapshot) {
+                                    String id = document.getId();
+                                    String nombre = document.getString("name");
+                                    String ingredientes = document.getString("ingredients");
+                                    String instrucciones = document.getString("description");
+                                    String categoria = document.getString("category");
+                                    String imagenURL = document.getString("imageURL");
 
-                                if ("opcion1".equals(categoria)) {
-                                    categoria = "Cócteles con alcohol";
-                                } else if ("opcion2".equals(categoria)) {
-                                    categoria = "Cócteles sin alcohol";
+                                    if ("opcion1".equals(categoria)) {
+                                        categoria = "Cócteles con alcohol";
+                                    } else if ("opcion2".equals(categoria)) {
+                                        categoria = "Cócteles sin alcohol";
+                                    }
+
+                                    Receta receta = new Receta(nombre, ingredientes, instrucciones, imagenURL, categoria);
+                                    receta.setId(id);
+
+                                    Log.d("Firestore", "Receta: " + receta.getNombre() + ", " +
+                                            receta.getIngredientes() + ", " +
+                                            receta.getInstrucciones() + ", " +
+                                            receta.getImagenURL());
+
+                                    listaRecetas.add(receta);
                                 }
-
-                                Receta receta = new Receta(nombre, ingredientes, instrucciones, imagenURL, categoria);
-                                receta.setId(id);
-
-                                Log.d("Firestore", "Receta: " + receta.getNombre() + ", " +
-                                        receta.getIngredientes() + ", " +
-                                        receta.getInstrucciones() + ", " +
-                                        receta.getImagenURL());
-
-                                listaRecetas.add(receta);
+                                if (listaRecetas != null) {
+                                    recetaAdapter.setRecetas(listaRecetas);
+                                } else {
+                                    Log.e("Firestore", "Lista de recetas es nula después de cargar datos");
+                                }
+                            } else {
+                                Log.e("Firestore", "QuerySnapshot es nulo");
                             }
-                            recetaAdapter.setRecetas(listaRecetas);
                         } else {
-                            Log.d("Firestore", "Error getting documents: ", task.getException());
+                            Log.e("Firestore", "Error obteniendo documentos: ", task.getException());
                         }
                     }
                 });

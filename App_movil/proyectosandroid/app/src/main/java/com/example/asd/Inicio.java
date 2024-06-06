@@ -23,7 +23,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener {
 
     TextView nombre;
     Button btnEditar, btnEliminar, btnSalir;
-    int id = 0;
+    String userId;
     Usuario u;
     FirebaseFirestore db;
 
@@ -42,7 +42,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener {
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
-            id = b.getInt("id");
+            userId = b.getString("id");
             db = FirebaseFirestore.getInstance();
             obtenerUsuarioDesdeFirestore();
         } else {
@@ -51,14 +51,14 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void obtenerUsuarioDesdeFirestore() {
-        db.collection("users").document(String.valueOf(id))
+        db.collection("users").document(userId)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
                             u = documentSnapshot.toObject(Usuario.class);
-                            nombre.setText(u.getNombre() + " " + u.getApellido());
+                            nombre.setText(u.getFirstname() + " " + u.getLastname());
                         } else {
                             Toast.makeText(Inicio.this, "No se encontró el usuario", Toast.LENGTH_SHORT).show();
                         }
@@ -76,7 +76,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.btnEditar) {
             Intent intent = new Intent(Inicio.this, Editar.class);
-            intent.putExtra("id", id);
+            intent.putExtra("id", userId);
             startActivity(intent);
         } else if (v.getId() == R.id.btnEliminar) {
             mostrarConfirmacionEliminarCuenta();
@@ -106,7 +106,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void eliminarCuenta() {
-        db.collection("users").document(String.valueOf(id))
+        db.collection("users").document(userId)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

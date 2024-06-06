@@ -28,7 +28,7 @@
         <TextView
             android:text="@string/SubirRecetas"
             android:gravity="center"
-            android:textColor="#000"
+            android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold"
             android:textSize="35sp"
             android:layout_width="match_parent"
@@ -38,7 +38,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark">
 
 
             <EditText
@@ -46,14 +47,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:hint="@string/NombreReceta"
-                android:inputType="textCapWords|textAutoComplete" />
+                android:inputType="textCapWords|textAutoComplete"
+                android:textColor="@color/colorPrimaryDark"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark">
 
             <EditText
                 android:id="@+id/Ingrediente"
@@ -62,20 +65,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginBottom="2dp"
+                android:textColor="@color/colorPrimaryDark"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark">
 
             <EditText
                 android:id="@+id/Descripcion"
                 android:hint="@string/Descripción"
-                android:inputType="textCapWords|textAutoComplete"
                 android:layout_width="match_parent"
-                android:layout_height="80dp" />
+                android:layout_height="80dp"
+                android:textColor="@color/colorPrimaryDark"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,10 +94,12 @@
             android:layout_marginBottom="-18dp"
             android:layout_marginLeft="-2dp"
             android:layout_margin="10dp"
+            android:textColor="@color/colorPrimaryDark"
             />
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark">
 
             <Spinner
                 android:id="@+id/spinnerCategoria"
@@ -100,21 +107,24 @@
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:entries="@array/opciones_categoria"
-                android:prompt="@string/selecciona_categoria" />
+                android:prompt="@string/selecciona_categoria"
+                android:textColor="@color/colorPrimaryDark"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark">
 
             <EditText
                 android:id="@+id/ImagenURL"
                 android:hint="Link de la imagen"
                 android:inputType="textCapWords"
                 android:layout_width="match_parent"
-                android:layout_height="80dp" />
+                android:layout_height="80dp"
+                android:textColor="@color/colorPrimaryDark"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Botón -->

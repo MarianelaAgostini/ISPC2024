@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Registrar"
     android:background="@color/colorAccent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -16,7 +19,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="Crear Nueva Cuenta"
-        android:textColor="#000"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="35dp"
         android:textStyle="bold" />
 
@@ -37,7 +40,8 @@
         android:textSize="18dp"
         android:layout_marginLeft="5dp"
         android:paddingBottom="1dp"
-        android:layout_marginBottom="-18dp" />
+        android:layout_marginBottom="-18dp"
+        android:textColor="@color/colorPrimaryDark"/>
     <EditText
         android:id="@+id/RegUser"
         android:layout_width="match_parent"
@@ -46,7 +50,8 @@
         android:layout_weight="1"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,7 +60,8 @@
         android:textSize="18dp"
         android:layout_marginLeft="5dp"
         android:paddingBottom="1dp"
-        android:layout_marginBottom="-18dp" />
+        android:layout_marginBottom="-18dp"
+        android:textColor="@color/colorPrimaryDark"/>
     <EditText
         android:id="@+id/RegNombre"
         android:layout_width="match_parent"
@@ -64,7 +70,8 @@
         android:layout_weight="1"
         android:hint="Nombre"
         android:inputType="textPersonName"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -73,7 +80,8 @@
         android:textSize="18dp"
         android:layout_marginLeft="5dp"
         android:paddingBottom="1dp"
-        android:layout_marginBottom="-18dp" />
+        android:layout_marginBottom="-18dp"
+        android:textColor="@color/colorPrimaryDark"/>
     <EditText
         android:id="@+id/RegApellido"
         android:layout_width="match_parent"
@@ -82,7 +90,8 @@
         android:layout_weight="1"
         android:hint="Apellido"
         android:inputType="textPersonName"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -91,7 +100,8 @@
         android:textSize="18dp"
         android:layout_marginLeft="5dp"
         android:paddingBottom="1dp"
-        android:layout_marginBottom="-18dp" />
+        android:layout_marginBottom="-18dp"
+        android:textColor="@color/colorPrimaryDark"/>
     <EditText
         android:id="@+id/RegPass"
         android:layout_width="match_parent"
@@ -100,7 +110,27 @@
         android:layout_weight="1"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimaryDark"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teléfono:"
+        android:textSize="18dp"
+        android:layout_marginLeft="5dp"
+        android:paddingBottom="1dp"
+        android:layout_marginBottom="-18dp"
+        android:textColor="@color/colorPrimaryDark"/>
+    <EditText
+        android:id="@+id/RegPhone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:hint="Teléfono"
+        android:inputType="textPersonName"
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <Button
         android:id="@+id/btnRegRegistrar"
@@ -125,3 +155,4 @@
         android:layout_height="60sp" />
 
 </LinearLayout>
+</ScrollView>

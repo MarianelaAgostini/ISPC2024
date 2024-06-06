@@ -103,8 +103,17 @@ public class EditarReceta extends AppCompatActivity {
                             String instrucciones = document.getString("description");
                             String categoria = document.getString("category");
                             String imagenURL = document.getString("imageURL");
+
+                            // Obtener los valores de me gusta y no me gusta, asegurando que no sean null
+                            Long likes = document.getLong("likes");
+                            Long dislikes = document.getLong("dislikes");
+                            int likesCount = (likes != null) ? likes.intValue() : 0;
+                            int dislikesCount = (dislikes != null) ? dislikes.intValue() : 0;
+
                             Receta receta = new Receta(nombre, ingredientes, instrucciones, imagenURL, categoria);
                             receta.setId(id);
+                            receta.setLikes(likesCount); // Set the likes count
+                            receta.setDislikes(dislikesCount); // Set the dislikes count
                             listaRecetas.add(receta);
                         }
                         adapter = new RecetaAdapter(listaRecetas, EditarReceta.this, true);

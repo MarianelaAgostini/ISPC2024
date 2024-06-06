@@ -1,13 +1,14 @@
 package com.example.asd;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.Manifest;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -26,14 +28,16 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder> {
 
@@ -42,7 +46,7 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
     private boolean isClickable;
 
     public RecetaAdapter(ArrayList<Receta> listaRecetas, Context context, boolean isClickable) {
-        this.listaRecetas = listaRecetas;
+        this.listaRecetas = listaRecetas != null ? listaRecetas : new ArrayList<>();
         this.context = context;
         this.isClickable = isClickable;
     }
@@ -60,6 +64,27 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
         holder.nombre.setText(receta.getNombre());
         holder.ingredientes.setText(receta.getIngredientes());
         holder.instrucciones.setText(receta.getInstrucciones());
+        holder.btnDescargar.setOnClickListener(v -> {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            } else {
+                Log.d("RecetaAdapter", "Permiso concedido, descargando receta");
+                // Set buttons to invisible
+                holder.btnLike.setVisibility(View.INVISIBLE);
+                holder.btnDislike.setVisibility(View.INVISIBLE);
+                holder.btnDescargar.setVisibility(View.INVISIBLE);
+
+                Bitmap recetaBitmap = getBitmapFromView(holder.itemView);
+
+                // Restore buttons' visibility
+                holder.btnLike.setVisibility(View.VISIBLE);
+                holder.btnDislike.setVisibility(View.VISIBLE);
+                holder.btnDescargar.setVisibility(View.VISIBLE);
+
+                saveImageToGallery(recetaBitmap, receta.getNombre());
+            }
+        });
+
 
         // Convertir la categoría
         String categoria = receta.getIdCategoria();
@@ -99,7 +124,7 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
                         holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
                     }
                 }
-            });
+            }).addOnFailureListener(e -> Log.e("RecetaAdapter", "Error al obtener datos de la receta", e));
         } else {
             Log.e("RecetaAdapter", "ID de receta nulo");
         }
@@ -115,6 +140,36 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
         holder.btnLike.setOnClickListener(v -> handleVote(receta, true, holder));
         holder.btnDislike.setOnClickListener(v -> handleVote(receta, false, holder));
     }
+    private Bitmap getBitmapFromView(View view) {
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Drawable bgDrawable = view.getBackground();
+        if (bgDrawable != null) {
+            bgDrawable.draw(canvas);
+        } else {
+            canvas.drawColor(0xFFFFFFFF);
+        }
+        view.draw(canvas);
+        return bitmap;
+    }
+
+    // Método para guardar el Bitmap en la galería
+    private void saveImageToGallery(Bitmap bitmap, String imageName) {
+        String savedImageURL = MediaStore.Images.Media.insertImage(
+                context.getContentResolver(),
+                bitmap,
+                imageName,
+                "Image of " + imageName
+        );
+
+        if (savedImageURL != null) {
+            Uri savedImageURI = Uri.parse(savedImageURL);
+            Toast.makeText(context, "Imagen guardada en la galería: " + savedImageURI, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Error guardando la imagen", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
     @Override
@@ -123,7 +178,7 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
     }
 
     public void setRecetas(ArrayList<Receta> listaRecetas) {
-        this.listaRecetas = listaRecetas;
+        this.listaRecetas = listaRecetas != null ? listaRecetas : new ArrayList<>();
         notifyDataSetChanged();
     }
 
@@ -133,36 +188,64 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String recipeId = receta.getId();
 
-        DocumentReference recipeRef = db.collection("recipes").document(recipeId);
-        DocumentReference userVoteRef = db.collection("user_votes").document(userId + "_" + recipeId);
+        if (recipeId != null && userId != null) {
+            DocumentReference recipeRef = db.collection("recipes").document(recipeId);
+            DocumentReference userVoteRef = db.collection("user_votes").document(userId + "_" + recipeId);
 
-        userVoteRef.get().addOnSuccessListener(documentSnapshot -> {
-            if (!documentSnapshot.exists()) {
-                // El usuario no ha votado todavía
-                userVoteRef.set(new HashMap<String, Object>() {{
-                    put("recipeId", recipeId);
-                    put("userId", userId);
-                    put("vote", isLike ? "like" : "dislike");
-                }});
+            userVoteRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    String previousVote = documentSnapshot.getString("vote");
 
-                if (isLike) {
-                    receta.setLikes(receta.getLikes() + 1);
-                    holder.btnLike.setText("Me gusta (" + receta.getLikes() + ")");
+                    if (isLike && "dislike".equals(previousVote)) {
+                        receta.setDislikes(receta.getDislikes() - 1);
+                        receta.setLikes(receta.getLikes() + 1);
+                        holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
+                        holder.btnLike.setText("Me gusta (" + receta.getLikes() + ")");
+                        userVoteRef.update("vote", "like");
+                    } else if (!isLike && "like".equals(previousVote)) {
+                        receta.setLikes(receta.getLikes() - 1);
+                        receta.setDislikes(receta.getDislikes() + 1);
+                        holder.btnLike.setText("Me gusta (" + receta.getLikes() + ")");
+                        holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
+                        userVoteRef.update("vote", "dislike");
+                    } else if (isLike && "like".equals(previousVote)) {
+                        receta.setLikes(receta.getLikes() - 1);
+                        holder.btnLike.setText("Me gusta (" + receta.getLikes() + ")");
+                        userVoteRef.delete();
+                    } else if (!isLike && "dislike".equals(previousVote)) {
+                        receta.setDislikes(receta.getDislikes() - 1);
+                        holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
+                        userVoteRef.delete();
+                    }
                 } else {
-                    receta.setDislikes(receta.getDislikes() + 1);
-                    holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
+                    // El usuario no ha votado todavía
+                    userVoteRef.set(new HashMap<String, Object>() {{
+                        put("recipeId", recipeId);
+                        put("userId", userId);
+                        put("vote", isLike ? "like" : "dislike");
+                    }});
+
+                    if (isLike) {
+                        receta.setLikes(receta.getLikes() + 1);
+                        holder.btnLike.setText("Me gusta (" + receta.getLikes() + ")");
+                    } else {
+                        receta.setDislikes(receta.getDislikes() + 1);
+                        holder.btnDislike.setText("No me gusta (" + receta.getDislikes() + ")");
+                    }
                 }
+
+                // Actualizar los contadores de likes y dislikes en Firestore
                 recipeRef.set(receta, SetOptions.merge());
-            } else {
-                // El usuario ya ha votado
-                Toast.makeText(context, "Ya has votado esta receta", Toast.LENGTH_SHORT).show();
-            }
-        });
+            }).addOnFailureListener(e -> Log.e("RecetaAdapter", "Error al verificar voto del usuario", e));
+        } else {
+            Log.e("RecetaAdapter", "Recipe ID o User ID es nulo");
+        }
     }
 
     public static class RecetaViewHolder extends RecyclerView.ViewHolder {
         TextView nombre, ingredientes, instrucciones, categoria;
         ImageView imagenReceta;
+        Button btnDescargar;
         Button btnLike, btnDislike;
 
         public RecetaViewHolder(@NonNull View itemView) {
@@ -174,6 +257,7 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetaView
             imagenReceta = itemView.findViewById(R.id.imageURL);
             btnLike = itemView.findViewById(R.id.btnLike);
             btnDislike = itemView.findViewById(R.id.btnDislike);
+            btnDescargar = itemView.findViewById(R.id.btnDescargar);
         }
     }
 }

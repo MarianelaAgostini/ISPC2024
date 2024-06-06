@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class Registrar extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText emailField, passwordField, firstNameField, lastNameField;
+    private EditText emailField, passwordField, firstNameField, lastNameField, phone;
     private Button registerButton, cancelButton;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -31,6 +31,7 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
         passwordField = findViewById(R.id.RegPass);
         firstNameField = findViewById(R.id.RegNombre);
         lastNameField = findViewById(R.id.RegApellido);
+        phone = findViewById(R.id.RegPhone);
         registerButton = findViewById(R.id.btnRegRegistrar);
         cancelButton = findViewById(R.id.btnRegCancelar);
 
@@ -57,8 +58,9 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
         String password = passwordField.getText().toString().trim();
         String firstName = firstNameField.getText().toString().trim();
         String lastName = lastNameField.getText().toString().trim();
+        String phoneText = phone.getText().toString().trim();
 
-        if (email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || phoneText.isEmpty()) {
             Toast.makeText(this, "Error: campos vacíos", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -73,19 +75,26 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
             return;
         }
 
+        int phoneNumber;
+        try {
+            phoneNumber = Integer.parseInt(phoneText);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Error: teléfono no válido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            saveUserToFirestore(user.getUid(), email, firstName, lastName, password);
+                            saveUserToFirestore(user.getUid(), email, firstName, lastName, password, phoneNumber);
                         }
                     } else {
                         Toast.makeText(Registrar.this, "Registro fallido: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
-
 
     private boolean isValidEmail(String email) {
         String emailPattern = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
@@ -97,15 +106,14 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
         return Pattern.compile(passwordPattern).matcher(password).matches();
     }
 
-
-    private void saveUserToFirestore(String userId, String email, String firstName, String lastName, String password) {
+    private void saveUserToFirestore(String userId, String email, String firstName, String lastName, String password, int phone) {
         Map<String, Object> user = new HashMap<>();
         user.put("email", email);
         user.put("firstname", firstName);
         user.put("lastname", lastName);
-        user.put("password", password); // Añadir la contraseña
-        user.put("phone", ""); // Puedes añadir el teléfono si tienes el campo correspondiente
-        user.put("rol", "user"); // Establecer rol automáticamente en "user"
+        user.put("password", password);
+        user.put("phone", phone);
+        user.put("rol", "user");
 
         db.collection("users").document(userId).set(user)
                 .addOnSuccessListener(aVoid -> {
@@ -116,5 +124,4 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                 })
                 .addOnFailureListener(e -> Toast.makeText(Registrar.this, "Error al registrar usuario en Firestore: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
-
 }

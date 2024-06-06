@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -52,13 +53,18 @@ public class ConAlcohol extends AppCompatActivity {
                             Receta receta = document.toObject(Receta.class);
                             listaRecetasConAlcohol.add(receta);
                         }
-                        adapter = new RecetaAdapter(new ArrayList<>(listaRecetasConAlcohol), this, false);
-                        recyclerViewConAlcohol.setAdapter(adapter);
+                        if (listaRecetasConAlcohol != null) {
+                            adapter = new RecetaAdapter(new ArrayList<>(listaRecetasConAlcohol), this, false);
+                            recyclerViewConAlcohol.setAdapter(adapter);
+                        } else {
+                            Log.e("Firestore", "Lista de recetas con alcohol es nula");
+                        }
                     } else {
                         Toast.makeText(ConAlcohol.this, "Error al obtener las recetas", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {

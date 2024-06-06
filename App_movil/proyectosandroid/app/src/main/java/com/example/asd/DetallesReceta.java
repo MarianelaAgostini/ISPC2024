@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DetallesReceta extends AppCompatActivity {
@@ -90,22 +91,37 @@ public class DetallesReceta extends AppCompatActivity {
         Log.d(TAG, "Categoría (Firestore): " + categoriaFirestore);
         Log.d(TAG, "Imagen URL: " + imagen);
 
-        receta.setNombre(nombre);
-        receta.setIngredientes(ingredientes);
-        receta.setInstrucciones(instrucciones);
-        receta.setIdCategoria(categoriaFirestore);
-        receta.setImagenURL(imagen);
+        // Obtener los valores actuales de "me gusta" y "no me gusta"
+        db.collection("recipes").document(receta.getId()).get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                int meGusta = documentSnapshot.getLong("likes").intValue();
+                int noMeGusta = documentSnapshot.getLong("dislikes").intValue();
 
-        db.collection("recipes").document(receta.getId())
-                .set(receta)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Receta actualizada con éxito", Toast.LENGTH_SHORT).show();
-                    finish();
-                })
-                .addOnFailureListener(e -> {
-                    Log.e(TAG, "Error al actualizar la receta", e);
-                    Toast.makeText(this, "Error al actualizar la receta", Toast.LENGTH_SHORT).show();
-                });
+                receta.setNombre(nombre);
+                receta.setIngredientes(ingredientes);
+                receta.setInstrucciones(instrucciones);
+                receta.setIdCategoria(categoriaFirestore);
+                receta.setImagenURL(imagen);
+                receta.setLikes(meGusta);  // Preservar el valor de "me gusta"
+                receta.setDislikes(noMeGusta);  // Preservar el valor de "no me gusta"
+
+                db.collection("recipes").document(receta.getId())
+                        .set(receta)
+                        .addOnSuccessListener(aVoid -> {
+                            Toast.makeText(this, "Receta actualizada con éxito", Toast.LENGTH_SHORT).show();
+                            finish();
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.e(TAG, "Error al actualizar la receta", e);
+                            Toast.makeText(this, "Error al actualizar la receta", Toast.LENGTH_SHORT).show();
+                        });
+            } else {
+                Toast.makeText(this, "La receta no existe", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(e -> {
+            Log.e(TAG, "Error al obtener la receta", e);
+            Toast.makeText(this, "Error al obtener la receta", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void eliminarReceta() {
