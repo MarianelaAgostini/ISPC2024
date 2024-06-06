@@ -25,6 +25,7 @@ import com.example.asd.Fragmentos.Categorias;
 import com.example.asd.Fragmentos.Contacto;
 import com.example.asd.Fragmentos.Home;
 import com.example.asd.Fragmentos.PagWeb;
+import com.example.asd.Fragmentos.Preguntas_frecuentes;
 import com.example.asd.Fragmentos.Sobre_nosotros;
 import com.google.android.material.navigation.NavigationView;
 
@@ -119,6 +120,8 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
             }
         } else if (itemId == R.id.Sobre_nosotros) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Sobre_nosotros()).commit();
+        } else if (itemId == R.id.Preguntas_frecuentes) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Preguntas_frecuentes()).commit();
         } else if (itemId == R.id.Contacto) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerA, new Contacto()).commit();
         } else if (itemId == R.id.PagWeb) {
